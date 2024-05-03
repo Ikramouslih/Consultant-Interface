@@ -7,7 +7,18 @@ sap.ui.define(
       "use strict";
   
       return Controller.extend("management.controller.ConsultantDetails", {
-        onInit: function () {}
+        onInit: function () {
+          var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+          oRouter.getRoute("ConsultantDetails").attachPatternMatched(this._onObjectMatched, this);
+      },
+
+      _onObjectMatched: function (oEvent) {
+          var sObjectId = oEvent.getParameter("arguments").consultantId;
+          console.log("Navigated to employee with ID:", sObjectId);
+          this.getView().bindElement({
+              path: "/CONSULTANTIDSet('" + sObjectId + "')"
+          });
+      }
       });
     }
   );

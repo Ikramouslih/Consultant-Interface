@@ -12,7 +12,6 @@ sap.ui.define(
             var oItem = oEvent.getSource();
             var oBindingContext = oItem.getBindingContext();
             var sConsultantId = oBindingContext.getProperty("ConsultantId");
-            console.log(sConsultantId);
         
             // Navigate to the details view with the selected person's ID
             this.getOwnerComponent().getRouter().navTo("ConsultantDetails", { consultantId: sConsultantId });
