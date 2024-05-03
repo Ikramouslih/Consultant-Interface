@@ -57,7 +57,8 @@
         "sap.ui.table": {},
         "sap.ushell": {},
         "sap.ui.layout": {},
-				"sap.uxap": {}
+				"sap.uxap": {},
+        "sap.suite.ui.microchart": {}
       }
     },
     "contentDensities": {

@@ -1,34 +1,189 @@
-<mvc:View controllerName="management.controller.Management"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <FlexBox id="_IDGenFlexBox11"
-				height="100%"
+<mvc:View
+    controllerName="management.controller.Management"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+>
+    <ScrollContainer id="_IDGenScrollContainer1"
+        vertical="true"
+        horizontal="false"
+        height="100%"
+    >
+        <Panel
+		id="panelForGridList"
+		backgroundDesign="Transparent"
+		>
+			<headerToolbar>
+				<Toolbar
+					id="_IDGenToolbar1"
+					height="3rem"
 				>
+					<Title
+						id="_IDGenTitle1"
+						text="Dashbord"
+					/>
+				</Toolbar>
+			</headerToolbar>
+						
+			<f:GridList id="grid1" class="sapUiMediumMarginTop">
+				<f:customLayout>
+					<grid:ResponsiveColumnLayout
+						id="_IDGenResponsiveColumnLayout1"
+					/>
+				</f:customLayout>
 
-		<HBox id="_IDGenHBox1" >
-			<GenericTile id="_IDGenGenericTile1" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Cumulative Totals" subheader="Expenses" press="press">
-				<TileContent id="_IDGenTileContent1" unit="Unit" footer="Footer Text">
-					<NumericContent id="_IDGenNumericContent1" value="1762" icon="sap-icon://line-charts" withMargin="false" />
-				</TileContent>
-			</GenericTile>
+				<!--first line-->
+				<f:GridListItem id="_IDGenGridListItem2">
+					<f:layoutData>
+						<grid:ResponsiveColumnItemLayoutData
+							id="_IDGenResponsiveColumnItemLayoutData2"
+							columns="3"
+							rows="1"
+						/>
+					</f:layoutData>
+					<VBox
+						id="_IDGenVBox2"
+						class="sapUiSmallMargin"
+					>
+						<Title
+							id="_IDGenTitle3"
+							text="Donut"
+							wrapping="true"
+						/>
+						<Label
+							id="_IDGenLabel4"
+							text="Subtitle"
+							wrapping="true"
+						/>
+						<Label
+							id="_IDGenLabel5"
+							text="Subtitle"
+							wrapping="true"
+						/>
+						<Label
+							id="_IDGenLabel6"
+							text="Subtitle"
+							wrapping="true"
+						/>
+					</VBox>
+				</f:GridListItem>
+				<f:GridListItem id="_IDGenGridListItem1" class="tilesContainerContainer">
+					<f:layoutData>
+						<grid:ResponsiveColumnItemLayoutData
+							id="_IDGenResponsiveColumnItemLayoutData1"
+							columns="9"
+							rows="1"
+						/>
+					</f:layoutData>
+					<VBox
+						id="_IDGenVBox1"
+						class="sapUiSmallMargin tilesContainer"
+					>
+						<!-- <Title
+							id="_IDGenTitle2"
+							text="Tiles"
+							wrapping="true"
+						/> -->
 
-			<GenericTile id="_IDGenGenericTile2" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Cumulative Totals" subheader="Expenses" press="press">
-				<TileContent id="_IDGenTileContent2" unit="Unit" footer="Footer Text">
-					<NumericContent id="_IDGenNumericContent2" value="12" withMargin="false" />
-				</TileContent>
-			</GenericTile>
+						<HBox id="_IDGenHBox2" justifyContent="SpaceAround" alignItems="Center" width="50%">
+							<GenericTile id="_IDGenGenericTile1" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses" >
+								<TileContent id="_IDGenTileContent1" unit="Unit" footer="Footer Text" >
+									<NumericContent id="_IDGenNumericContent1" value="1762" icon="sap-icon://line-charts" withMargin="false" />
+								</TileContent>
+							</GenericTile>
 
-			<GenericTile id="_IDGenGenericTile3" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Cumulative Totals" subheader="Expenses" press="press">
-				<TileContent id="_IDGenTileContent3" unit="Unit" footer="Footer Text">
-					<NumericContent id="_IDGenNumericContent3" value="12" withMargin="false" />
-				</TileContent>
-			</GenericTile>
+							<GenericTile id="_IDGenGenericTile2" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses" >
+								<TileContent id="_IDGenTileContent2" unit="Unit" footer="Footer Text">
+									<NumericContent id="_IDGenNumericContent2" value="12" withMargin="false" />
+								</TileContent>
+							</GenericTile>
 
-			<GenericTile id="_IDGenGenericTile4" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Cumulative Totals" subheader="Expenses" press="press">
-				<TileContent id="_IDGenTileContent4" unit="Unit" footer="Footer Text">
-					<NumericContent id="_IDGenNumericContent4" value="12" withMargin="false" />
-				</TileContent>
-			</GenericTile>
-		</HBox>
-	</FlexBox>
+							<GenericTile id="_IDGenGenericTile3" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses">
+								<TileContent id="_IDGenTileContent3" unit="Unit" footer="Footer Text">
+									<NumericContent id="_IDGenNumericContent3" value="12" withMargin="false" />
+								</TileContent>
+							</GenericTile>
+
+							<GenericTile id="_IDGenGenericTile4" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses" >
+								<TileContent id="_IDGenTileContent4" unit="Unit" footer="Footer Text">
+									<NumericContent id="_IDGenNumericContent4" value="12" withMargin="false" />
+								</TileContent>
+							</GenericTile>
+						</HBox>
+						
+
+					</VBox>
+				</f:GridListItem>
+
+				
+
+				<!--second line-->
+				<f:GridListItem id="_IDGenGridListItem3">
+					<f:layoutData>
+						<grid:ResponsiveColumnItemLayoutData
+							id="_IDGenResponsiveColumnItemLayoutData3"
+							columns="12"
+							rows="1"
+						/>
+					</f:layoutData>
+
+					<VBox
+						id="_IDGenVBox3"
+						class="sapUiSmallMargin"
+					>
+						<Title
+							id="_IDGenTitle4"
+							text="Bars"
+							wrapping="true"
+						/>
+						<Label
+							id="_IDGenLabel7"
+							text="Subtitle"
+							wrapping="true"
+						/>
+					</VBox>
+				</f:GridListItem>
+
+				<!--third line-->
+				<f:GridListItem id="_IDGenGridListItem4">
+					<f:layoutData>
+						<grid:ResponsiveColumnItemLayoutData
+							id="_IDGenResponsiveColumnItemLayoutData4"
+							columns="12"
+							rows="1"
+						/>
+					</f:layoutData>
+
+					<VBox
+						id="_IDGenVBox4"
+						class="sapUiSmallMargin"
+					>
+						<Title
+							id="_IDGenTitle5"
+							text="Multiple"
+							wrapping="true"
+						/>
+						<Label
+							id="_IDGenLabel8"
+							text="Subtitle"
+							wrapping="true"
+						/>
+						<Label
+							id="_IDGenLabel9"
+							text="Subtitle"
+							wrapping="true"
+						/>
+						<Label
+							id="_IDGenLabel10"
+							text="Subtitle"
+							wrapping="true"
+						/>
+					</VBox>
+				</f:GridListItem>
+			</f:GridList>
+		</Panel>
+
+    </ScrollContainer>
 </mvc:View>
