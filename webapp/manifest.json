@@ -170,6 +170,20 @@
           "target": [
             "TargetConsultants"
           ]
+        },
+        {
+          "name": "RouteTicket",
+          "pattern": "Tickets/",
+          "target": [
+            "TargetTicket"
+          ]
+        },
+        {
+          "name": "ConsultantDetails",
+          "pattern": "consultantDetails/{consultantId}",
+          "target": [
+            "ConsultantDetails"
+          ]
         }
       ],
       "targets": {
@@ -186,6 +200,20 @@
           "clearControlAggregation": false,
           "viewId": "Consultants",
           "viewName": "Consultants"
+        },
+        "TargetTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Tickets",
+          "viewName": "Tickets"
+        },
+        "ConsultantDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ConsultantDetails",
+          "viewName": "Dashboard.ConsultantDetails"
         }
       }
     },

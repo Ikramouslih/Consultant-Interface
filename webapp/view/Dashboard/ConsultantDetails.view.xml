@@ -1,0 +1,46 @@
+<mvc:View controllerName="management.controller.ConsultantDetails"
+  xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns:tnt="sap.tnt"
+    displayBlock="true">
+	<Page id="_IDGenPage1" class="consultantDetailsPage" title="Details">
+	<FlexBox id="idFlexDashboardContent"
+				height="70%"
+				>
+			<VBox id="vboxCard" >
+				<mvc:XMLView id="_IDGenXMLView1"  viewName="management.view.Dashboard.Card"/>
+				<layoutData>
+					<FlexItemData id="_IDGenFlexItemData3"
+						growFactor="1"
+						baseSize="0"
+						backgroundDesign="Solid"
+						styleClass="sapUiTinyMargin" />
+        		</layoutData>
+			</VBox>
+			<VBox id="vboxCalendar" >
+				<mvc:XMLView id="_IDGenXMLView2"  viewName="management.view.Dashboard.Calendar"/>
+				<layoutData>
+					<FlexItemData id="_IDGenFlexItemData4"
+						growFactor="1"
+						baseSize="0"
+						backgroundDesign="Solid"
+						styleClass="sapUiTinyMargin" />
+        		</layoutData>
+			</VBox>	
+			<VBox id="vboxDonut" class="vboxDonut">
+				<mvc:XMLView id="_IDGenXMLView3"  viewName="management.view.Dashboard.Donut"/>
+				<layoutData>
+					<FlexItemData id="_IDGenFlexItemData5"
+						growFactor="1"
+						baseSize="0"
+						backgroundDesign="Solid"
+						styleClass="sapUiTinyMargin" />
+        		</layoutData>
+			</VBox>				
+		</FlexBox>
+	<VBox id="vboxConsultantTable" class="vboxConsultantTable">
+				<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.Dashboard.ConsultantTable"/>
+	</VBox>
+	</Page>
+</mvc:View>

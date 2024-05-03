@@ -15,25 +15,27 @@
                 id="_IDGenToolHeader1"
                 class="header"
             >
-				 <Button
-                    id="sideNavigationToggleButton"
-                    icon="sap-icon://menu2"
-                    type="Transparent"
-                    press=".onSideNavButtonPress"
-                    tooltip="{i18n>collpaseMenuButtonText}"
-                >
-                    <layoutData>
-                        <OverflowToolbarLayoutData
-                            id="_IDGenOverflowToolbarLayoutData1"
-                            priority="NeverOverflow"
-                        />
-                    </layoutData>
-                </Button>
-                <Image
-                    id="_IDGenImage1"
-                    src="../assets/logo.png"
-                    class="customLogoClass"
-                />
+				 <VBox id="_IDGenFlexBox1" class="containerLogo">
+                        <Button
+                        id="sideNavigationToggleButton"
+                        icon="sap-icon://menu2"
+                        type="Transparent"
+                        press=".onSideNavButtonPress"
+                        tooltip="{i18n>collpaseMenuButtonText}"
+                    >
+                        <layoutData>
+                            <OverflowToolbarLayoutData
+                                id="_IDGenOverflowToolbarLayoutData1"
+                                priority="NeverOverflow"
+                            />
+                        </layoutData>
+                    </Button>
+                    <Image
+                        id="_IDGenImage1"
+                        src="../assets/logo.png"
+                        class="customLogoClass"
+                    />
+                 </VBox>
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <ToolbarSpacer id="_IDGenToolbarSpacer2" />
                 <Button
@@ -95,6 +97,7 @@
                         text="Tickets"
                         icon="sap-icon://task"
 						expanded="true"
+                        select="onTicketsSelect"
                     />
                     <tnt:NavigationListItem
                         id="_IDGenNavigationListItem4"

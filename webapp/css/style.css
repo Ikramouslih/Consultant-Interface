@@ -4,7 +4,12 @@
     z-index: 1;
 
 }
+.containerLogo{
+    /* width: ; */
+    display: flex;
+    flex-direction: row;
 
+}
 .header {
     background-color: rgb(32,41,72) !important;
 } 
@@ -44,10 +49,25 @@
 }
 
 
-/* Consultants */
+*{
+    margin: 0;
+    padding: 0;
+}
 
-/* .span.sapMBtnInner.sapMBtnEmphasized .sapUiIcon {
-    background-color: rgb(32,41,72) !important;
-    border-color: rgb(32,41,72) !important;
-    color: #fff !important;
+.customRedBackground {
+    background-color: #232D4B !important; /* Using !important to override any existing background styles */
+    margin: 0 !important;
+}
+.donut{
+    margin-top: 100px;
+}
+.DonutSegmentColor1{
+    fill: #ff4500;
+}
+.idJiraColumn{
+    color: blue !important;
+}
+/* 
+.consultantDetailsPage{
+    overflow: scroll;
 } */

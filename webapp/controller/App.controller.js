@@ -81,6 +81,9 @@ sap.ui.define(
 
         onDashboardSelect: function() {
           this.getOwnerComponent().getRouter().navTo("RouteManagement");
+        },
+        onTicketsSelect: function() {
+          this.getOwnerComponent().getRouter().navTo("RouteTicket");
         }
 
 
