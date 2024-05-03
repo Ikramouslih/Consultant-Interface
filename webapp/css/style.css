@@ -1,0 +1,53 @@
+.customLogoClass {
+    width: 12%;
+    margin-left: 30px !important;
+    z-index: 1;
+
+}
+
+.header {
+    background-color: rgb(32,41,72) !important;
+} 
+
+.sidebar {
+    background-color: rgb(32,41,72) !important;
+}
+
+.sideNavLinks{
+    color: white !important;
+    background-color: rgb(32,41,72) !important;
+}
+
+
+.sideNav{
+    background-color: rgb(32,41,72) !important;
+}
+
+.sapTntNavLIItem {
+    background-color: rgb(32,41,72) !important;
+    color: white !important;
+    margin: 10px 0px 10px 0px;
+    border: none !important;
+}
+
+.sapTntNavLIItem:hover{
+    background-color: rgb(70, 92, 173) !important;
+    color: white !important;
+}
+
+.sapTntNavLIItem .sapMText {
+    color: white !important;
+} 
+
+.sapUiIcon {
+    color: rgb(0,171,155) !important;
+}
+
+
+/* Consultants */
+
+/* .span.sapMBtnInner.sapMBtnEmphasized .sapUiIcon {
+    background-color: rgb(32,41,72) !important;
+    border-color: rgb(32,41,72) !important;
+    color: #fff !important;
+} */
