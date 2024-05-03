@@ -184,7 +184,14 @@
           "target": [
             "ConsultantDetails"
           ]
-        }
+        },
+        {
+          "name": "CreateTicket",
+          "pattern": "CreateTicket/",
+          "target": [
+            "CreateTicket"
+          ]
+        } 
       ],
       "targets": {
         "TargetManagement": {
@@ -214,6 +221,13 @@
           "clearControlAggregation": false,
           "viewId": "ConsultantDetails",
           "viewName": "Dashboard.ConsultantDetails"
+        },
+        "CreateTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "CreateTicket",
+          "viewName": "Ticketform"
         }
       }
     },

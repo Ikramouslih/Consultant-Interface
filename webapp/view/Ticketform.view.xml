@@ -1,0 +1,73 @@
+<mvc:View controllerName="management.controller.TicketCreate"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="Create Ticket">
+        <content>
+        <InputListItem id="_IDGenInputListIte1" label="Jira Ticket Id :"> 
+        <Input 
+                id="IdTicketJira"
+                placeholder="Enter Jira's Id ">
+        </Input>
+        </InputListItem>
+        <InputListItem id="_IDGenInputListIte2" label="Titre :"> 
+        <Input 
+                id="Titre"
+                placeholder="Enter title ">
+        </Input>
+        </InputListItem>
+        <InputListItem id="_IDGenInputListIte3" label="Jira Ticket Id :"> 
+        <Select id="Projet"
+                forceSelection="false"
+                items="{
+                    path: '/PROJECTIDSet',
+                    sorter: {path: 'IdProject' }
+                }"
+                >
+                <core:Item id="_IDGenItem1" key="{IdProject}" text="{NomProjet}" />
+        </Select>
+        </InputListItem>
+        <InputListItem id="_IDGenInputListIte4" label="Description :"> 
+        <Input 
+                id="Description"
+                placeholder="Enter Description ">
+        </Input>
+        </InputListItem>
+        <InputListItem id="_IDGenInputListIte5" label="Technology :"> 
+        <Input 
+                id="Technology"
+                placeholder="Enter Technology ">
+        </Input>
+        </InputListItem>
+        <InputListItem id="_IDGenInputListIte6" label="Estimated :"> 
+        <Input 
+                id="Estimated"
+                placeholder="Enter duration ">
+        </Input>
+        </InputListItem>        
+<!--             <Label id="_IDGenLabel1" text="Jira Ticket Id :"/>
+            <Input id="IdTicketJira"/>
+            <Label id="_IDGenLabel2" text="Titre :"/>
+            <Input id="Titre" />
+            <Label id="_IDGenLabel3" text="Projet :"/>
+            <Select id="Projet"
+                forceSelection="false"
+                items="{
+                    path: '/PROJECTIDSet',
+                    sorter: {path: 'IdProject' }
+                }"
+                >
+                <core:Item id="_IDGenItem1" key="{IdProject}" text="{NomProjet}" />
+            </Select>
+            <Label id="_IDGenLabel4" text="Description :" />
+            <Input id="Description" />
+            <Label id="_IDGenLabel5" text="Technology :" />
+            <Input id="Technology" />
+            <Label id="_IDGenLabel6" text="Estimated :"/>
+            <Input id="Estimated" /> -->
+            <!-- <Label id="_IDGenLabel7" text=""/>
+            <Input id="_IDGenInput6" /> -->
+            <ToggleButton id="_IDGenToggleButton1" icon="sap-icon://add" press="onCreateTicket" text="Create"/>
+            </content>
+    </Page>
+</mvc:View>
