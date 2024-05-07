@@ -25,6 +25,7 @@ sap.ui.define(
             Projet: sProjet,
             Description:sDescription,
             Technology: sTechnology,
+            Status:'NON-AFFECTER',
             Estimated: intEstimated
            };
            console.log(oData);

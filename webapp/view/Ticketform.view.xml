@@ -1,15 +1,23 @@
 <mvc:View controllerName="management.controller.TicketCreate"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core" displayBlock="true"
+    xmlns:core="sap.ui.core" 
+    displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="Create Ticket">
-        <content>
+<!--     <Page id="page" title="Create Ticket">
+        <content> -->
+        <f:Card id="_IDGenCard1" class="sapUiMediumMargin" width="500px" >
+        <f:content >
+        <CustomListItem id="_IDGenCustomListItem1">
+        <VBox id="_IDGenVBox1">
         <InputListItem id="_IDGenInputListIte1" label="Jira Ticket Id :"> 
         <Input 
                 id="IdTicketJira"
                 placeholder="Enter Jira's Id ">
         </Input>
-        </InputListItem>
+        </InputListItem> 
+        
         <InputListItem id="_IDGenInputListIte2" label="Titre :"> 
         <Input 
                 id="Titre"
@@ -68,6 +76,11 @@
             <!-- <Label id="_IDGenLabel7" text=""/>
             <Input id="_IDGenInput6" /> -->
             <ToggleButton id="_IDGenToggleButton1" icon="sap-icon://add" press="onCreateTicket" text="Create"/>
-            </content>
-    </Page>
+            </VBox>
+            </CustomListItem>
+            </f:content>
+            </f:Card>
+            
+<!--             </content>
+    </Page> -->
 </mvc:View>
