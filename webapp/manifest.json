@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/sap/ZODA_GEST_DISPO_SRV_02/",
+        "uri": "/sap/opu/odata/sap/ZODA_GEST_DISPON_SRV/",
         "type": "OData",
         "settings": {
           "annotations": [],
