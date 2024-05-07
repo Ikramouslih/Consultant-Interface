@@ -1,79 +1,177 @@
-<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+<?xml version="1.0" encoding="UTF-8" ?>
+<edmx:Edmx xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
     <edmx:DataServices m:DataServiceVersion="2.0">
-        <Schema Namespace="ZODA_GEST_DISPO_SRV_02" xml:lang="fr" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
-            <EntityType Name="NOTIFICATIONID" sap:content-version="1">
+        <Schema xml:lang="fr" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" sap:schema-version="1" Namespace="ZODA_GEST_DISPON_SRV">
+            <Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" String="1.0.0" Term="Core.SchemaVersion" />
+
+            <EntityType sap:content-version="1" Name="CONSULTANTID">
                 <Key>
-                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="ConsultantId" />
                 </Key>
-                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="IdTicketJira" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Seen" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean_01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="DateNotif" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Date/heure" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="SentBy" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ReceivedBy" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+
+                <Property Name="ConsultantId" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Name" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nom" sap:unicode="false" MaxLength="35" Nullable="false" Type="Edm.String" />
+
+                <Property Name="FirstName" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nom" sap:unicode="false" MaxLength="35" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Login" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="ID connexion trader" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Password" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Mot de passe" sap:unicode="false" MaxLength="40" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Email" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Adresse e-mail" sap:unicode="false" MaxLength="132" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Disponilbilty" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Boolean_01" sap:unicode="false" MaxLength="1" Nullable="false" Type="Edm.String" />
+
+                <Property Name="ManagerId" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Hold" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Boolean_01" sap:unicode="false" MaxLength="1" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Grade" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Grade" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Expertise" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Expertise" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
             </EntityType>
-            <EntityType Name="TICKETID" sap:content-version="1">
+
+            
+            <EntityType sap:content-version="1" Name="MANAGERID">
+                
                 <Key>
-                    <PropertyRef Name="IdTicket"/>
+                    <PropertyRef Name="ManagerId" />
                 </Key>
-                <Property Name="IdTicket" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="IdJira" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Titre" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Ticket's title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Description" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description du ticket" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Projet" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Project's name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Technology" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Technlogy" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Consultant" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Estimated" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="INT1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="StartDate" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="EndDate" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+
+                <Property Name="ManagerId" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Name" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nom" sap:unicode="false" MaxLength="35" Nullable="false" Type="Edm.String" />
+
+                <Property Name="FirstName" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nom" sap:unicode="false" MaxLength="35" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Login" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="ID connexion trader" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Password" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Mot de passe" sap:unicode="false" MaxLength="40" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Email" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Adresse e-mail" sap:unicode="false" MaxLength="132" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Hold" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Boolean_01" sap:unicode="false" MaxLength="1" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Expertise" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Expertise" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
             </EntityType>
-            <EntityType Name="MANAGERID" sap:content-version="1">
+
+            
+            <EntityType sap:content-version="1" Name="NOTIFICATIONID">
+                
                 <Key>
-                    <PropertyRef Name="ManagerId"/>
+                    <PropertyRef Name="Id" />
+
+                    <PropertyRef Name="IdTicketJira" />
                 </Key>
-                <Property Name="ManagerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Nom" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Nom" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Login" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ID connexion trader" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Mot de passe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="132" sap:unicode="false" sap:label="Adresse e-mail" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Hold" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean_01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+
+                <Property Name="Id" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="IdTicketJira" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Type" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Seen" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Boolean_01" sap:unicode="false" MaxLength="1" Nullable="false" Type="Edm.String" />
+
+                <Property Name="DateNotif" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Date/heure" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
+
+                <Property Name="SentBy" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="ReceivedBy" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
             </EntityType>
-            <EntityType Name="CONSULTANTID" sap:content-version="1">
+
+            
+            <EntityType sap:content-version="1" Name="PROJECTID">
+                
                 <Key>
-                    <PropertyRef Name="ConsultantId"/>
+                    <PropertyRef Name="IdProject" />
                 </Key>
-                <Property Name="ConsultantId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Nom" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Nom" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Login" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ID connexion trader" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Mot de passe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="132" sap:unicode="false" sap:label="Adresse e-mail" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Disponilbilty" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean_01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ManagerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Hold" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean_01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+
+                <Property Name="IdProject" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="NomProjet" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Project's name" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="ChefProjet" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
             </EntityType>
-            <EntityType Name="PROJECTID" sap:content-version="1">
+
+            
+            <EntityType sap:content-version="1" Name="TICKETID">
+                
                 <Key>
-                    <PropertyRef Name="IdProject"/>
+                    <PropertyRef Name="IdTicket" />
                 </Key>
-                <Property Name="IdProject" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="NomProjet" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Project's name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="ChefProjet" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="element de donnees id pour Application gestion de dispo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+
+                <Property Name="IdTicket" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="IdJira" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Titre" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Ticket's title" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Description" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Description du ticket" sap:unicode="false" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Projet" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Project's name" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="CreatedBy" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Technology" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Technlogy" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Consultant" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Estimated" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="INT1" sap:unicode="false" Nullable="false" Type="Edm.Byte" />
+
+                <Property Name="StartDate" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Date" sap:unicode="false" MaxLength="8" Nullable="false" Type="Edm.String" />
+
+                <Property Name="EndDate" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Date" sap:unicode="false" MaxLength="8" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Status" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="status de application gestion dispo" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
+
+                <Property Name="Priority" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Priority" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
             </EntityType>
-            <EntityContainer Name="ZODA_GEST_DISPO_SRV_02_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="NOTIFICATIONIDSet" EntityType="ZODA_GEST_DISPO_SRV_02.NOTIFICATIONID" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="TICKETIDSet" EntityType="ZODA_GEST_DISPO_SRV_02.TICKETID" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="MANAGERIDSet" EntityType="ZODA_GEST_DISPO_SRV_02.MANAGERID" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="CONSULTANTIDSet" EntityType="ZODA_GEST_DISPO_SRV_02.CONSULTANTID" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="PROJECTIDSet" EntityType="ZODA_GEST_DISPO_SRV_02.PROJECTID" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+
+            
+            <EntityType sap:content-version="1" Name="TECHNOID">
+                
+                <Key>
+                    <PropertyRef Name="IdTechnology" />
+                </Key>
+
+                <Property Name="IdTechnology" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Technologies" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="NomTechnology" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Element de nom" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
+            </EntityType>
+
+            
+            <EntityType sap:content-version="1" Name="TYPENOTIFID">
+                
+                <Key>
+                    <PropertyRef Name="IdTypeNotif" />
+                </Key>
+
+                <Property Name="IdTypeNotif" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+
+                <Property Name="NomTypeNotif" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
+            </EntityType>
+
+            
+            <EntityContainer Name="ZODA_GEST_DISPON_SRV_Entities" sap:supported-formats="atom json xlsx" m:IsDefaultEntityContainer="true">
+                <EntitySet sap:content-version="1" Name="CONSULTANTIDSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZODA_GEST_DISPON_SRV.CONSULTANTID" />
+
+                <EntitySet sap:content-version="1" Name="MANAGERIDSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZODA_GEST_DISPON_SRV.MANAGERID" />
+
+                <EntitySet sap:content-version="1" Name="NOTIFICATIONIDSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZODA_GEST_DISPON_SRV.NOTIFICATIONID" />
+
+                <EntitySet sap:content-version="1" Name="PROJECTIDSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZODA_GEST_DISPON_SRV.PROJECTID" />
+
+                <EntitySet sap:content-version="1" Name="TICKETIDSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZODA_GEST_DISPON_SRV.TICKETID" />
+
+                <EntitySet sap:content-version="1" Name="TECHNOIDSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZODA_GEST_DISPON_SRV.TECHNOID" />
+
+                <EntitySet sap:content-version="1" Name="TYPENOTIFIDSet" sap:updatable="false" sap:creatable="false" sap:pageable="false" sap:deletable="false" EntityType="ZODA_GEST_DISPON_SRV.TYPENOTIFID" />
             </EntityContainer>
-            <atom:link rel="self" href="http://10.0.131.133:8000/sap/opu/odata/sap/ZODA_GEST_DISPO_SRV_02/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-            <atom:link rel="latest-version" href="http://10.0.131.133:8000/sap/opu/odata/sap/ZODA_GEST_DISPO_SRV_02/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+
+            <atom:link rel="self" href="http://lolasd4.eurapharma.com/sap/opu/odata/sap/ZODA_GEST_DISPON_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+
+            <atom:link rel="latest-version" href="http://lolasd4.eurapharma.com/sap/opu/odata/sap/ZODA_GEST_DISPON_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

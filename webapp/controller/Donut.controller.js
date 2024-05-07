@@ -1,29 +1,63 @@
-sap.ui.define(['sap/m/MessageToast', 'sap/ui/core/mvc/Controller'],
-	function (MessageToast, Controller) {
-	"use strict";
-
-	var PageController = Controller.extend("management.controller.Card", {
-
-		/**
-		 * Creates a message for a press event on the chart
-		 *
-		 * @private
-		 */
-		press: function (oEvent) {
-			MessageToast.show("The Interactive Donut Chart is pressed.");
-		},
-
-		/**
-		 * Creates a message for a selection change event on the chart
-		 *
-		 * @private
-		 */
-		onSelectionChanged: function (oEvent) {
-			var oSegment = oEvent.getParameter("segment");
-			MessageToast.show("The selection changed: " + oSegment.getLabel() + " " + ((oSegment.getSelected()) ? "selected" : "not selected"));
-		}
-	});
-
-	return PageController;
-
-});
+sap.ui.define([
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+  ], function (Controller, JSONModel, Filter, FilterOperator) {
+    "use strict";
+ 
+    return Controller.extend("management.controller.Donut", {
+      onInit: function () {
+        this.loadDonutData(); // Charger les données au démarrage
+      },
+ 
+      loadDonutData: function () {
+        var oModel = this.getOwnerComponent().getModel();
+        var oJSONModel = new JSONModel();
+ 
+        oModel.read("/TICKETIDSet", { // Chemin de l'entité dans OData
+          success: function (oData) {
+            var aGroupedData = this.groupByStatus(oData.results); // Groupement des données
+            console.log("Grouped data:", aGroupedData); // Vérification des données groupées
+            oJSONModel.setData({ donutData: aGroupedData }); // Définit le modèle pour la vue
+            this.getView().setModel(oJSONModel, "donutModel"); // Associe le modèle JSON à la vue
+          }.bind(this),
+          error: function (oError) {
+            console.error("Erreur lors de la récupération des données:", oError);
+          }
+        });
+      },
+ 
+      groupByStatus: function (aData) {
+        var statusCounts = {}; // Objet pour stocker les comptes par statut
+ 
+        aData.forEach(function (item) {
+          var status = item.Status || "Inconnu"; // Si le statut est vide ou indéfini, le définir à "Inconnu"
+ 
+          if (!statusCounts[status]) { // Si le statut n'existe pas dans l'objet, l'ajouter
+            statusCounts[status] = 1;
+          } else { // Sinon, incrémenter le compte
+            statusCounts[status]++;
+          }
+        });
+ 
+        var aDonutData = [];
+ 
+        // Convertir l'objet de comptes en tableau pour le Donut Chart
+        for (var key in statusCounts) {
+          aDonutData.push({
+            label: key, // Le label du segment (le statut)
+            value: statusCounts[key], // La valeur du segment (le nombre de tickets)
+            displayedValue: statusCounts[key] + " tickets" // La valeur affichée
+          });
+        }
+ 
+        return aDonutData;
+      },
+ 
+      onSelectionChanged: function (oEvent) {
+        var oSelectedSegment = oEvent.getParameter("selectedSegment");
+        console.log("Segment sélectionné:", oSelectedSegment.getLabel());
+      }
+    });
+  });

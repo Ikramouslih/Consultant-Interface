@@ -47,26 +47,7 @@
 						id="_IDGenVBox2"
 						class="sapUiSmallMargin"
 					>
-						<Title
-							id="_IDGenTitle3"
-							text="Donut"
-							wrapping="true"
-						/>
-						<Label
-							id="_IDGenLabel4"
-							text="Subtitle"
-							wrapping="true"
-						/>
-						<Label
-							id="_IDGenLabel5"
-							text="Subtitle"
-							wrapping="true"
-						/>
-						<Label
-							id="_IDGenLabel6"
-							text="Subtitle"
-							wrapping="true"
-						/>
+						<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.DonutManagement"/>
 					</VBox>
 				</f:GridListItem>
 				<f:GridListItem id="_IDGenGridListItem1" class="tilesContainerContainer">
