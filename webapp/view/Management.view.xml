@@ -36,6 +36,12 @@
 
 				<!--first line-->
 				<f:GridListItem id="_IDGenGridListItem2">
+					<VBox
+						id="_IDGenVBox2"
+						class="donutManagementContainer"
+					>
+						<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.DonutManagement"/>
+					</VBox>
 					<f:layoutData>
 						<grid:ResponsiveColumnItemLayoutData
 							id="_IDGenResponsiveColumnItemLayoutData2"
@@ -43,12 +49,6 @@
 							rows="1"
 						/>
 					</f:layoutData>
-					<VBox
-						id="_IDGenVBox2"
-						class="sapUiSmallMargin"
-					>
-						<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.DonutManagement"/>
-					</VBox>
 				</f:GridListItem>
 				<f:GridListItem id="_IDGenGridListItem1" class="tilesContainerContainer">
 					<f:layoutData>

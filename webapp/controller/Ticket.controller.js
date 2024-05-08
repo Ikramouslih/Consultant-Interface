@@ -14,6 +14,16 @@ sap.ui.define(
         onAssignTicket: function() {
 
         },
+        getCounty: function(oContext) {
+          return oContext.getProperty('Status');
+        },
+       
+        getGroupHeader: function(oGroup) {
+          return new GroupHeaderListItem({
+            title : oGroup.key
+          }
+        );
+      },    
       });
     }
   );
