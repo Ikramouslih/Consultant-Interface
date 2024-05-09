@@ -256,7 +256,7 @@
           "clearControlAggregation": false,
           "viewId": "AssignTicket",
           "viewName": "AssignTicket"
-        },
+        }, 
         "CreateConsultant": {
           "viewType": "XML",
           "transition": "slide",
