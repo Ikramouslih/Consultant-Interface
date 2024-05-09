@@ -105,6 +105,7 @@
                         text="Projects"
                         icon="sap-icon://business-objects-experience"
 						expanded="true"
+                        select="onProjectsSelect"
                     />
                 </tnt:NavigationList>
             </tnt:SideNavigation>

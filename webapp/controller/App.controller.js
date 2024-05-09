@@ -84,7 +84,10 @@ sap.ui.define(
         },
         onTicketsSelect: function() {
           this.getOwnerComponent().getRouter().navTo("RouteTicket");
-        }
+        },
+        onProjectsSelect: function() {
+          this.getOwnerComponent().getRouter().navTo("Project");
+        },
 
 
       });
