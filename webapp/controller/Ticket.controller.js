@@ -19,6 +19,16 @@ sap.ui.define(
           var sTicketId = oBindingContext.getProperty("IdTicket");
           this.getOwnerComponent().getRouter().navTo("AssignTicket",{ IdTicket: sTicketId });
         },
+        getCounty: function(oContext) {
+          return oContext.getProperty('Status');
+        },
+       
+        getGroupHeader: function(oGroup) {
+          return new GroupHeaderListItem({
+            title : oGroup.key
+          }
+        );
+      },    
       });
     }
   );
