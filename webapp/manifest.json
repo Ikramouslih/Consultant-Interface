@@ -57,7 +57,7 @@
         "sap.ui.table": {},
         "sap.ushell": {},
         "sap.ui.layout": {},
-				"sap.uxap": {},
+        "sap.uxap": {},
         "sap.suite.ui.microchart": {}
       }
     },
@@ -71,64 +71,64 @@
         "settings": {
           "bundleName": "management.i18n.i18n",
           "async": true,
-					"fallbackLocale": "en",
-					"supportedLocales": ["en", "de"],
-					"terminologies": {
-						"sports": {
-							"bundleUrl": "i18n/terminologies/sports/i18n.terminologies.sports.properties",
-							"bundleUrlRelativeTo": "manifest",
-							"supportedLocales": ["en", "de"]
-						},
-						"travel": {
-							"bundleUrl": "i18n/terminologies/travel/i18n.terminologies.travel.properties",
-							"bundleUrlRelativeTo": "manifest",
-							"supportedLocales": ["en", "de"]
-						}
-					},
-					"enhanceWith": [
-						{
-							"bundleUrl": "reuse/appvar1/i18n/i18n.properties",
-							"fallbackLocale": "en",
-							"supportedLocales": [
-								"en", "de"
-							],
-							"terminologies": {
-								"sports": {
-									"bundleUrl": "reuse/appvar1/i18n/terminologies/sports/i18n.terminologies.sports.properties",
-									"bundleUrlRelativeTo": "manifest",
-									"supportedLocales": [
-										"en", "de"
-									]
-								},
-								"travel": {
-									"bundleUrl": "reuse/appvar1/i18n/terminologies/travel/i18n.terminologies.travel.properties",
-									"bundleUrlRelativeTo": "manifest",
-									"supportedLocales": [
-										"en", "de"
-									]
-								}
-							}
-						},
-						{
-							"bundleUrl": "reuse/appvar2/i18n/i18n.properties",
-							"bundleUrlRelativeTo": "manifest",
-							"supportedLocales": [
-								"en",
-								"de"
-							],
-							"fallbackLocale": "en",
-							"terminologies": {
-								"travel": {
-									"bundleUrl": "reuse/appvar2/i18n/terminologies/travel/i18n.terminologies.travel.properties",
-									"bundleUrlRelativeTo": "manifest",
-									"supportedLocales": [
-										"en", "de"
-									]
-								}
-							}
-						}
-					]
-				}
+          "fallbackLocale": "en",
+          "supportedLocales": ["en", "de"],
+          "terminologies": {
+            "sports": {
+              "bundleUrl": "i18n/terminologies/sports/i18n.terminologies.sports.properties",
+              "bundleUrlRelativeTo": "manifest",
+              "supportedLocales": ["en", "de"]
+            },
+            "travel": {
+              "bundleUrl": "i18n/terminologies/travel/i18n.terminologies.travel.properties",
+              "bundleUrlRelativeTo": "manifest",
+              "supportedLocales": ["en", "de"]
+            }
+          },
+          "enhanceWith": [
+            {
+              "bundleUrl": "reuse/appvar1/i18n/i18n.properties",
+              "fallbackLocale": "en",
+              "supportedLocales": [
+                "en", "de"
+              ],
+              "terminologies": {
+                "sports": {
+                  "bundleUrl": "reuse/appvar1/i18n/terminologies/sports/i18n.terminologies.sports.properties",
+                  "bundleUrlRelativeTo": "manifest",
+                  "supportedLocales": [
+                    "en", "de"
+                  ]
+                },
+                "travel": {
+                  "bundleUrl": "reuse/appvar1/i18n/terminologies/travel/i18n.terminologies.travel.properties",
+                  "bundleUrlRelativeTo": "manifest",
+                  "supportedLocales": [
+                    "en", "de"
+                  ]
+                }
+              }
+            },
+            {
+              "bundleUrl": "reuse/appvar2/i18n/i18n.properties",
+              "bundleUrlRelativeTo": "manifest",
+              "supportedLocales": [
+                "en",
+                "de"
+              ],
+              "fallbackLocale": "en",
+              "terminologies": {
+                "travel": {
+                  "bundleUrl": "reuse/appvar2/i18n/terminologies/travel/i18n.terminologies.travel.properties",
+                  "bundleUrlRelativeTo": "manifest",
+                  "supportedLocales": [
+                    "en", "de"
+                  ]
+                }
+              }
+            }
+          ]
+        }
       },
       "": {
         "dataSource": "mainService",
@@ -192,14 +192,19 @@
           "target": [
             "CreateTicket"
           ]
-        } ,
+        },
         {
-          "name": "CreateConsultant",
-          "pattern": "CreateConsultant/",
+          "name": "AssignTicket",
+          "pattern": "AssignTicket/{IdTicket}",
           "target": [
-            "CreateConsultant"
+            "AssignTicket"
           ]
-        } 
+        }, 
+        { "name": "CreateConsultant",
+        "pattern": "CreateConsultant/",
+        "target": [
+          "CreateConsultant" ]
+          }
       ],
       "targets": {
         "TargetManagement": {
@@ -237,13 +242,19 @@
           "viewId": "CreateTicket",
           "viewName": "Ticketform"
         },
+        "AssignTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AssignTicket",
+          "viewName": "AssignTicket"
+        }, 
         "CreateConsultant": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
           "viewId": "CreateConsultant",
           "viewName": "CreateConsultant"
-        }
       }
     },
     "rootView": {
@@ -253,4 +264,5 @@
       "id": "App"
     }
   }
+}
 }

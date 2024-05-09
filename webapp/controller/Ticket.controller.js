@@ -7,12 +7,17 @@ sap.ui.define(
       "use strict";
   
       return Controller.extend("management.controller.Ticket", {
-        onInit: function () {},
+        onInit: function () {
+        },
         onCreateTicket: function() {
             this.getOwnerComponent().getRouter().navTo("CreateTicket");
         },
-        onAssignTicket: function() {
-
+        onAssignTicket: function(oEvent) {
+          console.log('test');
+          var oItem = oEvent.getSource();
+          var oBindingContext = oItem.getBindingContext();
+          var sTicketId = oBindingContext.getProperty("IdTicket");
+          this.getOwnerComponent().getRouter().navTo("AssignTicket",{ IdTicket: sTicketId });
         },
         getCounty: function(oContext) {
           return oContext.getProperty('Status');
