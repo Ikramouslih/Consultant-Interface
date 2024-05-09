@@ -1,0 +1,99 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.suite.ui.commons"
+	xmlns:m="sap.m"
+	xmlns:core="sap.ui.core"
+	core:require="{ baseFormatMessage: 'sap/base/strings/formatMessage' }"
+	controllerName="management.controller.KeyNumbers"
+	xmlns:mc="sap.suite.ui.microchart"
+    xmlns:s="sap.ui.comp.smartmicrochart">
+
+        <m:ObjectHeader id="_IDGenObjectHeader1"
+            class="shadowbox "
+            responsive="true"
+            title="Key Statistics">
+            <m:headerContainer>
+                <m:HeaderContainer id="_IDGenHeaderContainer1"
+                    scrollStep="200"
+                    scrollTime="500"
+                    showDividers="true"
+                    class="sapUiSmallMargin">
+
+                    <!-- 1st chart -->
+                    <m:FlexBox id="_IDGenFlexBox1"
+                        width="12rem"
+                        height="12rem"
+                        alignItems="Center"
+                        justifyContent="Center"
+                        direction="Column"
+                        renderType="Bare">
+                        <m:Title id="_IDGenTitle1"
+                            text="Target Tickets"
+                            class="sapUiSmallMargin keytitles" />
+                        <m:FlexBox id="_IDGenFlexBox2" width="6rem" height="13rem" renderType="Bare">
+                            
+                            <mc:RadialMicroChart id="_IDGenRadialMicroChart1" percentage="0" height="7rem"/>
+
+                        </m:FlexBox>
+                    </m:FlexBox>
+
+                      
+                    <!-- 2nd chart -->
+                    <m:FlexBox id="_IDGenFlexBox7"
+                        alignItems="Center"
+                        justifyContent="Center"
+                        direction="Column"
+                        renderType="Bare"
+                        width="25rem"
+                        height="12rem">
+                        <m:Title id="_IDGenTitle1q"
+                            text="Tickets' Status"
+                            class="sapUiSmallMargin keytitles" />
+                        <m:FlexBox id="_IDGenFlexBox8"  renderType="Bare" width="25rem" height="13rem" class="paddingmedium">
+                            <mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.Dashboard.DonutManagement" />
+                        </m:FlexBox>
+
+                    </m:FlexBox>
+                
+
+                    <!-- 3rd chart -->
+                    <m:FlexBox id="_IDGenFlexBox3"
+                        width="16rem"
+                        height="12rem"
+                        alignItems="Center"
+                        justifyContent="Center"
+                        direction="Column"
+                        renderType="Bare">
+                        <m:Title id="_IDGenTitle2"
+                            text="Tickets' Priority"
+                            class="sapUiSmallMargin keytitles" />
+                        <m:FlexBox id="_IDGenFlexBox4" width="16rem" height="13rem" renderType="Bare" >
+                            <mc:ComparisonMicroChart id="_IDGenComparisonMicroChart1"
+                                isResponsive="true">
+                                    <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData1"
+                                        title="Low"
+                                        value="1"
+                                        displayValue="8"
+                                        color="Good" />
+
+                                    <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData13"
+                                        title="Medium"
+                                        value="4"
+                                        displayValue="22"
+                                        color="Critical" />
+
+                                         <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData12"
+                                        title="High"
+                                        value="8"
+                                        displayValue="4"
+                                        color="Error" />
+                            </mc:ComparisonMicroChart>
+                        </m:FlexBox>
+                    </m:FlexBox>
+
+                  
+
+                </m:HeaderContainer>
+            </m:headerContainer>
+        </m:ObjectHeader>
+</mvc:View>

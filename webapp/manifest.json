@@ -41,7 +41,12 @@
       "desktop": true,
       "tablet": true,
       "phone": true
-    }
+    },
+    "supportedThemes": [
+			"sap_hcb",
+			"sap_hcw",
+			"sap_belize"
+		]
   },
   "sap.ui5": {
     "flexEnabled": true,
@@ -58,7 +63,8 @@
         "sap.ushell": {},
         "sap.ui.layout": {},
 				"sap.uxap": {},
-        "sap.suite.ui.microchart": {}
+        "sap.suite.ui.microchart": {},
+        "sap.suite.ui.commons": {}
       }
     },
     "contentDensities": {
@@ -136,9 +142,13 @@
         "settings": {}
       }
     },
-    "side": {
+    "process": {
       "type": "sap.ui.model.json.JSONModel",
-      "uri": "model/sideContent.json"
+      "uri": "model/ProcessFlowData.json"
+    },
+    "suppliers": {
+      "type": "sap.ui.model.json.JSONModel",
+      "uri": "model/Suppliers.json"
     },
     "resources": {
       "css": [
@@ -192,7 +202,12 @@
           "target": [
             "CreateTicket"
           ]
-        } 
+        },
+        {
+					"pattern": "KeyNumbers",
+					"name": "KeyNumbers",
+					"target": ["KeyNumbers"]
+				}
       ],
       "targets": {
         "TargetManagement": {
@@ -229,7 +244,11 @@
           "clearControlAggregation": false,
           "viewId": "CreateTicket",
           "viewName": "Ticketform"
-        }
+        },
+        "KeyNumbers": {
+					"viewName": "KeyNumbers",
+					"viewLevel": 1
+				}
       }
     },
     "rootView": {

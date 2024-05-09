@@ -27,78 +27,22 @@
 				</Toolbar>
 			</headerToolbar>
 						
-			<f:GridList id="grid1" class="sapUiMediumMarginTop">
+
+			<mvc:XMLView id="_IDGenXMLView3"  viewName="management.view.Dashboard.KeyNumbers"  class="sapUiSmallMarginBottom"/>
+						
+			<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.Dashboard.Tiles"  class="sapUiSmallMarginBottom" />
+			
+			<f:GridList id="grid1" >
 				<f:customLayout>
 					<grid:ResponsiveColumnLayout
 						id="_IDGenResponsiveColumnLayout1"
 					/>
 				</f:customLayout>
 
+
 				<!--first line-->
-				<f:GridListItem id="_IDGenGridListItem2">
-					<f:layoutData>
-						<grid:ResponsiveColumnItemLayoutData
-							id="_IDGenResponsiveColumnItemLayoutData2"
-							columns="3"
-							rows="1"
-						/>
-					</f:layoutData>
-					<VBox
-						id="_IDGenVBox2"
-						class="sapUiSmallMargin"
-					>
-						<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.DonutManagement"/>
-					</VBox>
-				</f:GridListItem>
-				<f:GridListItem id="_IDGenGridListItem1" class="tilesContainerContainer">
-					<f:layoutData>
-						<grid:ResponsiveColumnItemLayoutData
-							id="_IDGenResponsiveColumnItemLayoutData1"
-							columns="9"
-							rows="1"
-						/>
-					</f:layoutData>
-					<VBox
-						id="_IDGenVBox1"
-						class="sapUiSmallMargin tilesContainer"
-					>
-						<!-- <Title
-							id="_IDGenTitle2"
-							text="Tiles"
-							wrapping="true"
-						/> -->
+				<!--here-->
 
-						<HBox id="_IDGenHBox2" justifyContent="SpaceAround" alignItems="Center" width="50%">
-							<GenericTile id="_IDGenGenericTile1" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses" >
-								<TileContent id="_IDGenTileContent1" unit="Unit" footer="Footer Text" >
-									<NumericContent id="_IDGenNumericContent1" value="1762" icon="sap-icon://line-charts" withMargin="false" />
-								</TileContent>
-							</GenericTile>
-
-							<GenericTile id="_IDGenGenericTile2" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses" >
-								<TileContent id="_IDGenTileContent2" unit="Unit" footer="Footer Text">
-									<NumericContent id="_IDGenNumericContent2" value="12" withMargin="false" />
-								</TileContent>
-							</GenericTile>
-
-							<GenericTile id="_IDGenGenericTile3" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses">
-								<TileContent id="_IDGenTileContent3" unit="Unit" footer="Footer Text">
-									<NumericContent id="_IDGenNumericContent3" value="12" withMargin="false" />
-								</TileContent>
-							</GenericTile>
-
-							<GenericTile id="_IDGenGenericTile4" class="sapUiTinyMarginBegin sapUiTinyMarginTop  " header="Cumulative Totals" subheader="Expenses" >
-								<TileContent id="_IDGenTileContent4" unit="Unit" footer="Footer Text">
-									<NumericContent id="_IDGenNumericContent4" value="12" withMargin="false" />
-								</TileContent>
-							</GenericTile>
-						</HBox>
-						
-
-					</VBox>
-				</f:GridListItem>
-
-				
 
 				<!--second line-->
 				<f:GridListItem id="_IDGenGridListItem3">

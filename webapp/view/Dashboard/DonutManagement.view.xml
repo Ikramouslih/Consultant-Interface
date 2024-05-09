@@ -1,0 +1,20 @@
+<mvc:View controllerName="management.controller.Donut"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns="sap.suite.ui.microchart"
+    xmlns:layout="sap.ui.layout">
+   
+    <InteractiveDonutChart id="_IDGenInteractiveDonutChart15"
+        segments="{donutModel>/donutData}"
+        selectionChanged="onSelectionChanged" class="smallerDonut">
+        
+        <segments >
+            <InteractiveDonutChartSegment id="_IDGenInteractiveDonutChartSegment15"
+                label="{donutModel>label}"
+                value="{donutModel>value}"
+                displayedValue="{donutModel>displayedValue}" class="itemscontainer"/>
+        </segments>
+        
+    </InteractiveDonutChart>
+   
+</mvc:View>

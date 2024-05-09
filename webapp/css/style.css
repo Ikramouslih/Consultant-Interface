@@ -88,4 +88,54 @@
     height: 100%;
 }
 /* Homepage Dashboard : Management */
-/*
+
+
+.shadowbox{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2) !important;
+    border-radius: 5px !important;
+    background-color: white !important;
+    border: 1px solid #f1f1f1 !important;
+}
+
+
+.verticalCenter{
+    margin-top: 20px !important;
+}
+
+/* Blue Donut Labels management chart */
+.sapSuiteIDCLegend {
+    width: 60%;
+    height: 100%;
+    float: left;
+    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+/* Blue Donut Circle management chart */
+.sapSuiteIDC {
+    width: 80% !important;
+    height: 80% !important;
+}
+
+/* 3 Lines management chart */
+.sapSuiteCpMCChartContent.sapSuiteCpMCResponsive {
+    height: 80% !important;
+}
+.keytitles{
+    overflow: visible !important;
+}
+
+/* flags footer */
+.footerTileIcon{
+    bottom: 0 !important;
+}
+
+.flagcontainer{
+    background-color: #ff4500 !important;
+}
+
+.numericContainer{
+    background-color: black !important;
+}

@@ -48,10 +48,21 @@ sap.ui.define([
           aDonutData.push({
             label: key, // Le label du segment (le statut)
             value: statusCounts[key], // La valeur du segment (le nombre de tickets)
-            displayedValue: statusCounts[key] + " tickets" // La valeur affichée
+            displayedValue: statusCounts[key] // La valeur affichée
           });
         }
- 
+        
+        // Find the index of the item with the label "TERMINE"
+        var index = aDonutData.findIndex(function(item) {
+          return item.label === "TERMINE";
+        });
+
+        // Remove the item from the array
+        if (index !== -1) {
+          aDonutData.splice(index, 1);
+        }
+
+        // aDonutData.pop(); // Supprimer le dernier élément du tableau (Inconnu)
         return aDonutData;
       },
  
