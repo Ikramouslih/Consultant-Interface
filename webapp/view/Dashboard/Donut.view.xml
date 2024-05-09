@@ -1,16 +1,17 @@
-<mvc:View controllerName="management.controller.ConsultantDetails"
+<mvc:View controllerName="management.controller.Donut"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m"
     xmlns="sap.suite.ui.microchart"
     xmlns:layout="sap.ui.layout">
    
-    <m:FlexBox id="_IDGenFlexBox1" alignItems="Start" justifyContent="SpaceBetween" width="20rem" height="10rem">
+    <m:FlexBox id="_IDGenFlexBox1" alignItems="Start" justifyContent="SpaceBetween" width="25rem" height="20rem" class="Donut">
         <InteractiveDonutChart id="_IDGenInteractiveDonutChart1"
             segments="{donutModel>/donutData}"
             selectionChanged="onSelectionChanged">
            
-            <segments>
+            <segments >
                 <InteractiveDonutChartSegment id="_IDGenInteractiveDonutChartSegment1"
+                    class="DonutSegment"
                     label="{donutModel>label}"
                     value="{donutModel>value}"
                     displayedValue="{donutModel>displayedValue}" />

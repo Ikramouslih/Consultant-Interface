@@ -29,7 +29,7 @@
         		</layoutData>
 			</VBox>	
 			<VBox id="vboxDonut" class="vboxDonut">
-				<mvc:XMLView id="_IDGenXMLView3"  viewName="management.view.Dashboard.Donut"/>
+				<mvc:XMLView id="_IDGenXMLView3"  viewName="management.view.Dashboard.Donut" class="DonutContainer"/>
 				<layoutData>
 					<FlexItemData id="_IDGenFlexItemData5"
 						growFactor="1"

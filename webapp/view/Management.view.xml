@@ -22,7 +22,6 @@
 				>
 					<Title
 						id="_IDGenTitle1"
-						text="Dashbord"
 					/>
 				</Toolbar>
 			</headerToolbar>
@@ -38,10 +37,6 @@
 						id="_IDGenResponsiveColumnLayout1"
 					/>
 				</f:customLayout>
-
-
-				<!--first line-->
-				<!--here-->
 
 
 				<!--second line-->

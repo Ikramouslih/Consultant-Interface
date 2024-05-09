@@ -41,12 +41,7 @@
       "desktop": true,
       "tablet": true,
       "phone": true
-    },
-    "supportedThemes": [
-			"sap_hcb",
-			"sap_hcw",
-			"sap_belize"
-		]
+    }
   },
   "sap.ui5": {
     "flexEnabled": true,
@@ -62,9 +57,8 @@
         "sap.ui.table": {},
         "sap.ushell": {},
         "sap.ui.layout": {},
-				"sap.uxap": {},
-        "sap.suite.ui.microchart": {},
-        "sap.suite.ui.commons": {}
+        "sap.uxap": {},
+        "sap.suite.ui.microchart": {}
       }
     },
     "contentDensities": {
@@ -142,6 +136,10 @@
         "settings": {}
       }
     },
+    "side": {
+      "type": "sap.ui.model.json.JSONModel",
+      "uri": "model/sideContent.json"
+    },
     "resources": {
       "css": [
         {
@@ -188,6 +186,8 @@
             "ConsultantDetails"
           ]
         },
+
+        
         {
           "name": "CreateTicket",
           "pattern": "CreateTicket/",
@@ -202,17 +202,11 @@
             "AssignTicket"
           ]
         },
-        { 
-          "name": "CreateConsultant",
-          "pattern": "CreateConsultant/",
-          "target": [
-            "CreateConsultant" ]
-        },
-        {
-					"pattern": "KeyNumbers",
-					"name": "KeyNumbers",
-					"target": ["KeyNumbers"]
-				}
+        { "name": "CreateConsultant",
+        "pattern": "CreateConsultant/",
+        "target": [
+          "CreateConsultant" ]
+          }
       ],
       "targets": {
         "TargetManagement": {
@@ -263,11 +257,6 @@
           "clearControlAggregation": false,
           "viewId": "CreateConsultant",
           "viewName": "CreateConsultant"
-        },
-        "KeyNumbers": {
-					"viewName": "KeyNumbers",
-					"viewLevel": 1
-				}
       }
     },
     "rootView": {
@@ -277,4 +266,5 @@
       "id": "App"
     }
   }
+}
 }

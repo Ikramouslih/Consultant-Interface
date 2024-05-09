@@ -3,6 +3,7 @@
     xmlns="sap.m">
 
   <Page id="page" class="consultants" title="Consultants">
+          <Button id="_IDGenButton1" text="Create" press="onCreateConsultant" icon="sap-icon://add"/> <!-- added line walid-->
         <Table id="idProductsTable" inset="false" items="{path: '/CONSULTANTIDSet'}" >
                 <headerToolbar>
                 </headerToolbar>

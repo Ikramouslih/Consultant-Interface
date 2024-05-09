@@ -57,14 +57,19 @@
     background-color: #232D4B !important; /* Using !important to override any existing background styles */
     margin: 0 !important;
 }
-.donut{
+.Donut{
     margin-top: 100px;
 }
-.DonutSegmentColor1{
-    fill: #ff4500;
+.DonutSegment{
+    background-color: #ff4500 !important;
 }
 .idJiraColumn{
     color: blue !important;
+}
+.vboxDonut{
+}
+.DonutContainer{
+    
 }
 /* 
 .consultantDetailsPage{
