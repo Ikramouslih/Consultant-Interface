@@ -40,6 +40,5 @@
             </VBox>
             </CustomListItem>
             </f:content>
-            </f:Card>
-
+            </f:Card>	
 </mvc:View>
