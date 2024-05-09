@@ -126,6 +126,8 @@
                 <Property Name="Status" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="status de application gestion dispo" sap:unicode="false" MaxLength="30" Nullable="false" Type="Edm.String" />
 
                 <Property Name="Priority" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Priority" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
+
+                <Property Name="CreationDate" sap:updatable="false" sap:creatable="false" sap:filterable="false" sap:sortable="false" sap:label="Date" sap:unicode="false" MaxLength="8" Nullable="false" Type="Edm.String"/>
             </EntityType>
 
             

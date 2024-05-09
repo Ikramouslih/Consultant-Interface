@@ -192,6 +192,13 @@
           "target": [
             "CreateTicket"
           ]
+        },
+        {
+          "name": "AssignTicket",
+          "pattern": "AssignTicket/{IdTicket}",
+          "target": [
+            "AssignTicket"
+          ]
         } 
       ],
       "targets": {
@@ -229,6 +236,13 @@
           "clearControlAggregation": false,
           "viewId": "CreateTicket",
           "viewName": "Ticketform"
+        },
+        "AssignTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AssignTicket",
+          "viewName": "AssignTicket"
         }
       }
     },

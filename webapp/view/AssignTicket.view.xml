@@ -1,27 +1,30 @@
-<mvc:View controllerName="management.controller.TicketCreate"
-    xmlns:f="sap.f"
-    xmlns:card="sap.f.cards"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core" 
-    displayBlock="true"
-    xmlns="sap.m">
-<!--     <Page id="page" title="Create Ticket">
-        <content> -->
-        <f:Card id="_IDGenCard1" class="sapUiMediumMargin" width="500px" >
+<mvc:View
+		controllerName="management.controller.AssignTicket"
+		 xmlns:mvc="sap.ui.core.mvc"
+                xmlns="sap.m"
+                xmlns:f="sap.f"
+                xmlns:card="sap.f.cards"
+                xmlns:core="sap.ui.core"
+                displayBlock="true"
+                height="100%">
+<f:Card id="_IDGenCard1" class="sapUiMediumMargin" width="500px" >
         <f:content >
         <CustomListItem id="_IDGenCustomListItem1">
         <VBox id="_IDGenVBox1">
         <InputListItem id="_IDGenInputListIte1" label="Jira Ticket Id :"> 
         <Input 
                 id="IdTicketJira"
-                placeholder="Enter Jira's Id ">
+                placeholder="test"
+                value="{IdTicket}"
+               enabled="false">
         </Input>
         </InputListItem> 
         
         <InputListItem id="_IDGenInputListIte2" label="Titre :"> 
         <Input 
                 id="Titre"
-                placeholder="Enter title ">
+                value="{Titre}"
+                enabled="false">
         </Input>
         </InputListItem>
         <InputListItem id="_IDGenInputListIte3" label="Project :"> 
@@ -50,49 +53,32 @@
         <InputListItem id="_IDGenInputListIte4" label="Description :"> 
         <Input 
                 id="Description"
-                placeholder="Enter Description ">
+                placeholder="Enter Description "
+                value="{Description}"
+                enabled="false">
         </Input>
         </InputListItem>
         <InputListItem id="_IDGenInputListIte5" label="Technology :"> 
         <Input 
                 id="Technology"
-                placeholder="Enter Technology ">
+                placeholder="Enter Technology "
+                value="{Technology}"
+                enabled="false"
+                >
         </Input>
         </InputListItem>
         <InputListItem id="_IDGenInputListIte6" label="Estimated :"> 
         <Input 
                 id="Estimated"
-                placeholder="Enter duration ">
+                placeholder="Enter duration "
+                value="{Estimated}"
+                enabled="false"
+                >
         </Input>
         </InputListItem>        
-<!--             <Label id="_IDGenLabel1" text="Jira Ticket Id :"/>
-            <Input id="IdTicketJira"/>
-            <Label id="_IDGenLabel2" text="Titre :"/>
-            <Input id="Titre" />
-            <Label id="_IDGenLabel3" text="Projet :"/>
-            <Select id="Projet"
-                forceSelection="false"
-                items="{
-                    path: '/PROJECTIDSet',
-                    sorter: {path: 'IdProject' }
-                }"
-                >
-                <core:Item id="_IDGenItem1" key="{IdProject}" text="{NomProjet}" />
-            </Select>
-            <Label id="_IDGenLabel4" text="Description :" />
-            <Input id="Description" />
-            <Label id="_IDGenLabel5" text="Technology :" />
-            <Input id="Technology" />
-            <Label id="_IDGenLabel6" text="Estimated :"/>
-            <Input id="Estimated" /> -->
-            <!-- <Label id="_IDGenLabel7" text=""/>
-            <Input id="_IDGenInput6" /> -->
-            <ToggleButton id="_IDGenToggleButton1" icon="sap-icon://add" press="onCreateTicket" text="Create"/>
+            <ToggleButton id="_IDGenToggleButton1" icon="sap-icon://add" press="onAssign" text="Assign Ticket"/>
             </VBox>
             </CustomListItem>
             </f:content>
-            </f:Card>
-            
-<!--             </content>
-    </Page> -->
+            </f:Card>	
 </mvc:View>

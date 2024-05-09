@@ -15,9 +15,11 @@ sap.ui.define(
           var sProjet = this.getView().byId("Projet").getSelectedItem().getKey();
           var sDescription = this.getView().byId("Description").getValue();
           var sTechnology = this.getView().byId("Technology").getValue();
+          var sConsultantId = this.getView().byId("Consultant").getValue(); 
           var sEstimated = this.getView().byId("Estimated").getValue();
           var intEstimated = parseInt(sEstimated, 10);
-          
+          if(sConsultantId === null)
+            {
           var oData = {
             IdTicket: sIdTicketJira,
             IdJira: sIdTicketJira,
@@ -28,6 +30,20 @@ sap.ui.define(
             Status:'NON-AFFECTER',
             Estimated: intEstimated
            };
+          }
+          else{
+            var oData = {
+              IdTicket: sIdTicketJira,
+              IdJira: sIdTicketJira,
+              Titre: sTitre,
+              Projet: sProjet,
+              Description:sDescription,
+              Technology: sTechnology,
+              Status:'EN-COURS',
+              Consultant:sConsultantId,
+              Estimated: intEstimated
+             };         
+          }
            console.log(oData);
         var oModel = this.getView().getModel();
         console.log(oModel);
