@@ -8,10 +8,10 @@ sap.ui.define([
  
     return Controller.extend("management.controller.Donut", {
       onInit: function () {
-        this.loadDonutData(); // Charger les données au démarrage
+        this.loaddonutManagementData(); // Charger les données au démarrage
       },
  
-      loadDonutData: function () {
+      loaddonutManagementData: function () {
         var oModel = this.getOwnerComponent().getModel();
         var oJSONModel = new JSONModel();
  
@@ -19,8 +19,8 @@ sap.ui.define([
           success: function (oData) {
             var aGroupedData = this.groupByStatus(oData.results); // Groupement des données
             console.log("Grouped data:", aGroupedData); // Vérification des données groupées
-            oJSONModel.setData({ donutData: aGroupedData }); // Définit le modèle pour la vue
-            this.getView().setModel(oJSONModel, "donutModel"); // Associe le modèle JSON à la vue
+            oJSONModel.setData({ donutManagementData: aGroupedData }); // Définit le modèle pour la vue
+            this.getView().setModel(oJSONModel, "donutManagementModel"); // Associe le modèle JSON à la vue
           }.bind(this),
           error: function (oError) {
             console.error("Erreur lors de la récupération des données:", oError);
@@ -41,11 +41,11 @@ sap.ui.define([
           }
         });
  
-        var aDonutData = [];
+        var adonutManagementData = [];
  
         // Convertir l'objet de comptes en tableau pour le Donut Chart
         for (var key in statusCounts) {
-          aDonutData.push({
+          adonutManagementData.push({
             label: key, // Le label du segment (le statut)
             value: statusCounts[key], // La valeur du segment (le nombre de tickets)
             displayedValue: statusCounts[key] // La valeur affichée
@@ -53,17 +53,17 @@ sap.ui.define([
         }
         
         // Find the index of the item with the label "TERMINE"
-        var index = aDonutData.findIndex(function(item) {
+        var index = adonutManagementData.findIndex(function(item) {
           return item.label === "TERMINE";
         });
 
         // Remove the item from the array
         if (index !== -1) {
-          aDonutData.splice(index, 1);
+          adonutManagementData.splice(index, 1);
         }
 
-        // aDonutData.pop(); // Supprimer le dernier élément du tableau (Inconnu)
-        return aDonutData;
+        // adonutManagementData.pop(); // Supprimer le dernier élément du tableau (Inconnu)
+        return adonutManagementData;
       },
  
       onSelectionChanged: function (oEvent) {
