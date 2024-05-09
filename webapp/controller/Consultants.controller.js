@@ -16,7 +16,10 @@ sap.ui.define(
             // Navigate to the details view with the selected person's ID
             this.getOwnerComponent().getRouter().navTo("ConsultantDetails", { consultantId: sConsultantId });
 
-        }
+        },
+        onCreateConsultant: function() {
+          this.getOwnerComponent().getRouter().navTo("CreateConsultant");
+      },
       });
     }
   );
