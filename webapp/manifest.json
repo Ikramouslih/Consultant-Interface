@@ -45,7 +45,7 @@
     "supportedThemes": [
 			"sap_hcb",
 			"sap_hcw",
-			"sap_belize"
+			"sap_horizon"
 		]
   },
   "sap.ui5": {
@@ -212,7 +212,20 @@
 					"pattern": "KeyNumbers",
 					"name": "KeyNumbers",
 					"target": ["KeyNumbers"]
-				}
+				},
+        {
+          "name": "Project",
+          "pattern": "Project/",
+          "target": [
+            "Project" ]
+				},
+        {
+          "name": "CreateProjects",
+          "pattern": "CreateProjects/",
+          "target": [
+            "TargetCreateProjects"
+          ]
+        }
       ],
       "targets": {
         "TargetManagement": {
@@ -264,10 +277,20 @@
           "viewId": "CreateConsultant",
           "viewName": "CreateConsultant"
         },
-        "KeyNumbers": {
-					"viewName": "KeyNumbers",
-					"viewLevel": 1
-				}
+        "Project": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Project",
+          "viewName": "Project"
+        },
+        "TargetCreateProjects": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "CreateProjects",
+          "viewName": "ProjectCreate"
+        }
       }
     },
     "rootView": {

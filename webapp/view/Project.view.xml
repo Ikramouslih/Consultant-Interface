@@ -1,0 +1,36 @@
+<mvc:View controllerName="management.controller.Projects"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+ 
+  <Page id="page" class="projects" title="Projects">
+      <Button id="_IDGenButton1" text="Create" press="onCreateProjects" icon="sap-icon://add"/>
+        <Table id="idProductsTable" inset="false" items="{path: '/PROJECTIDSet'}" >
+                <headerToolbar>
+                </headerToolbar>
+               
+                <columns>
+                    <Column id="_IDGenColumn12" width="12em">
+                        <Text id="_IDGenText12" text="IdProject" />
+                    </Column>
+                    <Column id="_IDGenColumn1" width="5em">
+                        <Text id="_IDGenText1" text="Project's title" />
+                    </Column>
+                    <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true" width="7em">
+                        <Text id="_IDGenText2" text="project's chief" />
+                    </Column>
+                                       
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle">
+                        <cells>
+                            <ObjectIdentifier id="_IDGenObjectIdentifier1" text="{IdProject}"/>
+                            <Text id="_IDGenText6" text="{NomProjet}" />
+                            <Text id="_IDGenText7" text="{ChefProjet}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+    </Page>
+ 
+</mvc:View>

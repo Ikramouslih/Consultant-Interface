@@ -5,14 +5,14 @@
     xmlns:layout="sap.ui.layout">
    
     <InteractiveDonutChart id="_IDGenInteractiveDonutChart15"
-        segments="{donutModel>/donutData}"
-        selectionChanged="onSelectionChanged" class="smallerDonut">
+        segments="{donutManagementData>/donutData}"
+        selectionChanged="onSelectionChanged" >
         
         <segments >
             <InteractiveDonutChartSegment id="_IDGenInteractiveDonutChartSegment15"
-                label="{donutModel>label}"
-                value="{donutModel>value}"
-                displayedValue="{donutModel>displayedValue}" class="itemscontainer"/>
+                label="{donutManagementData>label}"
+                value="{donutManagementData>value}"
+                displayedValue="{donutManagementData>displayedValue}" />
         </segments>
         
     </InteractiveDonutChart>
