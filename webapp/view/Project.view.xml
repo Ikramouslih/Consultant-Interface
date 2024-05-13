@@ -19,14 +19,6 @@
                     <Column id="_IDGenColumn2" minScreenWidth="Tablet" demandPopin="true" width="7em">
                         <Text id="_IDGenText2" text="project's chief" />
                     </Column>
-                    <!--Column id="_IDGenColumn3" minScreenWidth="Desktop" demandPopin="true" width="7em">
-                        <Text id="_IDGenText3" text="Disponibility" />
-                    </Column>
-                    <Column id="_IDGenColumn6" hAlign="Center" width="20em">
-                        <Text id="_IDGenText8" text="Email" />
-                    </Column>
-                    <Column id="_IDGenColumn7" hAlign="End">
-                    </Column-->
                                        
                 </columns>
                 <items>

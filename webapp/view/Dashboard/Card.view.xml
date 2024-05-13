@@ -15,10 +15,18 @@
                 <CustomListItem id="_IDGenCustomListItem1">
                     <HBox id="_IDGenHBox1" alignItems="Center" justifyContent="SpaceBetween">
                         <VBox id="_IDGenVBox1" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
-                            <Title id="_IDGenTitle1" level="H3" text="First Name:" class="cardTitle"/>
+                            <Title id="_IDGenTitle1" level="H3" text="First Name:" class="cardTitle" />
                             <Text id="_IDGenText1" text="{FirstName}" />
                         </VBox>
+                         <VBox id="_IDGenVBox12" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+                            <core:Icon id="_IDGenIcon1"
+                            src="{= ${Disponilbilty} === '1' ? 'sap-icon://accept' : 'sap-icon://decline'}"
+                            color="{= ${Disponilbilty} === '1' ? 'Positive' : 'Negative'}"
+                        />
+                        </VBox>  
+                        
                     </HBox>
+                    
                     <VBox id="_IDGenVBox2" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
                             <Title id="_IDGenTitle2" level="H3" text="Last Name:" class="cardTitle"/>
                             <Text id="_IDGenText2" text="{Name}" />

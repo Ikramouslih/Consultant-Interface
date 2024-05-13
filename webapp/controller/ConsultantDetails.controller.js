@@ -29,7 +29,7 @@ sap.ui.define([
  
       var oModel = this.getOwnerComponent().getModel();
       var oFilter = new Filter("Consultant", FilterOperator.EQ, sConsultantId);
- 
+      
       // Fetch ticket data based on the consultant ID
       oModel.read("/TICKETIDSet", {
         filters: [oFilter],
