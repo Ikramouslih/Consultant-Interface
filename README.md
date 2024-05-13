@@ -11,7 +11,7 @@
 |**Module Name**<br>management|
 |**Application Title**<br>Disponibility Management|
 |**Namespace**<br>|
-|**UI5 Theme**<br>sap_fiori_3|
+|**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.84.44|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|

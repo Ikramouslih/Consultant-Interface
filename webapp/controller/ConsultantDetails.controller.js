@@ -3,7 +3,9 @@ sap.ui.define([
   "sap/ui/model/json/JSONModel",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-  "sap/m/MessageToast"
+  "sap/m/MessageToast",
+  "sap/m/Dialog",
+  "sap/m/Button"
 ], function (Controller, JSONModel, Filter, FilterOperator, MessageToast) {
   "use strict";
  
@@ -90,5 +92,37 @@ sap.ui.define([
       onSelectionChanged: function (oEvent) {
         var oSelectedSegment = oEvent.getParameter("selectedSegment");
         console.log("Segment sélectionné:", oSelectedSegment.getLabel());
-      }  });
+      },
+      showTicketInfo: function(oEvent) {
+        var oSelectedItem = oEvent.getSource();
+        var oTicketContext = oSelectedItem.getBindingContext("TICKETIDDATA");
+        var oTicketDetails = oTicketContext.getObject();
+        console.log(oTicketDetails);
+    
+        if (!this._oDialog) {
+            this._oDialog = sap.ui.xmlfragment("management.view.Dashboard.TicketDetails", this);
+            this.getView().addDependent(this._oDialog);
+        }
+    
+        // Set the model data directly to the controls in the fragment
+        this._oDialog.setModel(new sap.ui.model.json.JSONModel(oTicketDetails));
+        this._oDialog.bindElement("/");
+    
+        this._oDialog.open();
+    },
+    
+    onCloseDialog: function() {
+        if (this._oDialog) {
+            this._oDialog.close();
+        }
+    },
+    onSearch: function (oEvent) {
+      var sQuery = oEvent.getParameter("newValue");
+      var oTable = this.getView().byId("idProductsTable");
+      var oBinding = oTable.getBinding("items");
+      var oFilter = new Filter("Titre", FilterOperator.Contains, sQuery);
+      oBinding.filter(oFilter);
+  },
+    
+    });
     });

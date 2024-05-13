@@ -44,8 +44,8 @@
         		</layoutData>
 			</VBox>
 		</FlexBox>
-	<VBox id="vboxConsultantTable" class="vboxConsultantTable">
-				<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.Dashboard.ConsultantTable"/>
+	<VBox id="vboxTicketTable" class="vboxTicketTable">
+				<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.Dashboard.TicketsTable"/>
 	</VBox>
 	</Page>
 </mvc:View>

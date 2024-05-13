@@ -45,7 +45,7 @@
     "supportedThemes": [
 			"sap_hcb",
 			"sap_hcw",
-			"sap_belize"
+			"sap_horizon"
 		]
   },
   "sap.ui5": {

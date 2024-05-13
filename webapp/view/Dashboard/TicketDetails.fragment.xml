@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="ticketDetailsDialog" title="Ticket Details" contentWidth="auto" contentHeight="auto" resizable="true" class="ticketDetailsDialog">
+        <content>
+            <VBox id="_IDGenVBox1" class="ticketDetailsContainer">
+                <HBox id="_IDGenHBox1" alignItems="Center" justifyContent="Center">
+                    <Text id="_IDGenText1" text="{IdJira}" class="ticketId" />
+                </HBox>
+                <HBox id="_IDGenHBox2" class="ticketDetailRow">
+                    <Label id="_IDGenLabel1" text="Title:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText2" text="{Titre}" class="ticketDetailText" />
+                </HBox>
+                <HBox id="_IDGenHBox3" class="ticketDetailRow">
+                    <Label id="_IDGenLabel2" text="Project:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText3" text="{Projet}" class="ticketDetailText" />
+                </HBox>
+                <HBox id="_IDGenHBox4" class="ticketDetailRow">
+                    <Label id="_IDGenLabel3" text="Technology:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText4" text="{Technology}" class="ticketDetailText" />
+                </HBox>
+                <HBox id="_IDGenHBox5" class="ticketDetailRow">
+                    <Label id="_IDGenLabel4" text="Status:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText5" text="{Status}" class="ticketDetailText" />
+                </HBox>
+                <HBox id="_IDGenHBox6" class="ticketDetailRow">
+                    <Label id="_IDGenLabel5" text="Priority:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText6" text="{Priority}" class="ticketDetailText" />
+                </HBox>
+                <HBox id="_IDGenHBox7" class="ticketDetailRow">
+                    <Label id="_IDGenLabel6" text="Start Date:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText7" text="{StartDate}" class="ticketDetailText" />
+                </HBox>
+                <HBox id="_IDGenHBox8" class="ticketDetailRow">
+                    <Label id="_IDGenLabel7" text="End Date:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText8" text="{EndDate}" class="ticketDetailText" />
+                </HBox>
+                <HBox id="_IDGenHBox9" class="ticketDetailRow">
+                    <Label id="_IDGenLabel8" text="Description:" class="ticketDetailLabel" />
+                    <Text id="_IDGenText9" text="{Description}" class="ticketDetailText" />
+                </HBox>
+            </VBox>
+        </content>
+        <endButton>
+            <Button id="_IDGenButton1" text="Close" press="onCloseDialog" class="closeButton" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
