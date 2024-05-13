@@ -17,7 +17,7 @@ sap.ui.define(
       return BaseController.extend("management.controller.App", {
         onInit: function() {
 
-           this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+          this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 
           // // if the app starts on desktop devices with small or medium screen size, collaps the side navigation
           // if (Device.resize.width <= 1024) {
