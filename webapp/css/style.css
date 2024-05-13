@@ -3,12 +3,13 @@
     margin-left: 30px !important;
     z-index: 1;
 }
+
 .containerLogo{
-    /* width: ; */
     display: flex;
     flex-direction: row;
-
+    margin-top: 6px;
 }
+
 .header {
     background-color: rgb(32,41,72) !important;
 } 
@@ -21,7 +22,6 @@
     color: white !important;
     background-color: rgb(32,41,72) !important;
 }
-
 
 .sideNav{
     background-color: rgb(32,41,72) !important;
@@ -43,10 +43,9 @@
     color: white !important;
 } 
 
-.sapUiIcon {
+.sapTntNavLIItem .sapUiIcon {
     color: rgb(0,171,155) !important;
 }
-
 
 *{
     margin: 0;
@@ -57,32 +56,19 @@
     background-color: #232D4B !important; /* Using !important to override any existing background styles */
     margin: 0 !important;
 }
+
 .Donut{
     margin-top: 100px;
 }
+
 .DonutSegment{
     background-color: #ff4500 !important;
 }
+
 .idJiraColumn{
     color: blue !important;
 }
-.vboxDonut{
-}
-.DonutContainer{
-    
-}
-/* 
-.consultantDetailsPage{
-    overflow: scroll;
-} */
-/*
-.vboxConsultantTable{
-    margin-top: 50px;
-}
-.cardTitle{
-    font-weight: bold;
-}
-=======
+
 .tilesContainerContainer{
     overflow: scroll;
     background: none !important;
@@ -92,8 +78,13 @@
     width: 100%;
     height: 100%;
 }
+
+
 /* Homepage Dashboard : Management */
 
+.cardTitle{
+    font-weight: bold;
+}
 
 .shadowbox{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2) !important;
@@ -101,7 +92,6 @@
     background-color: white !important;
     border: 1px solid #f1f1f1 !important;
 }
-
 
 .verticalCenter{
     margin-top: 20px !important;
@@ -143,4 +133,82 @@
 
 .numericContainer{
     background-color: black !important;
+}
+
+
+.contentUnderContent{
+    display: block !important;
+}
+
+.smallheight{
+    height: 30px !important;
+    margin-top: -40px !important;
+    margin-left: -1.5px !important;
+}
+
+.border{
+    border-radius: 1px !important;
+}
+
+.success .sapUiIcon{
+    color: green !important;
+}
+
+.warning .sapUiIcon{
+    color: orange !important;
+}
+
+.consultantMaroc .sapUiIcon{
+    color: purple !important;
+}
+
+.sapMIBar.sapMTB .sapMBarChild {
+    font-weight: bold !important;
+    color: rgb(32,41,72)  !important;
+    font-size: 1.5rem;
+}
+
+.marginbottom-20{
+    margin-bottom: 30px !important;
+}
+
+.sapMOHR {
+    padding: 0rem 3rem 1rem 3rem !important;
+}
+
+/* Ticket details */
+
+.ticketDetailsDialog {
+    width: 400px;
+}
+ 
+.ticketDetailsContainer {
+    padding: 1rem;
+}
+ 
+.ticketId {
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+ 
+.ticketTitle {
+    margin-top: 0.5rem;
+}
+ 
+.ticketDetailRow {
+    margin-top: 1rem;
+}
+ 
+.ticketDetailLabel {
+    width: 120px;
+    font-weight: bold;
+}
+ 
+.ticketDetailText {
+    flex-grow: 1;
+    margin-left: 0.5rem;
+}
+ 
+.closeButton {
+    margin-top: 1rem;
 }

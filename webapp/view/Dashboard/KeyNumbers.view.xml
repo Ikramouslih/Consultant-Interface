@@ -9,15 +9,15 @@
     xmlns:s="sap.ui.comp.smartmicrochart">
 
         <m:ObjectHeader id="_IDGenObjectHeader1"
-            class="shadowbox "
+            class="shadowbox"
             responsive="true"
-            title="Key Statistics">
+            >
             <m:headerContainer>
                 <m:HeaderContainer id="_IDGenHeaderContainer1"
                     scrollStep="200"
                     scrollTime="500"
                     showDividers="true"
-                    class="sapUiSmallMargin">
+                    >
 
                     <!-- 1st chart -->
                     <m:FlexBox id="_IDGenFlexBox1"
@@ -49,7 +49,7 @@
                         <m:Title id="_IDGenTitle1q"
                             text="Tickets' Status"
                             class="sapUiSmallMargin keytitles" />
-                        <m:FlexBox id="_IDGenFlexBox8"  renderType="Bare" width="25rem" height="13rem" class="paddingmedium">
+                        <m:FlexBox id="_IDGenFlexBox8"  renderType="Bare" width="25rem" height="13rem">
                             <mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.Dashboard.DonutManagement" />
                         </m:FlexBox>
 
@@ -82,7 +82,7 @@
                                         displayValue="22"
                                         color="Critical" />
 
-                                         <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData12"
+                                    <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData12"
                                         title="High"
                                         value="8"
                                         displayValue="4"
