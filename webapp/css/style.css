@@ -37,6 +37,14 @@
 .sapTntNavLIItem:hover{
     background-color: rgb(70, 92, 173) !important;
     color: white !important;
+    border-radius: 10px;
+}
+
+/* ---------------------------------------------------------------- */
+.sapMTB .sapMBtnUp:hover{
+    background-color: rgb(70, 92, 173) !important;
+    color: white !important;
+    border-radius: 10px;
 }
 
 .sapTntNavLIItem .sapMText {
@@ -200,4 +208,93 @@
  
 .closeButton {
     margin-top: 1rem;
+}
+
+.sapMITBContent {
+    padding: 0rem !important;
+}
+
+/* colors */
+
+.doneStatus {
+    color: green !important; /* Change the color for 'DONE' status */
+}
+
+.unassignedStatus {
+    color: red !important; /* Change the color for 'UNASSIGNED' status */
+}
+
+.inProgressStatus {
+    color: orange !important; /* Change the color for 'IN_PROGRESS' status */
+}
+
+/* TABLE */
+
+
+.sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
+    padding: 1rem 3rem 0 3rem !important;
+}
+.sapMITH .sapMITBHead {
+    padding-top: 0 !important;
+}
+.sapFDynamicPage-Std-Tablet .sapFDynamicPageHeaderWithContent {
+    padding: 0 !important;
+}
+.sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent {
+    padding: 1rem 3rem 1rem 3rem !important;
+}
+.sapFDynamicPage-Std-Tablet .sapFDynamicPageTitle, .sapFDynamicPage-Std-Tablet .sapFDynamicPageTitleWrapper.sapFDynamicPageTitleSnapped>.sapFDynamicPageTitle {
+    padding: 0;
+}
+.sapFDynamicPage-Std-Tablet .sapFDynamicPageTitle {
+    padding: 0;
+}
+.sapFDynamicPageTitle {
+    padding: 0.5rem 3rem !important;
+}
+
+
+.statusWidth .sapMGenericTagWrap{
+    width: 9rem !important;
+    min-width: 9rem !important;
+    max-width: 9rem !important;
+}
+
+.sapUiTableCell {
+    border-right: none;
+}
+
+.sapUiTableDataCell, .sapUiTableCreationRow .sapUiTableCreationRowForm .sapUiTableCell {
+    padding: 0.5rem 0 0.5rem 0 !important;
+}
+
+.sapUiTableHeaderDataCell {
+    padding-top: 0.9rem !important;
+    padding-bottom: 0.9rem !important;
+}
+
+.sapUiSizeCompact .sapUiTableCell .sapMLabel, .sapUiSizeCondensed .sapUiTableCell .sapMLabel {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.sapUiTableCell.sapUiTableHeaderCell {
+    text-align: center !important;
+    background-color: rgb(32,41,72) !important;
+}
+
+.sapUiTableCell .sapMLabel {
+    color: white;
+    vertical-align: middle;
+}
+
+.sapUiTableCnt {
+    border-radius: 10px;
+}
+
+.sapTntInfoLabel {
+    padding: 0.2rem 0.625rem 1.1rem 0.625rem !important;
+    width: 7rem !important;
+    min-width: 7rem !important;
+    max-width: 7rem !important;
 }

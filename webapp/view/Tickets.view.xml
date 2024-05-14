@@ -1,101 +1,273 @@
-<mvc:View 
-    controllerName="management.controller.Ticket" 
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns="sap.m" 
-    xmlns:semantic="sap.f.semantic" 
-    displayBlock="true">
-
-    <semantic:SemanticPage 
-        id="page" 
-        headerExpanded="true" 
+<mvc:View
+    controllerName="management.controller.Ticket"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    displayBlock="true"
+    xmlns="sap.ui.table"
+    xmlns:tnt="sap.tnt"
+>
+    <semantic:SemanticPage
+        id="page"
+        headerExpanded="true"
         headerPinnable="false"
-        titleAreaShrinkRatio="1:1.6:1.6">
-        
+        titleAreaShrinkRatio="1:1.6:1.6"
+    >
         <semantic:titleHeading>
-			<Title id="_IDGenTitle1" text="Tickets" />
-		</semantic:titleHeading>
+            <m:Title
+                id="_IDGenTitle1"
+                text="Tickets"
+                class="cardTitle"
+            />
+        </semantic:titleHeading>
 
         <!-- IconTabBar pour les filtres -->
         <semantic:headerContent>
-            <IconTabBar 
-                id="iconTabBar" 
-                select="onQuickFilter"> <!-- EventHandler pour le filtrage -->
-                <items>
-                    <IconTabFilter id="_IDGenIconTabFilter1" 
-                        key="all" 
-                        text="Tickets" 
+            <m:IconTabBar
+                id="iconTabBar"
+                select="onQuickFilter"
+            >
+                <!-- EventHandler pour le filtrage -->
+                <m:items>
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter1"
+                        key="all"
+                        text="Tickets"
                         showAll="true"
                         class="filterbuttonsuccess"
-                        count="{CountModel>/count}"/>  <!-- Afficher tous les tickets -->
-                    <IconTabFilter id="_IDGenIconTabFilter2" key="completed" text="Done" 
+                        count="{CountModel>/count}"
+                    />
+                    <!-- Afficher tous les tickets -->
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter2"
+                        key="completed"
+                        text="Done"
                         icon="sap-icon://message-success"
-						iconColor="Positive"
+                        iconColor="Positive"
                         class="sapUiIconSuccess"
-                        count="{CountModel>/completed}" 
-                        /> <!-- Tickets terminés -->
-                    <IconTabFilter id="_IDGenIconTabFilter3" key="in_progress" text="In Progress" 
+                        count="{CountModel>/completed}"
+                    />
+                    <!-- Tickets terminés -->
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter3"
+                        key="in_progress"
+                        text="In Progress"
                         icon="sap-icon://message-warning"
-						iconColor="Critical"
+                        iconColor="Critical"
                         class="sapUiIconCritical"
-                        count="{CountModel>/in_progress}"/> <!-- Tickets en cours -->
-                    <IconTabFilter id="_IDGenIconTabFilter4" key="not_assigned" text="Unassigned"
+                        count="{CountModel>/in_progress}"
+                    />
+                    <!-- Tickets en cours -->
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter4"
+                        key="not_assigned"
+                        text="Unassigned"
                         icon="sap-icon://message-error"
-						iconColor="Negative" 
+                        iconColor="Negative"
                         class="sapUiIconDanger"
-                        count="{CountModel>/not_assigned}"/>
-                        
-                     <IconTabFilter id="_IDGenIconTabFilter5"  
-                        key="create" 
-                        text="Create" 
-                        icon="sap-icon://add" />
+                        count="{CountModel>/not_assigned}"
+                    />
 
-                </items>
-            </IconTabBar>
-
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter5"
+                        key="create"
+                        text="Create"
+                        icon="sap-icon://add"
+                    />
+                </m:items>
+            </m:IconTabBar>
         </semantic:headerContent>
 
-        
         <!-- Contenu principal avec la table des tickets -->
         <semantic:content>
-            <Table 
-                id="idProductsTable" 
-                inset="false" 
-                items="{ path: '/TICKETIDSet' }"> <!-- Liaison aux données OData -->
+            <Table
+                id="idProductsTable"
+                selectionMode="None"
+                rows="{TicketsModel>/}"
+            >
+                <!-- Liaison aux données OData -->
 
                 <columns>
                     <!-- Définition des colonnes -->
-                    <Column id="_IDGenColumn1" width="12em"><Text id="_IDGenText1" text="Id Ticket" /></Column>
-                    <Column id="_IDGenColumn2" width="5em"><Text id="_IDGenText2" text="Ticket Jira" /></Column>
-                    <Column id="_IDGenColumn3" width="7em"><Text id="_IDGenText3" text="Consultant" /></Column>
-                    <Column id="_IDGenColumn4" width="7em"><Text id="_IDGenText4" text="Titre" /></Column>
-                    <Column id="_IDGenColumn5" width="20em"><Text id="_IDGenText5" text="Projet" /></Column>
-                    <Column id="_IDGenColumn6"><Text id="_IDGenText6" text="Status" /></Column>
-                    <Column id="_IDGenColumn7"><Text id="_IDGenText7" text="Start Date" /></Column>
-                    <Column id="_IDGenColumn8"><Text id="_IDGenText8" text="Assign" /></Column>
-                </columns>
 
-                <!-- Contenu des items de la table -->
-                <items>
-                    <ColumnListItem id="_IDGenColumnListItem1">
-                        <cells>
-                            <ObjectIdentifier id="_IDGenObjectIdentifier1" text="{IdTicket}" />
-                            <Text id="_IDGenText9" text="{IdJira}" />
-                            <Text id="_IDGenText10" text="{Consultant}" />
-                            <Text id="_IDGenText11" text="{Titre}" />
-                            <Text id="_IDGenText12" text="{Projet}" />
-                            <Text id="_IDGenText13" text="{Status}" />
-                            <Text id="_IDGenText14" text="{CreationDate}" />
-                            <ToggleButton id="_IDGenToggleButton1" 
-                                icon="sap-icon://add-document" 
-                                type="Emphasized"
-                                enabled="{= ${Status} === 'NON-AFFECTER' }" 
-                                press="onAssignTicket" /> <!-- Appel de la fonction d'assignation -->
-                        </cells>
-                    </ColumnListItem>
-                </items>
+                    <Column
+                        id="_IDGenColumn11"
+                        width="4rem"
+                        hAlign="Center"
+                    >
+                        <m:Label
+                            id="_IDGenLabel11"
+                            text="Assign"
+                        />
+                        <template>
+                            <m:ToggleButton
+                                id="_IDGenToggleButton1"
+                                icon="sap-icon://add-document"
+                                type="Transparent"
+                                enabled="{= ${TicketsModel>Status} === 'NON-AFFECTER' }"
+                                press="onAssignTicket"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn12"
+                        width="5em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel12"
+                            text="Jira ID"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText112"
+                                text="{TicketsModel>IdJira}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn1a2"
+                        width="11em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel1a2"
+                            text="Title"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText11a2"
+                                text="{TicketsModel>Titre}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn122"
+                        width="11em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel122"
+                            text="Project"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText1122"
+                                text="{TicketsModel>Projet}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn123"
+                        width="11em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel123"
+                            text="Consultant"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText11a2aA"
+                                text="{= ${TicketsModel>ConsultantName} === '' ? '-' : ${TicketsModel>ConsultantName} }"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn1212"
+                        width="11em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel1212"
+                            text="Status"
+                        />
+                        <template>
+                            <m:FlexBox
+                                id="_IDGenFlexBox1"
+                                direction="Column"
+                                fitContainer="true"
+                                alignItems="Start"
+                                justifyContent="Start"
+                            >
+                                <m:GenericTag
+                                    id="_IDGenGenericTag1"
+                                    text="{TicketsModel>Status}"
+                                    design="Full"
+                                    class="statusWidth"
+                                    status="{= ${TicketsModel>Status} === 'TERMINE' ? 'Success' : ${TicketsModel>Status} === 'NON-AFFECTER' ? 'Error' : ${TicketsModel>Status} === 'EN-COURS' ? 'Warning' : 'Warning'}"
+                                />
+                            </m:FlexBox>
+                        </template>
+                    </Column>
+                    
+                    <Column
+                        id="_IDGenColumna11211"
+                        width="8em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel1a2111a"
+                            text="Priority"
+                        />
+                        <template>
+                            <tnt:InfoLabel
+                                id="il81"
+                                text="{TicketsModel>Priority}"
+                                colorScheme="{
+                                    path: 'TicketsModel>Priority',
+                                    formatter: '.formatPriorityColor'
+                                }"
+                                icon="{
+                                    path: 'TicketsModel>Priority',
+                                    formatter: '.formatPriorityIcon'
+                                }"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumna12"
+                        width="7em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel1a2a"
+                            text="Creation Date"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText11a2a"
+                                text="{
+                                    path: 'TicketsModel>CreationDate',
+                                    formatter: '.formatDate'
+                                }"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumna1211"
+                        width="7em"
+                    >
+                        <m:Label
+                            id="_IDGenLabel1a211a"
+                            text="Estimated Days"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText11a211a"
+                                text="{TicketsModel>Estimated}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+                    
+                </columns>
             </Table>
         </semantic:content>
-
     </semantic:SemanticPage>
-    
 </mvc:View>
