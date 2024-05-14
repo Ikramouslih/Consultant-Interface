@@ -5,7 +5,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     class="viewPadding">
-
+    
     <l:VerticalLayout id="_IDGenVerticalLayout1" width="" class="sapUiMediumMargin">
         <u:Calendar id="calendar" intervalSelection="true"/>
         <u:CalendarLegend id="legend"/>
