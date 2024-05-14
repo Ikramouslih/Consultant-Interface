@@ -72,27 +72,33 @@
                                 isResponsive="true">
                                     <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData1"
                                         title="Low"
-                                        value="1"
-                                        displayValue="8"
+                                        value="2"
+                                        displayValue="3"
                                         color="Good" />
 
                                     <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData13"
                                         title="Medium"
-                                        value="4"
+                                        value="3"
                                         displayValue="22"
                                         color="Critical" />
 
                                     <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData12"
                                         title="High"
-                                        value="8"
+                                        value="5"
                                         displayValue="4"
-                                        color="Error" />
+                                        color="Error"
+                                        class="ProgressChartTotal" />
+                                        
+                                    <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData15"
+                                        title="Total"
+                                        value="10"
+                                        displayValue="4"
+                                        color="Error"
+                                        class="ProgressChartTotal"
+                                    />
                             </mc:ComparisonMicroChart>
                         </m:FlexBox>
                     </m:FlexBox>
-
-                  
-
                 </m:HeaderContainer>
             </m:headerContainer>
         </m:ObjectHeader>
