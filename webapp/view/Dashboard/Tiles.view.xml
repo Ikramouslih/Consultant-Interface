@@ -56,11 +56,6 @@
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- tile -->
         <m:FlexBox
             id="_IDGenFlsexBsoxsa74"
@@ -76,11 +71,6 @@
                 header="Consultants"
                 subheader="Available in Tunisia"
                 press="onConsultantTilePress"
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
             >
                 <m:TileContent id="_IDGe4nsTaileCsonstent2">
                     <m:NumericContent
@@ -103,11 +93,6 @@
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- tile -->
         <m:FlexBox
             id="_IDGenFlexBox72"
@@ -138,11 +123,6 @@
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- tile -->
         <m:FlexBox
             id="_IDGenFlexBox712"
@@ -173,11 +153,6 @@
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- tile -->
         <m:FlexBox
             id="_IDGenFlexBox472"
@@ -193,11 +168,6 @@
                 header="Consultants"
                 subheader="Total Number"
                 press="onConsultantTilePress"
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
             >
                 <m:TileContent id="_IDGenT3ileContent2">
                     <m:NumericContent
@@ -221,11 +191,6 @@
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- tile -->
         <m:FlexBox
             id="_IDGenFlexBox74"
@@ -235,11 +200,6 @@
             justifyContent="Center"
             direction="Column"
             renderType="Bare"
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         >
             <m:GenericTile
                 id="_IDGenGene4ricTile2"
@@ -268,11 +228,6 @@
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- tile -->
         <m:FlexBox
             id="_IDGenFlexBoxa74"
@@ -311,11 +266,6 @@
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- tile -->
         <m:FlexBox
             id="_IDGenFlexBoxsa74"
@@ -330,11 +280,7 @@
             <m:GenericTile
                 id="_IDGenGeneas4ricTile2"
                 header="Managers"
-<<<<<<< HEAD
                 subheader="Total Number" 
-=======
-                subheader="Total Number"
->>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                 press="onConsultantTilePress"
             >
                 <m:TileContent id="_IDGe4nTaileCsontent2">
