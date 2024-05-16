@@ -101,7 +101,7 @@ sap.ui.define([
         _onFetchError: function(error) {
             // Handle error
             MessageToast.show("Error fetching ticket data");
-        },
+        },/* 
         _calculatePriorityChart: function() {
             var oModel = this.getOwnerComponent().getModel(); // Assuming you have set a model for your view
         
@@ -138,7 +138,48 @@ sap.ui.define([
                     // Handle error
                 }
             });
+        } */_calculatePriorityChart: function() {
+    var oModel = this.getOwnerComponent().getModel(); // Assuming you have set a model for your view
+    var oJSONModel = new sap.ui.model.json.JSONModel();
+ 
+    oModel.read("/TICKETIDSet", {
+        success: function(oData) {
+            var lowTotal = 0,
+                mediumTotal = 0,
+                highTotal = 0;
+ 
+            oData.results.forEach(function(ticket) {
+                switch (ticket.Priority) {
+                    case "LOW":
+                        lowTotal++;
+                        break;
+                    case "MEDIUM":
+                        mediumTotal++;
+                        break;
+                    case "HIGH":
+                        highTotal++;
+                        break;
+                }
+            });
+ 
+            var totalValue = lowTotal + mediumTotal + highTotal;
+            console.log('totalValue : '+ totalValue);
+ 
+            var oPriorityData = {
+                low: { value: lowTotal, displayValue: lowTotal.toString() },
+                medium: { value: mediumTotal, displayValue: mediumTotal.toString() },
+                high: { value: highTotal, displayValue: highTotal.toString() },
+                total: { value: totalValue, displayValue: totalValue.toString() }
+            };
+ 
+            oJSONModel.setData(oPriorityData);
+            this.getView().setModel(oJSONModel, "priorityData");
+        }.bind(this),
+        error: function(error) {
+            // Handle error
         }
+    });
+}
 
     });
 });

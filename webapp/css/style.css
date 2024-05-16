@@ -1,91 +1,77 @@
+/* Layout Navbar and Sidebar */
 .customLogoClass {
     width: 15%;
     margin-left: 30px !important;
     z-index: 1;
 }
-
 .containerLogo{
     display: flex;
     flex-direction: row;
     margin-top: 6px;
 }
-
 .header {
     background-color: rgb(32,41,72) !important;
-} 
-
+}
 .sidebar {
     background-color: rgb(32,41,72) !important;
 }
-
 .sideNavLinks{
     color: white !important;
     background-color: rgb(32,41,72) !important;
 }
-
 .sideNav{
     background-color: rgb(32,41,72) !important;
 }
-
 .sapTntNavLIItem {
     background-color: rgb(32,41,72) !important;
     color: white !important;
     margin: 10px 0px 10px 0px;
     border: none !important;
 }
-
 .sapTntNavLIItem:hover{
     background-color: rgb(70, 92, 173) !important;
     color: white !important;
+    border-radius: 10px;
 }
-
+.sapMTB .sapMBtnUp:hover{
+    background-color: rgb(70, 92, 173) !important;
+    color: white !important;
+    border-radius: 10px;
+}
 .sapTntNavLIItem .sapMText {
     color: white !important;
-} 
-
+}
 .sapTntNavLIItem .sapUiIcon {
     color: rgb(0,171,155) !important;
 }
-
 *{
     margin: 0;
     padding: 0;
 }
-
-.customRedBackground {
-    background-color: #232D4B !important; /* Using !important to override any existing background styles */
-    margin: 0 !important;
-}
-
+ 
+/* Blue donut */
 .Donut{
     margin-top: 100px;
 }
-
 .DonutSegment{
     background-color: #ff4500 !important;
 }
-
+ 
 .idJiraColumn{
     color: blue !important;
 }
-
+ 
 /* Homepage Dashboard : Management */
-
 .cardTitle{
     font-weight: bold;
 }
-
 .shadowbox{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2) !important;
     border-radius: 5px !important;
     background-color: white !important;
     border: 1px solid #f1f1f1 !important;
 }
-
-.verticalCenter{
-    margin-top: 20px !important;
-}
-
+ 
 /* Blue Donut Labels management chart */
 .sapSuiteIDCLegend {
     width: 60%;
@@ -96,13 +82,13 @@
     flex-direction: column !important;
     justify-content: center !important;
 }
-
+ 
 /* Blue Donut Circle management chart */
 .sapSuiteIDC {
     width: 80% !important;
     height: 80% !important;
 }
-
+ 
 /* 3 Lines management chart */
 .sapSuiteCpMCChartContent.sapSuiteCpMCResponsive {
     height: 80% !important;
@@ -110,97 +96,176 @@
 .keytitles{
     overflow: visible !important;
 }
-
+ 
 /* flags footer */
-.footerTileIcon{
-    bottom: 0 !important;
-}
-
-.flagcontainer{
-    background-color: #ff4500 !important;
-}
-
-.numericContainer{
-    background-color: black !important;
-}
-
-
 .contentUnderContent{
     display: block !important;
 }
-
 .smallheight{
     height: 30px !important;
     margin-top: -40px !important;
     margin-left: -1.5px !important;
 }
-
 .border{
     border-radius: 1px !important;
 }
-
 .success .sapUiIcon{
     color: green !important;
 }
-
 .warning .sapUiIcon{
     color: orange !important;
 }
-
 .consultantMaroc .sapUiIcon{
     color: purple !important;
 }
-
 .sapMIBar.sapMTB .sapMBarChild {
     font-weight: bold !important;
     color: rgb(32,41,72)  !important;
     font-size: 1.5rem;
 }
-
-.marginbottom-20{
-    margin-bottom: 30px !important;
-}
-
 .sapMOHR {
     padding: 0rem 3rem 1rem 3rem !important;
 }
-
+ 
 /* Ticket details */
-
 .ticketDetailsDialog {
     width: 400px;
 }
- 
 .ticketDetailsContainer {
     padding: 1rem;
 }
- 
 .ticketId {
     font-weight: bold;
     margin-left: 0.5rem;
 }
- 
 .ticketTitle {
     margin-top: 0.5rem;
 }
- 
 .ticketDetailRow {
     margin-top: 1rem;
 }
- 
 .ticketDetailLabel {
     width: 120px;
     font-weight: bold;
 }
- 
 .ticketDetailText {
     flex-grow: 1;
     margin-left: 0.5rem;
 }
- 
 .closeButton {
     margin-top: 1rem;
 }
-.paddingmedium{
-    margin-top: 50%;    
+.sapMITBContent {
+    padding: 0rem !important;
 }
+ 
+ 
+/* Criticalities */
+.doneStatus {
+    color: green !important; /* Change the color for 'DONE' status */
+}
+.unassignedStatus {
+    color: red !important; /* Change the color for 'UNASSIGNED' status */
+}
+.inProgressStatus {
+    color: orange !important; /* Change the color for 'IN_PROGRESS' status */
+}
+ 
+ 
+/* Tables Style */
+.sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
+    padding: 1rem 3rem 0 3rem !important;
+}
+.sapMITH .sapMITBHead {
+    padding-top: 0 !important;
+}
+.sapFDynamicPage-Std-Tablet .sapFDynamicPageHeaderWithContent {
+    padding: 0 !important;
+}
+.sapFDynamicPageHeader.sapFDynamicPageHeaderWithContent {
+    padding: 1rem 3rem 1rem 3rem !important;
+}
+.sapFDynamicPage-Std-Tablet .sapFDynamicPageTitle, .sapFDynamicPage-Std-Tablet .sapFDynamicPageTitleWrapper.sapFDynamicPageTitleSnapped>.sapFDynamicPageTitle {
+    padding: 0;
+}
+.sapFDynamicPage-Std-Tablet .sapFDynamicPageTitle {
+    padding: 0;
+}
+.sapFDynamicPageTitle {
+    padding: 0.5rem 3rem !important;
+}
+.statusWidth .sapMGenericTagWrap{
+    width: 9rem !important;
+    min-width: 9rem !important;
+    max-width: 9rem !important;
+}
+.sapUiTableCell {
+    border-right: none;
+}
+.sapUiTableDataCell, .sapUiTableCreationRow .sapUiTableCreationRowForm .sapUiTableCell {
+    padding: 0.5rem 0 0.5rem 0 !important;
+}
+.sapUiTableHeaderDataCell {
+    padding-top: 0.9rem !important;
+    padding-bottom: 0.9rem !important;
+}
+.sapUiSizeCompact .sapUiTableCell .sapMLabel, .sapUiSizeCondensed .sapUiTableCell .sapMLabel {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+.sapUiTableCell.sapUiTableHeaderCell {
+    text-align: center !important;
+    background-color: rgb(32,41,72) !important;
+}
+.sapUiTableCell .sapMLabel {
+    color: white;
+    vertical-align: middle;
+}
+.sapUiTableCnt {
+    border-radius: 10px;
+}
+.sapUiTableVSb{
+    max-height: 100% !important;
+}
+.sapTntInfoLabel {
+    padding: 0.2rem 0.625rem 1.1rem 0.625rem !important;
+    width: 7rem !important;
+    min-width: 7rem !important;
+    max-width: 7rem !important;
+}
+.sapUiTable {
+    margin-bottom: 3rem;
+}
+.sapUiSizeCompact .sapMSFF {
+    border-radius: 5px !important;
+}
+ 
+ 
+/* to position the search bar in the far right (3 classes) */
+.width100{
+    width: 100% !important;
+    justify-content: space-between !important;
+}
+.sapFDynamicPageTitleMain>.sapFDynamicPageTitleMainInner .sapFDynamicPageTitleMainHeading {
+    width: 100% !important;
+    justify-content: space-between !important;
+}
+.sapFDynamicPageTitleMain>.sapFDynamicPageTitleMainInner .sapFDynamicPageTitleMainHeading .sapFDynamicPageTitleMainHeadingInner {
+    width: 100% !important;
+}
+ 
+ 
+/* position the non filters on the right */
+.IconTabBarLayoutTickets .sapMITBItem:nth-child(5n) {
+    float: right !important;
+}
+.IconTabBarLayoutTickets .sapMITBItem:nth-child(6n) {
+    float: right !important;
+}
+.IconTabBarLayoutConsultants .sapMITBItem:nth-child(4n){
+    float: right !important;
+}
+.IconTabBarLayoutConsultants .sapMITBItem:nth-child(5n){
+    float: right !important;
+}
+ 
