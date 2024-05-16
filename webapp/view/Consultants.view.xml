@@ -27,7 +27,11 @@
                 />
             </m:Toolbar>
         </semantic:titleHeading>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- IconTabBar for filters -->
         <semantic:headerContent>
             <m:IconTabBar
@@ -84,7 +88,11 @@
                 </m:items>
             </m:IconTabBar>
         </semantic:headerContent>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
         <!-- Main content with the table of consultants -->
         <semantic:content>
             <Table
@@ -94,7 +102,11 @@
                 alternateRowColors="true"
             >
                 <!-- Binding to OData data -->
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                 <columns>
                     <!-- Definition of columns -->
                     <Column
@@ -114,7 +126,11 @@
                             />
                         </template>
                     </Column>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                     <Column
                         id="_IDGenColumn2"
                         width="9em"
@@ -133,7 +149,11 @@
                             />
                         </template>
                     </Column>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                     <Column
                         id="_IDGenColumn3"
                         width="9em"
@@ -151,7 +171,11 @@
                             />
                         </template>
                     </Column>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                     <Column
                         id="_IDGenColumn4"
                         width="8em"
@@ -169,7 +193,11 @@
                             />
                         </template>
                     </Column>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                     <Column
                         id="_IDGenColumn5"
                         width="20em"
@@ -187,7 +215,11 @@
                             />
                         </template>
                     </Column>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                     <Column
                         id="_IDGenColumn6"
                         hAlign="End"
@@ -211,3 +243,4 @@
         </semantic:content>
     </semantic:SemanticPage>
 </mvc:View>
+ 

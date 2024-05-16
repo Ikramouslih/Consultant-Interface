@@ -11,7 +11,7 @@
 }
 .header {
     background-color: rgb(32,41,72) !important;
-} 
+}
 .sidebar {
     background-color: rgb(32,41,72) !important;
 }
@@ -40,7 +40,7 @@
 }
 .sapTntNavLIItem .sapMText {
     color: white !important;
-} 
+}
 .sapTntNavLIItem .sapUiIcon {
     color: rgb(0,171,155) !important;
 }
@@ -48,7 +48,7 @@
     margin: 0;
     padding: 0;
 }
-
+ 
 /* Blue donut */
 .Donut{
     margin-top: 100px;
@@ -56,11 +56,11 @@
 .DonutSegment{
     background-color: #ff4500 !important;
 }
-
+ 
 .idJiraColumn{
     color: blue !important;
 }
-
+ 
 /* Homepage Dashboard : Management */
 .cardTitle{
     font-weight: bold;
@@ -71,7 +71,7 @@
     background-color: white !important;
     border: 1px solid #f1f1f1 !important;
 }
-
+ 
 /* Blue Donut Labels management chart */
 .sapSuiteIDCLegend {
     width: 60%;
@@ -82,13 +82,13 @@
     flex-direction: column !important;
     justify-content: center !important;
 }
-
+ 
 /* Blue Donut Circle management chart */
 .sapSuiteIDC {
     width: 80% !important;
     height: 80% !important;
 }
-
+ 
 /* 3 Lines management chart */
 .sapSuiteCpMCChartContent.sapSuiteCpMCResponsive {
     height: 80% !important;
@@ -96,7 +96,7 @@
 .keytitles{
     overflow: visible !important;
 }
-
+ 
 /* flags footer */
 .contentUnderContent{
     display: block !important;
@@ -126,7 +126,7 @@
 .sapMOHR {
     padding: 0rem 3rem 1rem 3rem !important;
 }
-
+ 
 /* Ticket details */
 .ticketDetailsDialog {
     width: 400px;
@@ -158,8 +158,8 @@
 .sapMITBContent {
     padding: 0rem !important;
 }
-
-
+ 
+ 
 /* Criticalities */
 .doneStatus {
     color: green !important; /* Change the color for 'DONE' status */
@@ -170,8 +170,8 @@
 .inProgressStatus {
     color: orange !important; /* Change the color for 'IN_PROGRESS' status */
 }
-
-
+ 
+ 
 /* Tables Style */
 .sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
     padding: 1rem 3rem 0 3rem !important;
@@ -239,8 +239,8 @@
 .sapUiSizeCompact .sapMSFF {
     border-radius: 5px !important;
 }
-
-
+ 
+ 
 /* to position the search bar in the far right (3 classes) */
 .width100{
     width: 100% !important;
@@ -253,8 +253,8 @@
 .sapFDynamicPageTitleMain>.sapFDynamicPageTitleMainInner .sapFDynamicPageTitleMainHeading .sapFDynamicPageTitleMainHeadingInner {
     width: 100% !important;
 }
-
-
+ 
+ 
 /* position the non filters on the right */
 .IconTabBarLayoutTickets .sapMITBItem:nth-child(5n) {
     float: right !important;
@@ -268,3 +268,4 @@
 .IconTabBarLayoutConsultants .sapMITBItem:nth-child(5n){
     float: right !important;
 }
+ 

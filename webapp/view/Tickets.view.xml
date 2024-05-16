@@ -27,7 +27,7 @@
                     />
             </m:Toolbar>
         </semantic:titleHeading>
-
+ 
         <!-- IconTabBar pour les filtres -->
         <semantic:headerContent>
             <m:IconTabBar
@@ -95,7 +95,7 @@
                 </m:items>
             </m:IconTabBar>
         </semantic:headerContent>
-
+ 
         <!-- Contenu principal avec la table des tickets -->
         <semantic:content>
             <Table
@@ -105,10 +105,10 @@
                 alternateRowColors="true"
             >
                 <!-- Liaison aux données OData -->
-
+ 
                 <columns>
                     <!-- Définition des colonnes -->
-
+ 
                     <Column
                         id="_IDGenColumn11"
                         width="4rem"
@@ -128,7 +128,7 @@
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn12"
                         width="5em"
@@ -145,7 +145,7 @@
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn1a2"
                         width="16rem"
@@ -162,7 +162,7 @@
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn122"
                         width="11em"
@@ -179,7 +179,7 @@
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn123"
                         width="14em"
@@ -196,7 +196,7 @@
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn1212"
                         width="11em"
@@ -223,7 +223,11 @@
                             </m:FlexBox>
                         </template>
                     </Column>
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> a974ba0ba5bc4040f52c0b3144fa2458772f768d
                     <Column
                         id="_IDGenColumna11211"
                         width="8em"
@@ -247,7 +251,7 @@
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumna12"
                         width="7em"
@@ -267,7 +271,7 @@
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumna1211"
                         width="7em"
@@ -284,9 +288,10 @@
                             />
                         </template>
                     </Column>
-                    
+                   
                 </columns>
             </Table>
         </semantic:content>
     </semantic:SemanticPage>
 </mvc:View>
+ 

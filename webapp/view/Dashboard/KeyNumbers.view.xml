@@ -68,31 +68,30 @@
                             text="Tickets' Priority"
                             class="sapUiSmallMargin keytitles" />
                         <m:FlexBox id="_IDGenFlexBox4" width="16rem" height="13rem" renderType="Bare" >
-                            <mc:ComparisonMicroChart id="_IDGenComparisonMicroChart1"
-                                isResponsive="true">
-                                    <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData1"
-                                        title="Low"
-                                        value="1"
-                                        displayValue="8"
-                                        color="Good" />
-
-                                    <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData13"
-                                        title="Medium"
-                                        value="4"
-                                        displayValue="22"
-                                        color="Critical" />
-
-                                    <mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData12"
-                                        title="High"
-                                        value="8"
-                                        displayValue="4"
-                                        color="Error" />
-                            </mc:ComparisonMicroChart>
+<mc:ComparisonMicroChart id="_IDGenComparisonMicroChart1" isResponsive="true">
+<mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData1"
+            title="Low"
+            value="{priorityData>/low/value}"
+            displayValue="{priorityData>/low/displayValue}"
+            color="Good" />
+<mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData13"
+            title="Medium"
+            value="{priorityData>/medium/value}"
+            displayValue="{priorityData>/medium/displayValue}"
+            color="Critical" />
+<mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData12"
+            title="High"
+            value="{priorityData>/high/value}"
+            displayValue="{priorityData>/high/displayValue}"
+            color="Error" />
+<mc:ComparisonMicroChartData id="_IDGenComparisonMicroChartData15"
+            title="Total"
+            value="{priorityData>/total/value}"
+            displayValue="{priorityData>/total/displayValue}"
+            color="Error" />
+</mc:ComparisonMicroChart>
                         </m:FlexBox>
                     </m:FlexBox>
-
-                  
-
                 </m:HeaderContainer>
             </m:headerContainer>
         </m:ObjectHeader>

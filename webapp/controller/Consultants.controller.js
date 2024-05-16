@@ -5,11 +5,11 @@ sap.ui.define(
 
   function (Controller, Filter, FilterOperator) {
     "use strict";
-
+ 
     return Controller.extend("management.controller.Consultants", {
       onInit: function () {
         this._mFilters = {
-          all: [], 
+          all: [],
           available: [new Filter("Disponilbilty", FilterOperator.EQ, "1")],
           unavailable: [new Filter("Disponilbilty", FilterOperator.EQ, "0")],
         };
@@ -26,7 +26,6 @@ sap.ui.define(
             console.error("Error reading consultant count:", oError);
           }
         });
-
         // Fetch the count of available consultants
         oModel.read("/CONSULTANTIDSet/$count", {
           success: function (iCount) {
@@ -38,7 +37,7 @@ sap.ui.define(
           },
           filters: [new Filter("Disponilbilty", FilterOperator.EQ, "1")]
         });
-
+ 
         // Fetch the count of unavailable consultants
         oModel.read("/CONSULTANTIDSet/$count", {
           success: function (iCount) {
@@ -51,20 +50,20 @@ sap.ui.define(
           filters: [new Filter("Disponilbilty", FilterOperator.EQ, "0")]
         });
       },
-
+ 
       onPress: function(oEvent) {
         var oItem = oEvent.getSource();
         var oBindingContext = oItem.getBindingContext();
         var sConsultantId = oBindingContext.getProperty("ConsultantId");
-        
+       
         // Navigate to the details view with the selected person's ID
         this.getOwnerComponent().getRouter().navTo("ConsultantDetails", { consultantId: sConsultantId });
       },
-
+ 
       onCreateConsultant: function() {
         this.getOwnerComponent().getRouter().navTo("CreateConsultant");
       },
-
+ 
       onQuickFilter: function (oEvent) {
         var sSelectedKey = oEvent.getParameter("selectedKey");
         this._sSelectedFilterKey = sSelectedKey; // Save the selected filter key
@@ -79,7 +78,7 @@ sap.ui.define(
           oBinding.filter(aFilters);
         }
       },
-
+      
       onSearch: function(oEvent) {
         var sQuery = oEvent.getParameter("query");
         var aFilters = [];
@@ -101,7 +100,7 @@ sap.ui.define(
         var oBinding = oTable.getBinding("rows");
         oBinding.filter(aFilters);
       },
-
+ 
       onExtract: function () {
         var oTable = this.byId("idConsultantsTable");
         var oBinding = oTable.getBinding("rows");
@@ -146,3 +145,4 @@ sap.ui.define(
     });
   }
 );
+ 

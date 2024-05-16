@@ -10,8 +10,8 @@
                 </Key>
 
                 <Property Name="ConsultantId" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="element de donnees id pour Application gestion de dispo" sap:unicode="false" MaxLength="50" Nullable="false" Type="Edm.String" />
-
-                <Property Name="Name" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nom" sap:unicode="false" MaxLength="35" Nullable="false" Type="Edm.String" />
+                <Property Name="Country" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="" sap:unicode="false" MaxLength="56" Nullable="false" Type="Edm.String"/>
+                <Property Name="Name" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:reatable="false" sap:label="Nom" sap:unicode="false" MaxLength="35" Nullable="false" Type="Edm.String" />
 
                 <Property Name="FirstName" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Nom" sap:unicode="false" MaxLength="35" Nullable="false" Type="Edm.String" />
 

@@ -5,20 +5,20 @@ sap.ui.define([
   "sap/ui/model/FilterOperator"
 ], function(Controller, JSONModel, Filter, FilterOperator) {
   "use strict";
-
+ 
   return Controller.extend("sap.suite.ui.commons.demo.tutorial.controller.ProcessFlow", {
-
+ 
       onInit: function() {
           this.loadTilesData();
           this.loadTilesData1();
           this.loadTilesData2();
           this.loadTilesData3();
       },
-
+ 
       loadTilesData: function() {
           var oModel = this.getOwnerComponent().getModel();
           var oJSONModel = new JSONModel();
-
+ 
           oModel.read("/TICKETIDSet", { // Chemin de l'entité dans OData
               success: function(oData) {
                   var aGroupedData = this.groupByStatus(oData.results); // Groupement des données
@@ -31,22 +31,22 @@ sap.ui.define([
               }
           });
       },
-      
+     
       groupByStatus: function(aData) {
           var statusCounts = { unassigned: 0, assigned: 0 }; // Initialiser les comptes
-
+ 
           aData.forEach(function(item) {
               var status = item.Status || "Inconnu"; // Si le statut est vide ou indéfini, le définir à "Inconnu"
-              
+             
               if (status === "EN-COURS") {
                   statusCounts.unassigned++;
               } else if (status === "TERMINE") {
                   statusCounts.assigned++;
               }
           });
-
+ 
           var aDonutData = [];
-
+ 
           // Convertir l'objet de comptes en tableau pour le Donut Chart
           for (var key in statusCounts) {
               aDonutData.push({
@@ -60,10 +60,10 @@ sap.ui.define([
       loadTilesData1: function() {
           var oModel = this.getOwnerComponent().getModel();
           var oJSONModel = new JSONModel();
-
+ 
           // Define the filter for availability
           var oFilter = new Filter("Disponilbilty", FilterOperator.EQ, "1");
-
+ 
           oModel.read("/CONSULTANTIDSet", { // Chemin de l'entité dans OData
               filters: [oFilter],
               success: function(oData) {
@@ -77,22 +77,22 @@ sap.ui.define([
               }
           });
       },
-      
+     
       groupByCountry: function(aData) {
           var countryCounts = {}; // Initialiser les comptes par pays
-
+ 
           aData.forEach(function(item) {
               var country = item.Country || "Inconnu"; // Si le pays est vide ou indéfini, le définir à "Inconnu"
-              
+             
               if (!countryCounts[country]) { // Si le pays n'existe pas dans l'objet, l'ajouter
                   countryCounts[country] = 1;
               } else { // Sinon, incrémenter le compte
                   countryCounts[country]++;
               }
           });
-
+ 
           var aGroupedData1 = [];
-
+ 
           // Convertir l'objet de comptes en tableau pour l'affichage
           for (var key in countryCounts) {
               aGroupedData1.push({
@@ -106,9 +106,9 @@ sap.ui.define([
       loadTilesData2: function() {
           var oModel = this.getOwnerComponent().getModel();
           var oJSONModel = new JSONModel();
-
+ 
           // Define the filter for availability
-
+ 
           oModel.read("/CONSULTANTIDSet", { // Chemin de l'entité dans OData
               success: function(oData) {
                   var groupedData = this.groupByCountry(oData.results); // Groupement des données
@@ -121,22 +121,22 @@ sap.ui.define([
               }
           });
       },
-      
+     
       groupByCountry: function(aData) {
           var countryCounts = {}; // Initialiser les comptes par pays
-
+ 
           aData.forEach(function(item) {
               var country = item.Country || "Inconnu"; // Si le pays est vide ou indéfini, le définir à "Inconnu"
-              
+             
               if (!countryCounts[country]) { // Si le pays n'existe pas dans l'objet, l'ajouter
                   countryCounts[country] = 1;
               } else { // Sinon, incrémenter le compte
                   countryCounts[country]++;
               }
           });
-
+ 
           var aGroupedData2 = [];
-
+ 
           // Convertir l'objet de comptes en tableau pour l'affichage
           for (var key in countryCounts) {
               aGroupedData2.push({
@@ -150,7 +150,7 @@ sap.ui.define([
       loadTilesData3: function() {
           var oModel = this.getOwnerComponent().getModel();
           var oJSONModel = new JSONModel();
-
+ 
           // Define the filter for availability
           oModel.read("/MANAGERIDSet", { // Chemin de l'entité dans OData
               success: function(oData) {
@@ -164,22 +164,22 @@ sap.ui.define([
               }
           });
       },
-      
+     
       groupByCountry: function(aData) {
           var countryCounts = {}; // Initialiser les comptes par pays
-
+ 
           aData.forEach(function(item) {
               var country = item.Country || "Inconnu"; // Si le pays est vide ou indéfini, le définir à "Inconnu"
-              
+             
               if (!countryCounts[country]) { // Si le pays n'existe pas dans l'objet, l'ajouter
                   countryCounts[country] = 1;
               } else { // Sinon, incrémenter le compte
                   countryCounts[country]++;
               }
           });
-
+ 
           var aGroupedData3 = [];
-
+ 
           // Convertir l'objet de comptes en tableau pour l'affichage
           for (var key in countryCounts) {
               aGroupedData3.push({
@@ -189,7 +189,7 @@ sap.ui.define([
           }
           return aGroupedData3;
     },
-
+ 
     // handeling tile clicking
     onConsultantTilePress: function() {
         this.getOwnerComponent().getRouter().navTo("RouteConsultant");
@@ -197,6 +197,7 @@ sap.ui.define([
     onTicketTilePress: function() {
         this.getOwnerComponent().getRouter().navTo("RouteTicket");
     }
-    
+   
   });
 });
+ 

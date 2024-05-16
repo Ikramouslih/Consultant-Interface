@@ -7,7 +7,7 @@
     displayBlock="true">
  
   <Table id="idProductsTable" items="{TICKETIDDATA>/}">
- <headerToolbar>
+        <headerToolbar>
             <Toolbar id="_IDGenToolbar1">
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <SearchField id="searchField" width="auto" search=".onFilterPosts" liveChange="onSearch" />

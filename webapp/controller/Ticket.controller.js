@@ -5,7 +5,7 @@ sap.ui.define([
   "sap/ui/model/json/JSONModel"
 ], function (Controller, Filter, FilterOperator, JSONModel) {
   "use strict";
-
+ 
   return Controller.extend("management.controller.Ticket", {
     onInit: function () {
       this._mFilters = {
@@ -14,12 +14,12 @@ sap.ui.define([
         in_progress: [new Filter("Status", FilterOperator.EQ, "EN-COURS")], // In progress tickets
         not_assigned: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")] // Not assigned tickets
       };
-      
+     
       var oModel = this.getOwnerComponent().getModel();
       this._setCounts(oModel);
       this.loadTicketsWithConsultantNames();
     },
-
+ 
     _setCounts: function(oModel) {
       // Total count
       oModel.read("/TICKETIDSet/$count", {
@@ -31,7 +31,7 @@ sap.ui.define([
           console.error("Error reading ticket count:", oError);
         }
       });
-
+ 
       // Completed count
       oModel.read("/TICKETIDSet/$count", {
         filters: [new Filter("Status", FilterOperator.EQ, "TERMINE")],
@@ -43,7 +43,7 @@ sap.ui.define([
           console.error("Error reading completed tickets count:", oError);
         }
       });
-
+ 
       // In progress count
       oModel.read("/TICKETIDSet/$count", {
         filters: [new Filter("Status", FilterOperator.EQ, "EN-COURS")],
@@ -55,7 +55,7 @@ sap.ui.define([
           console.error("Error reading in progress tickets count:", oError);
         }
       });
-
+ 
       // Not assigned count
       oModel.read("/TICKETIDSet/$count", {
         filters: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")],
@@ -68,12 +68,12 @@ sap.ui.define([
         }
       });
     },
-
+ 
     loadTicketsWithConsultantNames: function () {
       var oModel = this.getOwnerComponent().getModel();
       var aTickets = [];
       var aConsultants = [];
-
+ 
       oModel.read("/TICKETIDSet", {
         success: function (oData) {
           aTickets = oData.results;
@@ -83,7 +83,7 @@ sap.ui.define([
           console.error("Error reading tickets:", oError);
         }
       });
-
+ 
       oModel.read("/CONSULTANTIDSet", {
         success: function (oData) {
           aConsultants = oData.results;
@@ -93,29 +93,29 @@ sap.ui.define([
           console.error("Error reading consultants:", oError);
         }
       });
-
+ 
       var checkIfBothLoaded = function () {
         if (aTickets.length > 0 && aConsultants.length > 0) {
           var oConsultantMap = aConsultants.reduce(function (map, consultant) {
             map[consultant.ConsultantId] = consultant.Name + " " + consultant.FirstName;
             return map;
           }, {});
-
+ 
           var aMergedData = aTickets.map(function (ticket) {
             ticket.ConsultantName = oConsultantMap[ticket.Consultant] || "-";
             return ticket;
           });
-
+ 
           var oTicketsModel = new JSONModel({ Tickets: aMergedData, TicketCount: aMergedData.length });
           this.getView().setModel(oTicketsModel, "TicketsModel");
         }
       }.bind(this);
     },
-
+ 
     onQuickFilter: function (oEvent) {
       var sSelectedKey = oEvent.getParameter("selectedKey");
       this._sSelectedFilterKey = sSelectedKey; // Enregistrer la clé du filtre sélectionné
-      
+     
       if (sSelectedKey === "create") {
         this.getOwnerComponent().getRouter().navTo("CreateTicket");
       } else if (sSelectedKey === "extract") {
@@ -126,7 +126,7 @@ sap.ui.define([
         oBinding.filter(aFilters);
       }
     },
-
+ 
     onExtractTickets: function () {
       var oTable = this.byId("idProductsTable");
       var oBinding = oTable.getBinding("rows");
@@ -171,16 +171,16 @@ sap.ui.define([
         document.body.removeChild(oLink);
       }
     },
-
+ 
     onAssignTicket: function (oEvent) {
       var oSource = oEvent.getSource();
       var oBindingContext = oSource.getBindingContext("TicketsModel");
       var sTicketId = oBindingContext.getProperty("IdTicket");
-      
+     
       // Logique de redirection ou autre action
       this.getOwnerComponent().getRouter().navTo("AssignTicket", { IdTicket: sTicketId });
     },
-
+ 
     formatPriorityColor: function (sPriority) {
       switch (sPriority) {
         case "HIGH":
@@ -193,7 +193,7 @@ sap.ui.define([
           return;
       }
     },
-
+ 
     formatPriorityIcon: function (sPriority) {
       switch (sPriority) {
         case "HIGH":
@@ -206,7 +206,7 @@ sap.ui.define([
           return "";
       }
     },
-
+ 
     formatDate: function (sDate) {
       if (!sDate) {
         return "-";

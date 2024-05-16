@@ -11,7 +11,9 @@ sap.ui.define([
 
         onInit: function() {
             console.log("onInit");
-			
+            this._calculatePriorityChart();
+            // document.getElementById("application-management-display-component---Management--_IDGenXMLView3--_IDGenComparisonMicroChartData1").style.display = "none";
+            
             // Initialize the ODataModel with the service URL
             var oModel = new ODataModel("/sap/opu/odata/sap/ZODA_GEST_DISPON_SRV/");
 
@@ -99,7 +101,85 @@ sap.ui.define([
         _onFetchError: function(error) {
             // Handle error
             MessageToast.show("Error fetching ticket data");
-        },
+        },/* 
+        _calculatePriorityChart: function() {
+            var oModel = this.getOwnerComponent().getModel(); // Assuming you have set a model for your view
+        
+            oModel.read("/TICKETIDSet", {
+                success: function(oData) {
+                    var lowTotal = 0,
+                        mediumTotal = 0,
+                        highTotal = 0;
+        
+                    oData.results.forEach(function(ticket) {
+                        switch (ticket.Priority) {
+                            case "LOW":
+                                lowTotal++;
+                                break;
+                            case "MEDIUM":
+                                mediumTotal++;
+                                break;
+                            case "HIGH":
+                                highTotal++;
+                                break;
+                        }
+                    });
+        
+                    var totalValue = lowTotal + mediumTotal + highTotal;
+                    console.log('totalValue : '+ totalValue);
+                    // Update the value of the "Total" chart
+                    var totalChart = this.getView().byId("_IDGenComparisonMicroChartData15");
+                    if (totalChart) {
+                        totalChart.setValue(totalValue.toString());
+                        totalChart.setDisplayValue(totalValue.toString());
+                    }
+                }.bind(this),
+                error: function(error) {
+                    // Handle error
+                }
+            });
+        } */_calculatePriorityChart: function() {
+    var oModel = this.getOwnerComponent().getModel(); // Assuming you have set a model for your view
+    var oJSONModel = new sap.ui.model.json.JSONModel();
+ 
+    oModel.read("/TICKETIDSet", {
+        success: function(oData) {
+            var lowTotal = 0,
+                mediumTotal = 0,
+                highTotal = 0;
+ 
+            oData.results.forEach(function(ticket) {
+                switch (ticket.Priority) {
+                    case "LOW":
+                        lowTotal++;
+                        break;
+                    case "MEDIUM":
+                        mediumTotal++;
+                        break;
+                    case "HIGH":
+                        highTotal++;
+                        break;
+                }
+            });
+ 
+            var totalValue = lowTotal + mediumTotal + highTotal;
+            console.log('totalValue : '+ totalValue);
+ 
+            var oPriorityData = {
+                low: { value: lowTotal, displayValue: lowTotal.toString() },
+                medium: { value: mediumTotal, displayValue: mediumTotal.toString() },
+                high: { value: highTotal, displayValue: highTotal.toString() },
+                total: { value: totalValue, displayValue: totalValue.toString() }
+            };
+ 
+            oJSONModel.setData(oPriorityData);
+            this.getView().setModel(oJSONModel, "priorityData");
+        }.bind(this),
+        error: function(error) {
+            // Handle error
+        }
+    });
+}
 
     });
 });
