@@ -270,7 +270,7 @@
  
                     <Column
                         id="_IDGenColumna1211"
-                        width="7em"
+                        minWidth="7em"
                     >
                         <m:Label
                             id="_IDGenLabel1a211a"

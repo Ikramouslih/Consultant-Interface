@@ -256,6 +256,9 @@
  
  
 /* position the non filters on the right */
+.sapMITBFilterIcon {
+    border: none;
+}
 .IconTabBarLayoutTickets .sapMITBItem:nth-child(5n) {
     float: right !important;
 }
@@ -266,6 +269,12 @@
     float: right !important;
 }
 .IconTabBarLayoutConsultants .sapMITBItem:nth-child(5n){
+    float: right !important;
+}
+.IconTabBarLayoutProjects .sapMITBItem:nth-child(2n){
+    float: right !important;
+}
+.IconTabBarLayoutProjects .sapMITBItem:nth-child(3n){
     float: right !important;
 }
  

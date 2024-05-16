@@ -79,7 +79,7 @@
                         text="Extract"
                         icon="sap-icon://download"
                         iconColor="Contrast"
-                        class="rightAligned blackRoundBorder"
+                        class="blackRoundBorder"
                     />
                 </m:items>
             </m:IconTabBar>
