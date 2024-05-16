@@ -8,154 +8,311 @@
     xmlns:mc="sap.suite.ui.microchart"
     xmlns:s="sap.ui.comp.smartmicrochart"
 >
-      
-        <m:HeaderContainer id="_IDGenHeaderContainer1"
-            scrollStep="200"
-            scrollTime="500"
-            showDividers="true"
-            class="sapUiSmallMargin">
-
-
-            <!-- 1st tile -->
-            <m:FlexBox id="_IDGenFlexBsoxsa74"
-                width="12rem"
-                height="12rem"
-                alignItems="Center"
-                justifyContent="Center"
-                direction="Column"
-                renderType="Bare">
-                    <m:GenericTile id="_IDGenGeneas4ricTsile2" header="Consultants" subheader="Available In Morocco">
-                            <m:TileContent id="_IDGe4nTaileCsonstent2" class="contentUnderContent">
-                                <m:NumericContent id="_IDGenNumersicCsont4aent2" icon="sap-icon://employee" value="{TilesData1>/tilesData1/0/value}" withMargin="false" visible="true" class="consultantMaroc" />
-                            </m:TileContent>
-                            <m:TileContent id="_IDGenTileContent3" class="contentUnderContent smallheight">
-                                <m:Image id="_IDGenImage1" src="../assets/maroc.png" width="24px" ></m:Image>
-                            </m:TileContent>
-                    </m:GenericTile>
-                    
-            </m:FlexBox>
-
-            <!-- 1st tile -->
-            <m:FlexBox id="_IDGenFlsexBsoxsa74"
-                width="12rem"
-                height="12rem"
-                alignItems="Center"
-                justifyContent="Center"
-                direction="Column"
-                renderType="Bare">
-                    <m:GenericTile id="_IDGenGesneas4ricTsile2" header="Consultants" subheader="Available in Tunisia">
-                        <m:TileContent id="_IDGe4nsTaileCsonstent2" >
-                            <m:NumericContent id="_IDGsenNumersicCsont4aent2"  icon=" sap-icon://employee" value="{TilesData1>/tilesData1/1/value}" withMargin="false" />
-                        </m:TileContent>
-                        <m:TileContent id="_IDGenTileContent3z" class="contentUnderContent smallheight">
-                            <m:Image id="_IDGenImagez1" src="../assets/tunisia.png" width="24px" class="border" ></m:Image>
-                        </m:TileContent>
-                    </m:GenericTile>
-            </m:FlexBox>
-
-        <m:FlexBox id="_IDGenFlexBox72"
+    <m:HeaderContainer
+        id="_IDGenHeaderContainer1"
+        scrollStep="200"
+        scrollTime="500"
+        showDividers="true"
+        class="sapUiSmallMargin"
+    >
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlexBsoxsa74"
             width="12rem"
             height="12rem"
             alignItems="Center"
             justifyContent="Center"
             direction="Column"
-            renderType="Bare">
-            <m:GenericTile id="tileUnassigned" header="Total Tickets" subheader="InProgress">
-                <m:TileContent id="_IDGenTileContent2" footer="Total Number">
-                    <m:NumericContent id="tileUnassignedCount" icon="sap-icon://message-warning" 
-                        value="{TilesData>/donutData/0/value}" withMargin="false" class="warning"/>
+            renderType="Bare"
+        >
+            <m:GenericTile
+                id="_IDGenGeneas4ricTsile2"
+                header="Consultants"
+                subheader="Available In Morocco"
+                press="onConsultantTilePress"
+            >
+                <m:TileContent
+                    id="_IDGe4nTaileCsonstent2"
+                    class="contentUnderContent"
+                >
+                    <m:NumericContent
+                        id="_IDGenNumersicCsont4aent2"
+                        icon="sap-icon://employee"
+                        value="{TilesData1>/tilesData1/0/value}"
+                        withMargin="false"
+                        visible="true"
+                        class="consultantMaroc"
+                    />
+                </m:TileContent>
+                <m:TileContent
+                    id="_IDGenTileContent3"
+                    class="contentUnderContent smallheight"
+                >
+                    <m:Image
+                        id="_IDGenImage1"
+                        src="../assets/maroc.png"
+                        width="24px"
+                    />
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
 
-        <!-- Tile for Assigned Tickets -->
-        <m:FlexBox id="_IDGenFlexBox712"
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlsexBsoxsa74"
             width="12rem"
             height="12rem"
             alignItems="Center"
             justifyContent="Center"
             direction="Column"
-            renderType="Bare">
-            <m:GenericTile id="tileAssigned" header="Total Tickets" subheader="Assigned">
-                <m:TileContent id="_IDGenTileContent73" footer="Total Number">
-                    <m:NumericContent id="tileAssignedCount" icon="sap-icon://message-success" 
-                        value="{TilesData>/donutData/1/value}" withMargin="false" class="success"/>
+            renderType="Bare"
+        >
+            <m:GenericTile
+                id="_IDGenGesneas4ricTsile2"
+                header="Consultants"
+                subheader="Available in Tunisia"
+                press="onConsultantTilePress"
+
+            >
+                <m:TileContent id="_IDGe4nsTaileCsonstent2">
+                    <m:NumericContent
+                        id="_IDGsenNumersicCsont4aent2"
+                        icon=" sap-icon://employee"
+                        value="{TilesData1>/tilesData1/1/value}"
+                        withMargin="false"
+                    />
+                </m:TileContent>
+                <m:TileContent
+                    id="_IDGenTileContent3z"
+                    class="contentUnderContent smallheight"
+                >
+                    <m:Image
+                        id="_IDGenImagez1"
+                        src="../assets/tunisia.png"
+                        width="24px"
+                        class="border"
+                    />
                 </m:TileContent>
             </m:GenericTile>
         </m:FlexBox>
 
-            <!-- 3rd tile -->
-            <m:FlexBox id="_IDGenFlexBox472"
-                width="12rem"
-                height="12rem"
-                alignItems="Center"
-                justifyContent="Center"
-                direction="Column"
-                renderType="Bare">
-                    <m:GenericTile id="_IDGenGe4nericTile2" header="Consultants" subheader="Total Number">
-                        <m:TileContent id="_IDGenT3ileContent2" >
-                            <m:NumericContent id="_IDGenNu4mericContent2"  icon="sap-icon://employee" value="{TilesData2>/tilesData2/0/value}" withMargin="false" class="consultantMaroc"/>
-                        </m:TileContent>
-                        <m:TileContent id="_IDGenTisleContent3z" class="contentUnderContent smallheight">
-                            <m:Image id="_IDGenImsagez1" src="../assets/maroc.png" width="24px" class="border" ></m:Image>
-                        </m:TileContent>
-                    </m:GenericTile>
-            </m:FlexBox>
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlexBox72"
+            width="12rem"
+            height="12rem"
+            alignItems="Center"
+            justifyContent="Center"
+            direction="Column"
+            renderType="Bare"
+        >
+            <m:GenericTile
+                id="tileUnassigned"
+                header="Total Tickets"
+                subheader="InProgress"
+                press="onTicketTilePress"
+            >
+                <m:TileContent
+                    id="_IDGenTileContent2"
+                    footer="Total Number"
+                >
+                    <m:NumericContent
+                        id="tileUnassignedCount"
+                        icon="sap-icon://message-warning"
+                        value="{TilesData>/donutData/0/value}"
+                        withMargin="false"
+                        class="warning"
+                    />
+                </m:TileContent>
+            </m:GenericTile>
+        </m:FlexBox>
 
-            <!-- 5th tile -->
-            <m:FlexBox id="_IDGenFlexBox74"
-                width="12rem"
-                height="12rem"
-                alignItems="Center"
-                justifyContent="Center"
-                direction="Column"
-                renderType="Bare">
-                    <m:GenericTile id="_IDGenGene4ricTile2" header="Consultants" subheader="Total Number">
-                        <m:TileContent id="_IDGe4nTileContent2" >
-                            <m:NumericContent id="_IDGenNumericCont4ent2"  icon="sap-icon://employee" value="{TilesData2>/tilesData2/1/value}" withMargin="false" />
-                        </m:TileContent>
-                        <m:TileContent id="_IDGenTilqeContent3z" class="contentUnderContent smallheight">
-                            <m:Image id="_IDGenImagqez1" src="../assets/tunisia.png" width="24px" class="border" ></m:Image>
-                        </m:TileContent>
-                    </m:GenericTile>
-            </m:FlexBox>
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlexBox712"
+            width="12rem"
+            height="12rem"
+            alignItems="Center"
+            justifyContent="Center"
+            direction="Column"
+            renderType="Bare"
+        >
+            <m:GenericTile
+                id="tileAssigned"
+                header="Total Tickets"
+                subheader="Assigned"
+                press="onTicketTilePress"
+            >
+                <m:TileContent
+                    id="_IDGenTileContent73"
+                    footer="Total Number"
+                >
+                    <m:NumericContent
+                        id="tileAssignedCount"
+                        icon="sap-icon://message-success"
+                        value="{TilesData>/donutData/1/value}"
+                        withMargin="false"
+                        class="success"
+                    />
+                </m:TileContent>
+            </m:GenericTile>
+        </m:FlexBox>
 
-            <!-- 5th tile -->
-            <m:FlexBox id="_IDGenFlexBoxa74"
-                width="12rem"
-                height="12rem"
-                alignItems="Center"
-                justifyContent="Center"
-                direction="Column"
-                renderType="Bare">
-                    <m:GenericTile id="_IDGenGenea4ricTile2" header="Managers" subheader="Total Number">
-                        <m:TileContent id="_IDGe4nTaileContent2" >
-                            <m:NumericContent id="_IDGenNumericCont4aent2"  icon="sap-icon://manager" value="{TilesData3>/tilesData3/1/value}" withMargin="false" class="consultantMaroc"/>
-                        </m:TileContent>
-                        <m:TileContent id="_IDGenTileConstent3z" class="contentUnderContent smallheight">
-                            <m:Image id="_IDGenImagez1s" src="../assets/maroc.png" width="24px" class="border" ></m:Image>
-                        </m:TileContent>
-                    </m:GenericTile>
-            </m:FlexBox>
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlexBox472"
+            width="12rem"
+            height="12rem"
+            alignItems="Center"
+            justifyContent="Center"
+            direction="Column"
+            renderType="Bare"
+        >
+            <m:GenericTile
+                id="_IDGenGe4nericTile2"
+                header="Consultants"
+                subheader="Total Number"
+                press="onConsultantTilePress"
 
-             <!-- 5th tile -->
-            <m:FlexBox id="_IDGenFlexBoxsa74"
-                width="12rem"
-                height="12rem"
-                alignItems="Center"
-                justifyContent="Center"
-                direction="Column"
-                renderType="Bare">
-                    <m:GenericTile id="_IDGenGeneas4ricTile2" header="Managers" subheader="Total Number">
-                        <m:TileContent id="_IDGe4nTaileCsontent2">
-                            <m:NumericContent id="_IDGenNumericCsont4aent2"  icon="sap-icon://manager" value="{TilesData3>/tilesData3/0/value}" withMargin="false" />
-                        </m:TileContent>
-                        <m:TileContent id="_IDGenTilesContent3z" class="contentUnderContent smallheight">
-                            <m:Image id="_IDGenImagesz1" src="../assets/tunisia.png" width="24px" class="border" ></m:Image>
-                        </m:TileContent>
-                    </m:GenericTile>
-            </m:FlexBox>
+            >
+                <m:TileContent id="_IDGenT3ileContent2">
+                    <m:NumericContent
+                        id="_IDGenNu4mericContent2"
+                        icon="sap-icon://employee"
+                        value="{TilesData2>/tilesData2/0/value}"
+                        withMargin="false"
+                        class="consultantMaroc"
+                    />
+                </m:TileContent>
+                <m:TileContent
+                    id="_IDGenTisleContent3z"
+                    class="contentUnderContent smallheight"
+                >
+                    <m:Image
+                        id="_IDGenImsagez1"
+                        src="../assets/maroc.png"
+                        width="24px"
+                        class="border"
+                    />
+                </m:TileContent>
+            </m:GenericTile>
+        </m:FlexBox>
 
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlexBox74"
+            width="12rem"
+            height="12rem"
+            alignItems="Center"
+            justifyContent="Center"
+            direction="Column"
+            renderType="Bare"
 
-        </m:HeaderContainer>
+        >
+            <m:GenericTile
+                id="_IDGenGene4ricTile2"
+                header="Consultants"
+                subheader="Total Number"
+                press="onConsultantTilePress"
+            >
+                <m:TileContent id="_IDGe4nTileContent2">
+                    <m:NumericContent
+                        id="_IDGenNumericCont4ent2"
+                        icon="sap-icon://employee"
+                        value="{TilesData2>/tilesData2/1/value}"
+                        withMargin="false"                        
+                    />
+                </m:TileContent>
+                <m:TileContent
+                    id="_IDGenTilqeContent3z"
+                    class="contentUnderContent smallheight"
+                >
+                    <m:Image
+                        id="_IDGenImagqez1"
+                        src="../assets/tunisia.png"
+                        width="24px"
+                        class="border"
+                    />
+                </m:TileContent>
+            </m:GenericTile>
+        </m:FlexBox>
+
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlexBoxa74"
+            width="12rem"
+            height="12rem"
+            alignItems="Center"
+            justifyContent="Center"
+            direction="Column"
+            renderType="Bare"
+        >
+            <m:GenericTile
+                id="_IDGenGenea4ricTile2"
+                header="Managers"
+                subheader="Total Number"
+                press="onConsultantTilePress"
+            >
+                <m:TileContent id="_IDGe4nTaileContent2">
+                    <m:NumericContent
+                        id="_IDGenNumericCont4aent2"
+                        icon="sap-icon://manager"
+                        value="{TilesData3>/tilesData3/1/value}"
+                        withMargin="false"
+                        class="consultantMaroc"
+                    />
+                </m:TileContent>
+                <m:TileContent
+                    id="_IDGenTileConstent3z"
+                    class="contentUnderContent smallheight"
+                >
+                    <m:Image
+                        id="_IDGenImagez1s"
+                        src="../assets/maroc.png"
+                        width="24px"
+                        class="border"
+                    />
+                </m:TileContent>
+            </m:GenericTile>
+        </m:FlexBox>
+
+        <!-- tile -->
+        <m:FlexBox
+            id="_IDGenFlexBoxsa74"
+            width="12rem"
+            height="12rem"
+            alignItems="Center"
+            justifyContent="Center"
+            direction="Column"
+            renderType="Bare"
+           
+        >
+            <m:GenericTile
+                id="_IDGenGeneas4ricTile2"
+                header="Managers"
+                subheader="Total Number" 
+                press="onConsultantTilePress"
+            >
+                <m:TileContent id="_IDGe4nTaileCsontent2">
+                    <m:NumericContent
+                        id="_IDGenNumericCsont4aent2"
+                        icon="sap-icon://manager"
+                        value="{TilesData3>/tilesData3/0/value}"
+                        withMargin="false"
+                    />
+                </m:TileContent>
+                <m:TileContent
+                    id="_IDGenTilesContent3z"
+                    class="contentUnderContent smallheight"
+                >
+                    <m:Image
+                        id="_IDGenImagesz1"
+                        src="../assets/tunisia.png"
+                        width="24px"
+                        class="border"
+                    />
+                </m:TileContent>
+            </m:GenericTile>
+        </m:FlexBox>
+    </m:HeaderContainer>
 </mvc:View>

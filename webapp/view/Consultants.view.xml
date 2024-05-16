@@ -1,87 +1,213 @@
-<mvc:View 
+<mvc:View
     controllerName="management.controller.Consultants"
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns="sap.m" 
-    xmlns:semantic="sap.f.semantic" 
-    displayBlock="true">
-
-<semantic:SemanticPage 
-        id="page" 
-        headerExpanded="true" 
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    displayBlock="true"
+    xmlns="sap.ui.table"
+    xmlns:tnt="sap.tnt"
+>
+    <semantic:SemanticPage
+        id="page"
+        headerExpanded="true"
         headerPinnable="false"
-        titleAreaShrinkRatio="1:1.6:1.6">
-        
+        titleAreaShrinkRatio="1:1.6:1.6"
+    >
         <semantic:titleHeading>
-			<Title id="_IDGenTitle1" text="Consultants" />
-		</semantic:titleHeading>
+            <m:Toolbar id="_IDGenToolbar1" class="width100">
+                <m:Title
+                    id="_IDGenTitle1"
+                    text="Consultants"
+                    class="cardTitle"
+                />
+                <m:SearchField
+                    id="searchField"
+                    search=".onSearch"
+                    width="auto"
+                />
+            </m:Toolbar>
+        </semantic:titleHeading>
 
-        <!-- IconTabBar pour les filtres -->
+        <!-- IconTabBar for filters -->
         <semantic:headerContent>
-            <IconTabBar 
-                id="iconTabBar" 
-                select="onQuickFilter"> <!-- EventHandler pour le filtrage -->
-                <items>
-                    <IconTabFilter id="_IDGenIconTabFilter1" 
-                        key="all" 
-                        text="Consultants" 
+            <m:IconTabBar
+                id="iconTabBar"
+                select="onQuickFilter"
+                class="IconTabBarLayoutConsultants"
+            >
+                <!-- EventHandler for filtering -->
+                <m:items>
+                    <!-- Show all consultants -->
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter1"
+                        key="all"
+                        text="Consultants"
                         showAll="true"
                         class="filterbuttonsuccess"
-                        count="{CountModel>/count}"/>  <!-- Afficher tous les tickets -->
-                    <IconTabFilter id="_IDGenIconTabFilter2" key="available" text="available" 
+                        count="{CountModel>/count}"
+                    />
+                    <!-- Available consultants -->
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter2"
+                        key="available"
+                        text="Available"
                         icon="sap-icon://message-success"
-						iconColor="Positive"
+                        iconColor="Positive"
                         class="sapUiIconSuccess"
-                        count="{CountModel>/available}" 
-                        /> <!-- Tickets terminés -->
-                    <IconTabFilter id="_IDGenIconTabFilter4" key="unavailable" text="unavailable"
+                        count="{CountModel>/available}"
+                    />
+                    <!-- Unavailable consultants -->
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter4"
+                        key="unavailable"
+                        text="Unavailable"
                         icon="sap-icon://message-error"
-						iconColor="Negative" 
+                        iconColor="Negative"
                         class="sapUiIconDanger"
-                        count="{CountModel>/unavailable}"/>
-                        
-                     <IconTabFilter id="_IDGenIconTabFilter5"  
-                        key="create" 
-                        text="Create" 
-                        icon="sap-icon://add" />
-
-                </items>
-            </IconTabBar>
-
+                        count="{CountModel>/unavailable}"
+                    />
+                    <!-- Create new consultant -->
+                    <m:IconTabFilter
+                        id="_IDGenIconTabFilter5"
+                        key="create"
+                        text="Create"
+                        icon="sap-icon://add"
+                    />
+                    <m:IconTabFilter
+                        id="extractButton"
+                        key="extract"
+                        text="Extract"
+                        icon="sap-icon://download"
+                        iconColor="Contrast"
+                        class="rightAligned blackRoundBorder"
+                    />
+                </m:items>
+            </m:IconTabBar>
         </semantic:headerContent>
 
-        
-        <!-- Contenu principal avec la table des tickets -->
+        <!-- Main content with the table of consultants -->
         <semantic:content>
-            <Table 
-                id="idProductsTable" 
-                inset="false" 
-                items="{ path: '/CONSULTANTIDSet' }"> <!-- Liaison aux données OData -->
+            <Table
+                id="idConsultantsTable"
+                selectionMode="None"
+                rows="{/CONSULTANTIDSet}"
+                alternateRowColors="true"
+            >
+                <!-- Binding to OData data -->
 
                 <columns>
-                    <!-- Définition des colonnes -->
-                    <Column id="_IDGenColumn1" width="12em"><Text id="_IDGenText1" text="ConsultantId" /></Column>
-                    <Column id="_IDGenColumn2" width="5em"><Text id="_IDGenText2" text="Name" /></Column>
-                    <Column id="_IDGenColumn3" width="7em"><Text id="_IDGenText3" text="FirstName" /></Column>
-                    <Column id="_IDGenColumn4" width="7em"><Text id="_IDGenText4" text="Disponibility" /></Column>
-                    <Column id="_IDGenColumn5" width="20em"><Text id="_IDGenText5" text="Email" /></Column>
-                    <Column id="_IDGenColumn6" hAlign="End"><Text id="_IDGenText6" text="" /></Column>
+                    <!-- Definition of columns -->
+                    <Column
+                        id="_IDGenColumn1"
+                        width="6em"
+                        hAlign="Center"
+                    >
+                        <m:Label
+                            id="_IDGenText1"
+                            text="ID"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText112"
+                                text="{ConsultantId}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn2"
+                        width="9em"
+                        hAlign="Center"
+                    >
+                        <m:Label
+                            id="_IDGenText2"
+                            text="Last Name"
+                            wrapping="false"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText11aQ2"
+                                text="{Name}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn3"
+                        width="9em"
+                        hAlign="Center"
+                    >
+                        <m:Label
+                            id="_IDGenText3"
+                            text="First Name"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText11a2"
+                                text="{FirstName}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn4"
+                        width="8em"
+                        hAlign="Center"
+                    >
+                        <m:Label
+                            id="_IDGenText4"
+                            text="Availability"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText11aA2"
+                                text="{= ${Disponilbilty} === '1' ? '✅' : '❌' }"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn5"
+                        width="20em"
+                        hAlign="Center"
+                    >
+                        <m:Label
+                            id="_IDGenText5"
+                            text="Email"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenTexts11a2"
+                                text="{Email}"
+                                wrapping="false"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn6"
+                        hAlign="End"
+                    >
+                        <m:Label
+                            id="_IDGenText6"
+                            text=""
+                        />
+                        <template>
+                            <m:Button
+                                id="ToggleButton1"
+                                icon="sap-icon://show"
+                                type="Transparent"
+                                class="showicon"
+                                press="onPress"
+                            />
+                        </template>
+                    </Column>
                 </columns>
-                <!-- Contenu des items de la table -->
-                <items>
-                    <ColumnListItem id="_IDGenColumnListItem1">
-                        <cells>
-                            <ObjectIdentifier id="_IDGenObjectIdentifier1" text="{ConsultantId}" />
-                            <Text id="_IDGenText9" text="{Name}" />
-                            <Text id="_IDGenText10" text="{FirstName}" />
-                            <Text id="_IDGenText11" text="{Disponilbilty}" />
-                            <Text id="_IDGenText12" text="{Email}" />
-                            <Button id="ToggleButton1" icon="sap-icon://show" type="Emphasized" class="showicon" press="onPress"/>
-                        </cells>
-                    </ColumnListItem>
-                </items>
             </Table>
         </semantic:content>
-
-    </semantic:SemanticPage>    
-
+    </semantic:SemanticPage>
 </mvc:View>

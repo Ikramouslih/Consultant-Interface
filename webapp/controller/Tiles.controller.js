@@ -188,6 +188,15 @@ sap.ui.define([
               });
           }
           return aGroupedData3;
-      }
+    },
+
+    // handeling tile clicking
+    onConsultantTilePress: function() {
+        this.getOwnerComponent().getRouter().navTo("RouteConsultant");
+    },
+    onTicketTilePress: function() {
+        this.getOwnerComponent().getRouter().navTo("RouteTicket");
+    }
+    
   });
 });

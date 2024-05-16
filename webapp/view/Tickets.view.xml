@@ -14,11 +14,18 @@
         titleAreaShrinkRatio="1:1.6:1.6"
     >
         <semantic:titleHeading>
-            <m:Title
-                id="_IDGenTitle1"
-                text="Tickets"
-                class="cardTitle"
-            />
+            <m:Toolbar id="_IDGenToolbar1" class="width100">
+                <m:Title
+                    id="_IDGenTitle1"
+                    text="Tickets"
+                    class="cardTitle"
+                />
+                <m:SearchField
+                    id="searchField"
+                    search=".onSearch"
+                    width="auto"
+                    />
+            </m:Toolbar>
         </semantic:titleHeading>
 
         <!-- IconTabBar pour les filtres -->
@@ -26,9 +33,11 @@
             <m:IconTabBar
                 id="iconTabBar"
                 select="onQuickFilter"
+                class="IconTabBarLayoutTickets"
             >
                 <!-- EventHandler pour le filtrage -->
                 <m:items>
+                    <!-- Afficher tous les tickets -->
                     <m:IconTabFilter
                         id="_IDGenIconTabFilter1"
                         key="all"
@@ -37,7 +46,7 @@
                         class="filterbuttonsuccess"
                         count="{CountModel>/count}"
                     />
-                    <!-- Afficher tous les tickets -->
+                    <!-- Done -->
                     <m:IconTabFilter
                         id="_IDGenIconTabFilter2"
                         key="completed"
@@ -47,7 +56,7 @@
                         class="sapUiIconSuccess"
                         count="{CountModel>/completed}"
                     />
-                    <!-- Tickets terminés -->
+                    <!-- In Progress -->
                     <m:IconTabFilter
                         id="_IDGenIconTabFilter3"
                         key="in_progress"
@@ -57,7 +66,7 @@
                         class="sapUiIconCritical"
                         count="{CountModel>/in_progress}"
                     />
-                    <!-- Tickets en cours -->
+                    <!-- Unassigned -->
                     <m:IconTabFilter
                         id="_IDGenIconTabFilter4"
                         key="not_assigned"
@@ -67,12 +76,21 @@
                         class="sapUiIconDanger"
                         count="{CountModel>/not_assigned}"
                     />
-
+                    <!-- Right aligned filters -->
                     <m:IconTabFilter
                         id="_IDGenIconTabFilter5"
                         key="create"
                         text="Create"
                         icon="sap-icon://add"
+                        class="rightAligned"
+                    />
+                    <m:IconTabFilter
+                        id="extractButton"
+                        key="extract"
+                        text="Extract"
+                        icon="sap-icon://download"
+                        iconColor="Contrast"
+                        class="rightAligned blackRoundBorder"
                     />
                 </m:items>
             </m:IconTabBar>
@@ -83,7 +101,8 @@
             <Table
                 id="idProductsTable"
                 selectionMode="None"
-                rows="{TicketsModel>/}"
+                rows="{TicketsModel>/Tickets}"
+                alternateRowColors="true"
             >
                 <!-- Liaison aux données OData -->
 
@@ -129,7 +148,7 @@
 
                     <Column
                         id="_IDGenColumn1a2"
-                        width="11em"
+                        width="16rem"
                     >
                         <m:Label
                             id="_IDGenLabel1a2"
@@ -163,7 +182,7 @@
 
                     <Column
                         id="_IDGenColumn123"
-                        width="11em"
+                        width="14em"
                     >
                         <m:Label
                             id="_IDGenLabel123"
@@ -204,7 +223,7 @@
                             </m:FlexBox>
                         </template>
                     </Column>
-                    
+
                     <Column
                         id="_IDGenColumna11211"
                         width="8em"
