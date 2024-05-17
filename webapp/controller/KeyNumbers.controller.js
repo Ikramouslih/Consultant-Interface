@@ -10,32 +10,26 @@ sap.ui.define([
     return Controller.extend("sap.suite.ui.commons.demo.tutorial.controller.ProcessFlow", {
 
         onInit: function () {
-            console.log("onInit");
-            this._calculatePriorityChart();
+            this._calculatePriorityChart();           
+            this._fetchTicketsForCurrentMonth();
+        },
+
+        _fetchTicketsForCurrentMonth: function (){
 
             // Initialize the ODataModel with the service URL
             var oModel = new ODataModel("/sap/opu/odata/sap/ZODA_GEST_DISPON_SRV/");
-
             // Set the model for the view
             this.getView().setModel(oModel, "TICKETIDDATA");
-
+ 
             // Get the current date
             var currentDate = new Date();
-            // Get the first day of the current month
+            // Get the first and last day of the current month
             var firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-            // Get the last day of the current month
             var lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-
-            console.log("First day of month: " + firstDayOfMonth);
-            console.log("Last day of month: " + lastDayOfMonth);
 
             // Format the dates for ODataModel filter
             var formattedFirstDay = this._formatDate(firstDayOfMonth);
             var formattedLastDay = this._formatDate(lastDayOfMonth);
-
-            console.log("Formatted First Day: " + formattedFirstDay);
-            console.log("Formatted Last Day: " + formattedLastDay);
-
 
             var filterStartDate = new Filter({
                 path: "CreationDate",
@@ -49,16 +43,11 @@ sap.ui.define([
                 value1: formattedLastDay
             });
 
-            console.log("Filter Start Date: ", filterStartDate);
-            console.log("Filter End Date: ", filterEndDate);
-
             // Combine the filters using AND operator
             var odataFilter = new Filter({
                 filters: [filterStartDate, filterEndDate],
                 and: true
             });
-            console.log("OData Filter: ", odataFilter);
-
 
             // Fetch the tickets based on the filter
             oModel.read("/TICKETIDSet", {
@@ -66,8 +55,6 @@ sap.ui.define([
                 success: this._onFetchSuccess.bind(this),
                 error: this._onFetchError.bind(this)
             });
-
-            console.log("End of onInit");
         },
 
         _formatDate: function (date) {
@@ -88,9 +75,6 @@ sap.ui.define([
             var targetTickets = 60; // Target number of tickets
             var totalTickets = data.results.length; // Total number of tickets fetched
             var progressPercentage = (totalTickets / targetTickets) * 100;
-
-            console.log("Total tickets: " + totalTickets);
-            console.log("Progress percentage: " + progressPercentage);
 
             // Update the RadialMicroChart with the progress percentage
             var radialMicroChart = this.getView().byId("_IDGenRadialMicroChart1");
@@ -128,7 +112,6 @@ sap.ui.define([
                     });
 
                     var totalValue = lowTotal + mediumTotal + highTotal;
-                    console.log('totalValue : ' + totalValue);
 
                     var oPriorityData = {
                         low: { value: lowTotal, displayValue: lowTotal.toString() },
