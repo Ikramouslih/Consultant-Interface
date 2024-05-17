@@ -3,12 +3,12 @@
  */
 
 sap.ui.define([
-        "sap/ui/core/UIComponent",
-        "sap/ui/Device",
-        "management/model/models",
-        "sap/ui/model/resource/ResourceModel",
-        "sap/ui/core/routing/History"
-    ],
+    "sap/ui/core/UIComponent",
+    "sap/ui/Device",
+    "management/model/models",
+    "sap/ui/model/resource/ResourceModel",
+    "sap/ui/core/routing/History"
+],
     function (UIComponent, Device, models, History) {
         "use strict";
 
@@ -43,10 +43,10 @@ sap.ui.define([
                     this.getRouter().navTo("masterSettings", {}, true);
                 }
             },
-            
+
             getContentDensityClass: function () {
                 if (!this._sContentDensityClass) {
-                    if (!Device.support.touch){
+                    if (!Device.support.touch) {
                         this._sContentDensityClass = "sapUiSizeCompact";
                     } else {
                         this._sContentDensityClass = "sapUiSizeCozy";

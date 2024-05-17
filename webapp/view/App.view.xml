@@ -15,8 +15,11 @@
                 id="_IDGenToolHeader1"
                 class="header"
             >
-				 <VBox id="_IDGenFlexBox1" class="containerLogo">
-                        <Button
+                <VBox
+                    id="_IDGenFlexBox1"
+                    class="containerLogo"
+                >
+                    <Button
                         id="sideNavigationToggleButton"
                         icon="sap-icon://menu2"
                         type="Transparent"
@@ -35,7 +38,7 @@
                         src="../assets/logo.png"
                         class="customLogoClass"
                     />
-                 </VBox>
+                </VBox>
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <ToolbarSpacer id="_IDGenToolbarSpacer2" />
                 <Button
@@ -74,13 +77,16 @@
                 class="sidebar"
                 expanded="true"
             >
-                <tnt:NavigationList id="_IDGenNavigationList1" class="sideNav">
+                <tnt:NavigationList
+                    id="_IDGenNavigationList1"
+                    class="sideNav"
+                >
                     <tnt:NavigationListItem
                         id="_IDGenNavigationListItem1"
                         class="sideNavLinks"
                         text="Dashboard"
                         icon="sap-icon://home"
-						expanded="true"
+                        expanded="true"
                         select="onDashboardSelect"
                     />
                     <tnt:NavigationListItem
@@ -88,7 +94,7 @@
                         class="sideNavLinks"
                         text="Consultants"
                         icon="sap-icon://add-employee"
-						expanded="true"
+                        expanded="true"
                         select="onConsultantsSelect"
                     />
                     <tnt:NavigationListItem
@@ -96,7 +102,7 @@
                         class="sideNavLinks"
                         text="Tickets"
                         icon="sap-icon://task"
-						expanded="true"
+                        expanded="true"
                         select="onTicketsSelect"
                     />
                     <tnt:NavigationListItem
@@ -104,7 +110,7 @@
                         class="sideNavLinks"
                         text="Projects"
                         icon="sap-icon://business-objects-experience"
-						expanded="true"
+                        expanded="true"
                         select="onProjectsSelect"
                     />
                 </tnt:NavigationList>

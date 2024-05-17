@@ -14,7 +14,10 @@
         titleAreaShrinkRatio="1:1.6:1.6"
     >
         <semantic:titleHeading>
-            <m:Toolbar id="_IDGenToolbar1" class="width100">
+            <m:Toolbar
+                id="_IDGenToolbar1"
+                class="width100"
+            >
                 <m:Title
                     id="_IDGenTitle1"
                     text="Consultants"
@@ -27,7 +30,7 @@
                 />
             </m:Toolbar>
         </semantic:titleHeading>
- 
+
         <!-- IconTabBar for filters -->
         <semantic:headerContent>
             <m:IconTabBar
@@ -84,7 +87,7 @@
                 </m:items>
             </m:IconTabBar>
         </semantic:headerContent>
- 
+
         <!-- Main content with the table of consultants -->
         <semantic:content>
             <Table
@@ -94,7 +97,7 @@
                 alternateRowColors="true"
             >
                 <!-- Binding to OData data -->
- 
+
                 <columns>
                     <!-- Definition of columns -->
                     <Column
@@ -114,7 +117,7 @@
                             />
                         </template>
                     </Column>
- 
+
                     <Column
                         id="_IDGenColumn2"
                         width="9em"
@@ -133,7 +136,7 @@
                             />
                         </template>
                     </Column>
- 
+
                     <Column
                         id="_IDGenColumn3"
                         width="9em"
@@ -151,7 +154,7 @@
                             />
                         </template>
                     </Column>
- 
+
                     <Column
                         id="_IDGenColumn4"
                         width="8em"
@@ -169,7 +172,7 @@
                             />
                         </template>
                     </Column>
- 
+
                     <Column
                         id="_IDGenColumn5"
                         width="20em"
@@ -187,7 +190,7 @@
                             />
                         </template>
                     </Column>
- 
+
                     <Column
                         id="_IDGenColumn6"
                         hAlign="End"
@@ -211,4 +214,3 @@
         </semantic:content>
     </semantic:SemanticPage>
 </mvc:View>
- 

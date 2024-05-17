@@ -1,44 +1,67 @@
-<mvc:View controllerName="management.controller.CreateConsultant"
+<mvc:View
+    controllerName="management.controller.CreateConsultant"
     xmlns:f="sap.f"
     xmlns:card="sap.f.cards"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core" 
+    xmlns:core="sap.ui.core"
     displayBlock="true"
-    xmlns="sap.m">
-<!--     <Page id="page" title="Create Ticket">
+    xmlns="sap.m"
+>
+    <!--     <Page id="page" title="Create Ticket">
         <content> -->
-        <f:Card id="_IDGenCard1" class="sapUiMediumMargin" width="500px" >
-        <f:content >
-        <CustomListItem id="_IDGenCustomListItem1">
-        <VBox id="_IDGenVBox1">
-        <InputListItem id="_IDGenInputListIte1" label="Consultant ID :"> 
-        <Input 
-                id="ConsultantId"
-                placeholder="Enter consultant Id ">
-        </Input>
-        </InputListItem> 
-        
-        <InputListItem id="_IDGenInputListIte2" label="First name :"> 
-        <Input 
-                id="FirstName"
-                placeholder="Enter first name ">
-        </Input>
-        </InputListItem>
-        <InputListItem id="_IDGenInputListIte3" label="Last name :"> 
-        <Input 
-                id="Name"
-                placeholder="Enter last name ">
-        </Input>
-        </InputListItem>
-        <InputListItem id="_IDGenInputListIte5" label="Email :"> 
-        <Input 
-                id="Email"
-                placeholder="Enter Email ">
-        </Input>
-        </InputListItem>
-            <ToggleButton id="_IDGenToggleButton1" icon="sap-icon://add" press="onCreateConsultant" text="Create"/>
-            </VBox>
+    <f:Card
+        id="_IDGenCard1"
+        class="sapUiMediumMargin"
+        width="500px"
+    >
+        <f:content>
+            <CustomListItem id="_IDGenCustomListItem1">
+                <VBox id="_IDGenVBox1">
+                    <InputListItem
+                        id="_IDGenInputListIte1"
+                        label="Consultant ID :"
+                    >
+                        <Input
+                            id="ConsultantId"
+                            placeholder="Enter consultant Id "
+                        />
+                    </InputListItem>
+
+                    <InputListItem
+                        id="_IDGenInputListIte2"
+                        label="First name :"
+                    >
+                        <Input
+                            id="FirstName"
+                            placeholder="Enter first name "
+                        />
+                    </InputListItem>
+                    <InputListItem
+                        id="_IDGenInputListIte3"
+                        label="Last name :"
+                    >
+                        <Input
+                            id="Name"
+                            placeholder="Enter last name "
+                        />
+                    </InputListItem>
+                    <InputListItem
+                        id="_IDGenInputListIte5"
+                        label="Email :"
+                    >
+                        <Input
+                            id="Email"
+                            placeholder="Enter Email "
+                        />
+                    </InputListItem>
+                    <ToggleButton
+                        id="_IDGenToggleButton1"
+                        icon="sap-icon://add"
+                        press="onCreateConsultant"
+                        text="Create"
+                    />
+                </VBox>
             </CustomListItem>
-            </f:content>
-            </f:Card>	
+        </f:content>
+    </f:Card>
 </mvc:View>

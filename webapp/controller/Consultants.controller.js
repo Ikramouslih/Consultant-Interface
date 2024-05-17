@@ -1,11 +1,11 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", 
-   "sap/ui/model/Filter",
-   "sap/ui/model/FilterOperator"],
+  ["sap/ui/core/mvc/Controller",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"],
 
   function (Controller, Filter, FilterOperator) {
     "use strict";
- 
+
     return Controller.extend("management.controller.Consultants", {
       onInit: function () {
         this._mFilters = {
@@ -13,9 +13,9 @@ sap.ui.define(
           available: [new Filter("Disponilbilty", FilterOperator.EQ, "1")],
           unavailable: [new Filter("Disponilbilty", FilterOperator.EQ, "0")],
         };
-        
+
         var oModel = this.getOwnerComponent().getModel();
-        
+
         // Fetch the count of consultants
         oModel.read("/CONSULTANTIDSet/$count", {
           success: function (iCount) {
@@ -37,7 +37,7 @@ sap.ui.define(
           },
           filters: [new Filter("Disponilbilty", FilterOperator.EQ, "1")]
         });
- 
+
         // Fetch the count of unavailable consultants
         oModel.read("/CONSULTANTIDSet/$count", {
           success: function (iCount) {
@@ -50,24 +50,24 @@ sap.ui.define(
           filters: [new Filter("Disponilbilty", FilterOperator.EQ, "0")]
         });
       },
- 
-      onPress: function(oEvent) {
+
+      onPress: function (oEvent) {
         var oItem = oEvent.getSource();
         var oBindingContext = oItem.getBindingContext();
         var sConsultantId = oBindingContext.getProperty("ConsultantId");
-       
+
         // Navigate to the details view with the selected person's ID
         this.getOwnerComponent().getRouter().navTo("ConsultantDetails", { consultantId: sConsultantId });
       },
- 
-      onCreateConsultant: function() {
+
+      onCreateConsultant: function () {
         this.getOwnerComponent().getRouter().navTo("CreateConsultant");
       },
- 
+
       onQuickFilter: function (oEvent) {
         var sSelectedKey = oEvent.getParameter("selectedKey");
         this._sSelectedFilterKey = sSelectedKey; // Save the selected filter key
- 
+
         if (sSelectedKey === "create") {
           this.getOwnerComponent().getRouter().navTo("CreateConsultant");
         } else if (sSelectedKey === "extract") {
@@ -78,8 +78,8 @@ sap.ui.define(
           oBinding.filter(aFilters);
         }
       },
-      
-      onSearch: function(oEvent) {
+
+      onSearch: function (oEvent) {
         var sQuery = oEvent.getParameter("query");
         var aFilters = [];
         if (sQuery && sQuery.length > 0) {
@@ -100,7 +100,7 @@ sap.ui.define(
         var oBinding = oTable.getBinding("rows");
         oBinding.filter(aFilters);
       },
- 
+
       onExtract: function () {
         var oTable = this.byId("idConsultantsTable");
         var oBinding = oTable.getBinding("rows");
@@ -108,12 +108,12 @@ sap.ui.define(
         var aFilteredData = aFilteredContexts.map(function (oContext) {
           return oContext.getObject();
         });
- 
+
         var aCSV = [];
- 
+
         // Add CSV headers
         aCSV.push("ConsultantId,Name,FirstName,Disponibility,Email");
- 
+
         // Add table data
         aFilteredData.forEach(function (oConsultant) {
           aCSV.push([
@@ -124,10 +124,10 @@ sap.ui.define(
             oConsultant.Email
           ].join(","));
         });
- 
+
         // Convert data to CSV string
         var sCSV = aCSV.join("\n");
- 
+
         // Set filename based on selected filter
         var sFileName = "consultants_" + this._sSelectedFilterKey + ".csv";
         var oBlob = new Blob([sCSV], { type: 'text/csv;charset=utf-8;' });
@@ -145,4 +145,3 @@ sap.ui.define(
     });
   }
 );
- 

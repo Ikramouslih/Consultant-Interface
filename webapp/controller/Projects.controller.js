@@ -83,6 +83,7 @@ sap.ui.define(
       onCreateProjects: function () {
         this.getOwnerComponent().getRouter().navTo("CreateProjects");
       }
+      
     });
   }
 );

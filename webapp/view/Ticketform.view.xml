@@ -1,98 +1,112 @@
-<mvc:View controllerName="management.controller.TicketCreate"
+<mvc:View
+    controllerName="management.controller.TicketCreate"
     xmlns:f="sap.f"
     xmlns:card="sap.f.cards"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core" 
+    xmlns:core="sap.ui.core"
     displayBlock="true"
-    xmlns="sap.m">
-<!--     <Page id="page" title="Create Ticket">
-        <content> -->
-        <f:Card id="_IDGenCard1" class="sapUiMediumMargin" width="500px" >
-        <f:content >
-        <CustomListItem id="_IDGenCustomListItem1">
-        <VBox id="_IDGenVBox1">
-        <InputListItem id="_IDGenInputListIte1" label="Jira Ticket Id :"> 
-        <Input 
-                id="IdTicketJira"
-                placeholder="Enter Jira's Id ">
-        </Input>
-        </InputListItem> 
-        
-        <InputListItem id="_IDGenInputListIte2" label="Titre :"> 
-        <Input 
-                id="Titre"
-                placeholder="Enter title ">
-        </Input>
-        </InputListItem>
-        <InputListItem id="_IDGenInputListIte3" label="Project :"> 
-        <Select id="Projet"
-                forceSelection="false"
-                items="{
+    xmlns="sap.m"
+>
+    <f:Card
+        id="_IDGenCard1"
+        class="sapUiMediumMargin"
+        width="500px"
+    >
+        <f:content>
+            <CustomListItem id="_IDGenCustomListItem1">
+                <VBox id="_IDGenVBox1">
+                    <InputListItem
+                        id="_IDGenInputListIte1"
+                        label="Jira Ticket Id :"
+                    >
+                        <Input
+                            id="IdTicketJira"
+                            placeholder="Enter Jira's Id "
+                        />
+                    </InputListItem>
+
+                    <InputListItem
+                        id="_IDGenInputListIte2"
+                        label="Titre :"
+                    >
+                        <Input
+                            id="Titre"
+                            placeholder="Enter title "
+                        />
+                    </InputListItem>
+                    <InputListItem
+                        id="_IDGenInputListIte3"
+                        label="Project :"
+                    >
+                        <Select
+                            id="Projet"
+                            forceSelection="false"
+                            items="{
                     path: '/PROJECTIDSet',
                     sorter: {path: 'IdProject' }
                 }"
-                >
-                <core:Item id="_IDGenItem1" key="{IdProject}" text="{NomProjet}" />
-        </Select>
-        </InputListItem>
-                <InputListItem id="_IDGenInputListIte33" label="Consultant :"> 
-        <Select id="Consultant"
-                forceSelection="false"
-                items="{
+                        >
+                            <core:Item
+                                id="_IDGenItem1"
+                                key="{IdProject}"
+                                text="{NomProjet}"
+                            />
+                        </Select>
+                    </InputListItem>
+                    <InputListItem
+                        id="_IDGenInputListIte33"
+                        label="Consultant :"
+                    >
+                        <Select
+                            id="Consultant"
+                            forceSelection="false"
+                            items="{
                     path: '/CONSULTANTIDSet',
                     sorter: {path: 'ConsultantId' }
                 }"
-                >
-                <core:Item id="_IDGenItem2" key="{ConsultantId}" text="{Name} {FirstName}"/>
-                
-        </Select>
-        </InputListItem>
-        <InputListItem id="_IDGenInputListIte4" label="Description :"> 
-        <Input 
-                id="Description"
-                placeholder="Enter Description ">
-        </Input>
-        </InputListItem>
-        <InputListItem id="_IDGenInputListIte5" label="Technology :"> 
-        <Input 
-                id="Technology"
-                placeholder="Enter Technology ">
-        </Input>
-        </InputListItem>
-        <InputListItem id="_IDGenInputListIte6" label="Estimated :"> 
-        <Input 
-                id="Estimated"
-                placeholder="Enter duration ">
-        </Input>
-        </InputListItem>        
-<!--             <Label id="_IDGenLabel1" text="Jira Ticket Id :"/>
-            <Input id="IdTicketJira"/>
-            <Label id="_IDGenLabel2" text="Titre :"/>
-            <Input id="Titre" />
-            <Label id="_IDGenLabel3" text="Projet :"/>
-            <Select id="Projet"
-                forceSelection="false"
-                items="{
-                    path: '/PROJECTIDSet',
-                    sorter: {path: 'IdProject' }
-                }"
-                >
-                <core:Item id="_IDGenItem1" key="{IdProject}" text="{NomProjet}" />
-            </Select>
-            <Label id="_IDGenLabel4" text="Description :" />
-            <Input id="Description" />
-            <Label id="_IDGenLabel5" text="Technology :" />
-            <Input id="Technology" />
-            <Label id="_IDGenLabel6" text="Estimated :"/>
-            <Input id="Estimated" /> -->
-            <!-- <Label id="_IDGenLabel7" text=""/>
-            <Input id="_IDGenInput6" /> -->
-            <ToggleButton id="_IDGenToggleButton1" icon="sap-icon://add" press="onCreateTicket" text="Create"/>
-            </VBox>
+                        >
+                            <core:Item
+                                id="_IDGenItem2"
+                                key="{ConsultantId}"
+                                text="{Name} {FirstName}"
+                            />
+                        </Select>
+                    </InputListItem>
+                    <InputListItem
+                        id="_IDGenInputListIte4"
+                        label="Description :"
+                    >
+                        <Input
+                            id="Description"
+                            placeholder="Enter Description "
+                        />
+                    </InputListItem>
+                    <InputListItem
+                        id="_IDGenInputListIte5"
+                        label="Technology :"
+                    >
+                        <Input
+                            id="Technology"
+                            placeholder="Enter Technology "
+                        />
+                    </InputListItem>
+                    <InputListItem
+                        id="_IDGenInputListIte6"
+                        label="Estimated :"
+                    >
+                        <Input
+                            id="Estimated"
+                            placeholder="Enter duration "
+                        />
+                    </InputListItem>
+                    <ToggleButton
+                        id="_IDGenToggleButton1"
+                        icon="sap-icon://add"
+                        press="onCreateTicket"
+                        text="Create"
+                    />
+                </VBox>
             </CustomListItem>
-            </f:content>
-            </f:Card>
-            
-<!--             </content>
-    </Page> -->
+        </f:content>
+    </f:Card>
 </mvc:View>

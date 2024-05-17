@@ -43,10 +43,10 @@
       "phone": true
     },
     "supportedThemes": [
-			"sap_hcb",
-			"sap_hcw",
-			"sap_horizon"
-		]
+      "sap_hcb",
+      "sap_hcw",
+      "sap_horizon"
+    ]
   },
   "sap.ui5": {
     "flexEnabled": true,
@@ -62,7 +62,7 @@
         "sap.ui.table": {},
         "sap.ushell": {},
         "sap.ui.layout": {},
-				"sap.uxap": {},
+        "sap.uxap": {},
         "sap.suite.ui.microchart": {},
         "sap.suite.ui.commons": {}
       }
@@ -78,17 +78,26 @@
           "bundleName": "management.i18n.i18n",
           "async": true,
           "fallbackLocale": "en",
-          "supportedLocales": ["en", "de"],
+          "supportedLocales": [
+            "en",
+            "de"
+          ],
           "terminologies": {
             "sports": {
               "bundleUrl": "i18n/terminologies/sports/i18n.terminologies.sports.properties",
               "bundleUrlRelativeTo": "manifest",
-              "supportedLocales": ["en", "de"]
+              "supportedLocales": [
+                "en",
+                "de"
+              ]
             },
             "travel": {
               "bundleUrl": "i18n/terminologies/travel/i18n.terminologies.travel.properties",
               "bundleUrlRelativeTo": "manifest",
-              "supportedLocales": ["en", "de"]
+              "supportedLocales": [
+                "en",
+                "de"
+              ]
             }
           },
           "enhanceWith": [
@@ -96,21 +105,24 @@
               "bundleUrl": "reuse/appvar1/i18n/i18n.properties",
               "fallbackLocale": "en",
               "supportedLocales": [
-                "en", "de"
+                "en",
+                "de"
               ],
               "terminologies": {
                 "sports": {
                   "bundleUrl": "reuse/appvar1/i18n/terminologies/sports/i18n.terminologies.sports.properties",
                   "bundleUrlRelativeTo": "manifest",
                   "supportedLocales": [
-                    "en", "de"
+                    "en",
+                    "de"
                   ]
                 },
                 "travel": {
                   "bundleUrl": "reuse/appvar1/i18n/terminologies/travel/i18n.terminologies.travel.properties",
                   "bundleUrlRelativeTo": "manifest",
                   "supportedLocales": [
-                    "en", "de"
+                    "en",
+                    "de"
                   ]
                 }
               }
@@ -128,7 +140,8 @@
                   "bundleUrl": "reuse/appvar2/i18n/terminologies/travel/i18n.terminologies.travel.properties",
                   "bundleUrlRelativeTo": "manifest",
                   "supportedLocales": [
-                    "en", "de"
+                    "en",
+                    "de"
                   ]
                 }
               }
@@ -202,23 +215,27 @@
             "AssignTicket"
           ]
         },
-        { 
+        {
           "name": "CreateConsultant",
           "pattern": "CreateConsultant/",
           "target": [
-            "CreateConsultant" ]
+            "CreateConsultant"
+          ]
         },
         {
-					"pattern": "KeyNumbers",
-					"name": "KeyNumbers",
-					"target": ["KeyNumbers"]
-				},
+          "pattern": "KeyNumbers",
+          "name": "KeyNumbers",
+          "target": [
+            "KeyNumbers"
+          ]
+        },
         {
           "name": "Project",
           "pattern": "Project/",
           "target": [
-            "Project" ]
-				},
+            "Project"
+          ]
+        },
         {
           "name": "CreateProjects",
           "pattern": "CreateProjects/",
@@ -269,7 +286,7 @@
           "clearControlAggregation": false,
           "viewId": "AssignTicket",
           "viewName": "AssignTicket"
-        }, 
+        },
         "CreateConsultant": {
           "viewType": "XML",
           "transition": "slide",

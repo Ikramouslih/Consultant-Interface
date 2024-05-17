@@ -4,16 +4,15 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/model/odata/v2/ODataModel" // Import ODataModel
-], function(Controller, MessageToast, Filter, FilterOperator, ODataModel) {
+], function (Controller, MessageToast, Filter, FilterOperator, ODataModel) {
     "use strict";
 
     return Controller.extend("sap.suite.ui.commons.demo.tutorial.controller.ProcessFlow", {
 
-        onInit: function() {
+        onInit: function () {
             console.log("onInit");
             this._calculatePriorityChart();
-            // document.getElementById("application-management-display-component---Management--_IDGenXMLView3--_IDGenComparisonMicroChartData1").style.display = "none";
-            
+
             // Initialize the ODataModel with the service URL
             var oModel = new ODataModel("/sap/opu/odata/sap/ZODA_GEST_DISPON_SRV/");
 
@@ -34,31 +33,31 @@ sap.ui.define([
             var formattedFirstDay = this._formatDate(firstDayOfMonth);
             var formattedLastDay = this._formatDate(lastDayOfMonth);
 
-			console.log("Formatted First Day: " + formattedFirstDay);
-			console.log("Formatted Last Day: " + formattedLastDay);
+            console.log("Formatted First Day: " + formattedFirstDay);
+            console.log("Formatted Last Day: " + formattedLastDay);
 
-			
+
             var filterStartDate = new Filter({
-				path: "CreationDate",
-				operator: FilterOperator.GE,
-				value1: formattedFirstDay
-			});
-			
-			var filterEndDate = new Filter({
-				path: "CreationDate",
-				operator: FilterOperator.LE,
-				value1: formattedLastDay
-			});
-			
-			console.log("Filter Start Date: ", filterStartDate);
-			console.log("Filter End Date: ", filterEndDate);
+                path: "CreationDate",
+                operator: FilterOperator.GE,
+                value1: formattedFirstDay
+            });
 
-			// Combine the filters using AND operator
-			var odataFilter = new Filter({
-				filters: [filterStartDate, filterEndDate],
-				and: true
-			});
-			console.log("OData Filter: ", odataFilter);
+            var filterEndDate = new Filter({
+                path: "CreationDate",
+                operator: FilterOperator.LE,
+                value1: formattedLastDay
+            });
+
+            console.log("Filter Start Date: ", filterStartDate);
+            console.log("Filter End Date: ", filterEndDate);
+
+            // Combine the filters using AND operator
+            var odataFilter = new Filter({
+                filters: [filterStartDate, filterEndDate],
+                and: true
+            });
+            console.log("OData Filter: ", odataFilter);
 
 
             // Fetch the tickets based on the filter
@@ -71,7 +70,7 @@ sap.ui.define([
             console.log("End of onInit");
         },
 
-        _formatDate: function(date) {
+        _formatDate: function (date) {
             // Ensure the date is formatted as YYYYMMDD
             var yyyy = date.getFullYear().toString();
             var mm = (date.getMonth() + 1).toString().padStart(2, '0'); // getMonth() is zero-based
@@ -79,7 +78,7 @@ sap.ui.define([
             return yyyy + mm + dd;
         },
 
-        _onFetchSuccess: function(data) {
+        _onFetchSuccess: function (data) {
             if (!data || !data.results || data.results.length === 0) {
                 // No data returned, handle accordingly
                 return;
@@ -98,20 +97,23 @@ sap.ui.define([
             radialMicroChart.setPercentage(progressPercentage);
         },
 
-        _onFetchError: function(error) {
+        _onFetchError: function (error) {
             // Handle error
             MessageToast.show("Error fetching ticket data");
-        },/* 
-        _calculatePriorityChart: function() {
-            var oModel = this.getOwnerComponent().getModel(); // Assuming you have set a model for your view
+        },
+
         
+        _calculatePriorityChart: function () {
+            var oModel = this.getOwnerComponent().getModel(); // Assuming you have set a model for your view
+            var oJSONModel = new sap.ui.model.json.JSONModel();
+
             oModel.read("/TICKETIDSet", {
-                success: function(oData) {
+                success: function (oData) {
                     var lowTotal = 0,
                         mediumTotal = 0,
                         highTotal = 0;
-        
-                    oData.results.forEach(function(ticket) {
+
+                    oData.results.forEach(function (ticket) {
                         switch (ticket.Priority) {
                             case "LOW":
                                 lowTotal++;
@@ -124,62 +126,25 @@ sap.ui.define([
                                 break;
                         }
                     });
-        
+
                     var totalValue = lowTotal + mediumTotal + highTotal;
-                    console.log('totalValue : '+ totalValue);
-                    // Update the value of the "Total" chart
-                    var totalChart = this.getView().byId("_IDGenComparisonMicroChartData15");
-                    if (totalChart) {
-                        totalChart.setValue(totalValue.toString());
-                        totalChart.setDisplayValue(totalValue.toString());
-                    }
+                    console.log('totalValue : ' + totalValue);
+
+                    var oPriorityData = {
+                        low: { value: lowTotal, displayValue: lowTotal.toString() },
+                        medium: { value: mediumTotal, displayValue: mediumTotal.toString() },
+                        high: { value: highTotal, displayValue: highTotal.toString() },
+                        total: { value: totalValue, displayValue: totalValue.toString() }
+                    };
+
+                    oJSONModel.setData(oPriorityData);
+                    this.getView().setModel(oJSONModel, "priorityData");
                 }.bind(this),
-                error: function(error) {
+                error: function (error) {
                     // Handle error
                 }
             });
-        } */_calculatePriorityChart: function() {
-    var oModel = this.getOwnerComponent().getModel(); // Assuming you have set a model for your view
-    var oJSONModel = new sap.ui.model.json.JSONModel();
- 
-    oModel.read("/TICKETIDSet", {
-        success: function(oData) {
-            var lowTotal = 0,
-                mediumTotal = 0,
-                highTotal = 0;
- 
-            oData.results.forEach(function(ticket) {
-                switch (ticket.Priority) {
-                    case "LOW":
-                        lowTotal++;
-                        break;
-                    case "MEDIUM":
-                        mediumTotal++;
-                        break;
-                    case "HIGH":
-                        highTotal++;
-                        break;
-                }
-            });
- 
-            var totalValue = lowTotal + mediumTotal + highTotal;
-            console.log('totalValue : '+ totalValue);
- 
-            var oPriorityData = {
-                low: { value: lowTotal, displayValue: lowTotal.toString() },
-                medium: { value: mediumTotal, displayValue: mediumTotal.toString() },
-                high: { value: highTotal, displayValue: highTotal.toString() },
-                total: { value: totalValue, displayValue: totalValue.toString() }
-            };
- 
-            oJSONModel.setData(oPriorityData);
-            this.getView().setModel(oJSONModel, "priorityData");
-        }.bind(this),
-        error: function(error) {
-            // Handle error
         }
-    });
-}
 
     });
 });

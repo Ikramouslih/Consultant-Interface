@@ -155,16 +155,7 @@
                         height="13rem"
                         renderType="Bare"
                     >
-                        <s:SmartColumnMicroChart
-                            id="SmartChart"
-                            entitySet="StockPrices"
-                            chartBindingPath="/StockPrices">
-                            <s:customData>
-                                <core:CustomData
-                                        key="chartQualifier"
-                                        value="ColumnChartQualifier" />
-                            </s:customData>
-			            </s:SmartColumnMicroChart>
+                        <!-- graph -->
                     </m:FlexBox>
                 </m:FlexBox>
             </m:HeaderContainer>

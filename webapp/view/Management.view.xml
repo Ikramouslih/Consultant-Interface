@@ -6,104 +6,111 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
 >
-    <ScrollContainer id="_IDGenScrollContainer1"
+    <ScrollContainer
+        id="_IDGenScrollContainer1"
         vertical="true"
         horizontal="false"
         height="100%"
     >
         <Panel
-		id="panelForGridList"
-		backgroundDesign="Transparent"
-		>
-			<headerToolbar>
-				<Toolbar
-					id="_IDGenToolbar1"
-					height="3rem"
-				>
-					<Title
-						id="_IDGenTitle1"
-						text="Dashboard"
-					/>
-				</Toolbar>
-			</headerToolbar>
-						
+            id="panelForGridList"
+            backgroundDesign="Transparent"
+        >
+            <headerToolbar>
+                <Toolbar
+                    id="_IDGenToolbar1"
+                    height="3rem"
+                >
+                    <Title
+                        id="_IDGenTitle1"
+                        text="Dashboard"
+                    />
+                </Toolbar>
+            </headerToolbar>
 
-			<mvc:XMLView id="_IDGenXMLView3"  viewName="management.view.Dashboard.KeyNumbers"  class="sapUiSmallMarginBottom"/>
-						
-			<mvc:XMLView id="_IDGenXMLView4"  viewName="management.view.Dashboard.Tiles"  class="sapUiSmallMarginBottom" />
-			
-			<f:GridList id="grid1" >
-				<f:customLayout>
-					<grid:ResponsiveColumnLayout
-						id="_IDGenResponsiveColumnLayout1"
-					/>
-				</f:customLayout>
+            <mvc:XMLView
+                id="_IDGenXMLView3"
+                viewName="management.view.Dashboard.KeyNumbers"
+                class="sapUiSmallMarginBottom"
+            />
 
-				<!--second line-->
-				<f:GridListItem id="_IDGenGridListItem3">
-					<f:layoutData>
-						<grid:ResponsiveColumnItemLayoutData
-							id="_IDGenResponsiveColumnItemLayoutData3"
-							columns="12"
-							rows="1"
-						/>
-					</f:layoutData>
+            <mvc:XMLView
+                id="_IDGenXMLView4"
+                viewName="management.view.Dashboard.Tiles"
+                class="sapUiSmallMarginBottom"
+            />
 
-					<VBox
-						id="_IDGenVBox3"
-						class="sapUiSmallMargin"
-					>
-						<Title
-							id="_IDGenTitle4"
-							text="Bars"
-							wrapping="true"
-						/>
-						<Label
-							id="_IDGenLabel7"
-							text="Subtitle"
-							wrapping="true"
-						/>
-					</VBox>
-				</f:GridListItem>
+            <f:GridList id="grid1">
+                <f:customLayout>
+                    <grid:ResponsiveColumnLayout
+                        id="_IDGenResponsiveColumnLayout1"
+                    />
+                </f:customLayout>
 
-				<!--third line-->
-				<f:GridListItem id="_IDGenGridListItem4">
-					<f:layoutData>
-						<grid:ResponsiveColumnItemLayoutData
-							id="_IDGenResponsiveColumnItemLayoutData4"
-							columns="12"
-							rows="1"
-						/>
-					</f:layoutData>
+                <!--second line-->
+                <f:GridListItem id="_IDGenGridListItem3">
+                    <f:layoutData>
+                        <grid:ResponsiveColumnItemLayoutData
+                            id="_IDGenResponsiveColumnItemLayoutData3"
+                            columns="12"
+                            rows="1"
+                        />
+                    </f:layoutData>
 
-					<VBox
-						id="_IDGenVBox4"
-						class="sapUiSmallMargin"
-					>
-						<Title
-							id="_IDGenTitle5"
-							text="Multiple"
-							wrapping="true"
-						/>
-						<Label
-							id="_IDGenLabel8"
-							text="Subtitle"
-							wrapping="true"
-						/>
-						<Label
-							id="_IDGenLabel9"
-							text="Subtitle"
-							wrapping="true"
-						/>
-						<Label
-							id="_IDGenLabel10"
-							text="Subtitle"
-							wrapping="true"
-						/>
-					</VBox>
-				</f:GridListItem>
-			</f:GridList>
-		</Panel>
+                    <VBox
+                        id="_IDGenVBox3"
+                        class="sapUiSmallMargin"
+                    >
+                        <Title
+                            id="_IDGenTitle4"
+                            text="Bars"
+                            wrapping="true"
+                        />
+                        <Label
+                            id="_IDGenLabel7"
+                            text="Subtitle"
+                            wrapping="true"
+                        />
+                    </VBox>
+                </f:GridListItem>
 
+                <!--third line-->
+                <f:GridListItem id="_IDGenGridListItem4">
+                    <f:layoutData>
+                        <grid:ResponsiveColumnItemLayoutData
+                            id="_IDGenResponsiveColumnItemLayoutData4"
+                            columns="12"
+                            rows="1"
+                        />
+                    </f:layoutData>
+
+                    <VBox
+                        id="_IDGenVBox4"
+                        class="sapUiSmallMargin"
+                    >
+                        <Title
+                            id="_IDGenTitle5"
+                            text="Multiple"
+                            wrapping="true"
+                        />
+                        <Label
+                            id="_IDGenLabel8"
+                            text="Subtitle"
+                            wrapping="true"
+                        />
+                        <Label
+                            id="_IDGenLabel9"
+                            text="Subtitle"
+                            wrapping="true"
+                        />
+                        <Label
+                            id="_IDGenLabel10"
+                            text="Subtitle"
+                            wrapping="true"
+                        />
+                    </VBox>
+                </f:GridListItem>
+            </f:GridList>
+        </Panel>
     </ScrollContainer>
 </mvc:View>

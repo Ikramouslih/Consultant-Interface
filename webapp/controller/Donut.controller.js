@@ -29,6 +29,7 @@ sap.ui.define([
     },
 
     groupByStatus: function (aData) {
+
       var statusCounts = {}; // Objet pour stocker les comptes par statut
 
       aData.forEach(function (item) {
@@ -51,9 +52,9 @@ sap.ui.define([
           displayedValue: statusCounts[key] // La valeur affichée
         });
       }
-     
+
       // Find the index of the item with the label "TERMINE"
-      var index = aDonutData.findIndex(function(item) {
+      var index = aDonutData.findIndex(function (item) {
         return item.label === "TERMINE";
       });
 
@@ -70,5 +71,6 @@ sap.ui.define([
       var oSelectedSegment = oEvent.getParameter("selectedSegment");
       console.log("Segment sélectionné:", oSelectedSegment.getLabel());
     }
+
   });
 });

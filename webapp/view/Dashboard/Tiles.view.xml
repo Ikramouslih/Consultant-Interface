@@ -212,7 +212,7 @@
                         id="_IDGenNumericCont4ent2"
                         icon="sap-icon://employee"
                         value="{TilesData2>/tilesData2/1/value}"
-                        withMargin="false"                        
+                        withMargin="false"
                     />
                 </m:TileContent>
                 <m:TileContent
@@ -275,12 +275,11 @@
             justifyContent="Center"
             direction="Column"
             renderType="Bare"
-           
         >
             <m:GenericTile
                 id="_IDGenGeneas4ricTile2"
                 header="Managers"
-                subheader="Total Number" 
+                subheader="Total Number"
                 press="onConsultantTilePress"
             >
                 <m:TileContent id="_IDGe4nTaileCsontent2">
@@ -306,4 +305,3 @@
         </m:FlexBox>
     </m:HeaderContainer>
 </mvc:View>
- 
