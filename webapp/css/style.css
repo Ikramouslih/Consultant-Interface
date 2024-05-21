@@ -11,9 +11,17 @@
 }
 .header {
     background-color: rgb(32,41,72) !important;
+    /* border-radius: 10px;
+    margin: 3px; */
+}
+.sapUShellApplicationContainer {
+    border: none !important;
+    background-color: #f7f7f7 !important;
 }
 .sidebar {
     background-color: rgb(32,41,72) !important;
+    /* border-radius: 10px;
+    margin: 3px; */
 }
 .sideNavLinks{
     color: white !important;
@@ -31,12 +39,12 @@
 .sapTntNavLIItem:hover{
     background-color: rgb(70, 92, 173) !important;
     color: white !important;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 .sapMTB .sapMBtnUp:hover{
     background-color: rgb(70, 92, 173) !important;
     color: white !important;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 .sapTntNavLIItem .sapMText {
     color: white !important;
@@ -71,7 +79,13 @@
     background-color: white !important;
     border: 1px solid #f1f1f1 !important;
 }
- 
+
+/* Key numbers card */
+.sapMOHR.sapMOHRBgSolid, .sapMOHR.sapMOHRBgTranslucent {
+    background: #fff;
+    border-radius: 10px;
+}
+
 /* Blue Donut Labels management chart */
 .sapSuiteIDCLegend {
     width: 60%;
@@ -278,3 +292,14 @@
     float: right !important;
 }
  
+/* Top 4 Chart management */
+.sapSuiteClMCLabelColumn.sapSuiteClMCLabelColumnTop {
+    color: black !important;
+    font-weight: bold !important;
+}
+.sapSuiteClMCColumnLabelDivider {
+    flex: 0 0 1rem !important;
+}
+.sapSuiteClMCLabels.sapSuiteClMCPositionBtm, .sapSuiteClMCLabels.sapSuiteClMCBottomColumnLabels {
+    margin-top: 12px !important;
+}

@@ -1,12 +1,12 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.suite.ui.commons"
+    xmlns="sap.ui.comp.smartmicrochart"
     xmlns:m="sap.m"
     xmlns:core="sap.ui.core"
     core:require="{ baseFormatMessage: 'sap/base/strings/formatMessage' }"
-    controllerName="management.controller.KeyNumbers"
     xmlns:mc="sap.suite.ui.microchart"
     xmlns:s="sap.ui.comp.smartmicrochart"
+    controllerName="management.controller.KeyNumbers"
 >
     <m:ObjectHeader
         id="_IDGenObjectHeader1"
@@ -20,7 +20,8 @@
                 scrollTime="500"
                 showDividers="true"
             >
-                <!-- chart -->
+                <!-- Target Tickets Chart -->
+
                 <m:FlexBox
                     id="_IDGenFlexBox1"
                     width="12rem"
@@ -35,6 +36,7 @@
                         text="Target Tickets"
                         class="sapUiSmallMargin keytitles"
                     />
+
                     <m:FlexBox
                         id="_IDGenFlexBox2"
                         width="6rem"
@@ -49,7 +51,8 @@
                     </m:FlexBox>
                 </m:FlexBox>
 
-                <!-- chart -->
+                <!-- Tickets' Status Chart -->
+
                 <m:FlexBox
                     id="_IDGenFlexBox7"
                     alignItems="Center"
@@ -64,6 +67,7 @@
                         text="Tickets' Status"
                         class="sapUiSmallMargin keytitles"
                     />
+
                     <m:FlexBox
                         id="_IDGenFlexBox8"
                         renderType="Bare"
@@ -77,7 +81,8 @@
                     </m:FlexBox>
                 </m:FlexBox>
 
-                <!-- chart -->
+                <!-- Tickets' Priority Chart -->
+
                 <m:FlexBox
                     id="_IDGenFlexBox3"
                     width="16rem"
@@ -92,6 +97,7 @@
                         text="Tickets' Priority"
                         class="sapUiSmallMargin keytitles"
                     />
+
                     <m:FlexBox
                         id="_IDGenFlexBox4"
                         width="16rem"
@@ -109,6 +115,7 @@
                                 displayValue="{priorityData>/low/displayValue}"
                                 color="Good"
                             />
+
                             <mc:ComparisonMicroChartData
                                 id="_IDGenComparisonMicroChartData13"
                                 title="Medium"
@@ -116,6 +123,7 @@
                                 displayValue="{priorityData>/medium/displayValue}"
                                 color="Critical"
                             />
+
                             <mc:ComparisonMicroChartData
                                 id="_IDGenComparisonMicroChartData12"
                                 title="High"
@@ -123,6 +131,7 @@
                                 displayValue="{priorityData>/high/displayValue}"
                                 color="Error"
                             />
+
                             <mc:ComparisonMicroChartData
                                 id="_IDGenComparisonMicroChartData15"
                                 title="Total"
@@ -134,11 +143,12 @@
                     </m:FlexBox>
                 </m:FlexBox>
 
-                <!-- chart -->
+                <!-- Projects with Most Tickets Chart -->
+
                 <m:FlexBox
                     id="_IDGenFlexBox1A"
-                    width="12rem"
-                    height="12rem"
+                    width="16rem"
+                    height="13rem"
                     alignItems="Center"
                     justifyContent="Center"
                     direction="Column"
@@ -146,16 +156,53 @@
                 >
                     <m:Title
                         id="_IDGenTitle1A"
-                        text="Target Tickets"
+                        text="Projects with Most Tickets"
                         class="sapUiSmallMargin keytitles"
                     />
+
                     <m:FlexBox
                         id="_IDGenFlexBox2A"
-                        width="6rem"
+                        width="10rem"
                         height="13rem"
                         renderType="Bare"
                     >
-                        <!-- graph -->
+                        <mc:ColumnMicroChart
+                            id="SmartChart"
+                             allowColumnLabels="true"
+                             size="L"
+                        >
+                            <mc:columns>
+                                <mc:ColumnMicroChartData
+                                    id="_IDGenColumnMicroChartData1"
+                                    value=""
+                                    color="Good"
+                                    label=""
+                                    displayValue=""
+
+                                />
+                                <mc:ColumnMicroChartData
+                                    id="_IDGenColumnMicroChartData2"
+                                    value=""
+                                    color="Good"
+                                    label=""
+                                    displayValue=""
+                                />
+                                <mc:ColumnMicroChartData
+                                    id="_IDGenColumnMicroChartData3"
+                                    value=""
+                                    color="Good"
+                                    label=""
+                                    displayValue=""
+                                />
+                                <mc:ColumnMicroChartData
+                                    id="_IDGenColumnMicroChartData4"
+                                    value=""
+                                    color="Good"
+                                    label=""
+                                    displayValue=""
+                                />
+                            </mc:columns>
+                        </mc:ColumnMicroChart>
                     </m:FlexBox>
                 </m:FlexBox>
             </m:HeaderContainer>
