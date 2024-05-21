@@ -5,6 +5,10 @@
     displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
+    xmlns:smartchart="sap.ui.comp.smartchart"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 >
     <ScrollContainer
         id="_IDGenScrollContainer1"
@@ -47,7 +51,7 @@
                     />
                 </f:customLayout>
 
-                <!--second line-->
+                <!-- Chart : tickets done vs tickets in progress for each project in last 30 days -->
                 <f:GridListItem id="_IDGenGridListItem3">
                     <f:layoutData>
                         <grid:ResponsiveColumnItemLayoutData
@@ -61,53 +65,59 @@
                         id="_IDGenVBox3"
                         class="sapUiSmallMargin"
                     >
-                        <Title
-                            id="_IDGenTitle4"
-                            text="Bars"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel7"
-                            text="Subtitle"
-                            wrapping="true"
-                        />
-                    </VBox>
-                </f:GridListItem>
-
-                <!--third line-->
-                <f:GridListItem id="_IDGenGridListItem4">
-                    <f:layoutData>
-                        <grid:ResponsiveColumnItemLayoutData
-                            id="_IDGenResponsiveColumnItemLayoutData4"
-                            columns="12"
-                            rows="1"
-                        />
-                    </f:layoutData>
-
-                    <VBox
-                        id="_IDGenVBox4"
-                        class="sapUiSmallMargin"
-                    >
-                        <Title
-                            id="_IDGenTitle5"
-                            text="Multiple"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel8"
-                            text="Subtitle"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel9"
-                            text="Subtitle"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel10"
-                            text="Subtitle"
-                            wrapping="true"
-                        />
+                        <viz:VizFrame
+                            id="ticketChart"
+                            uiConfig="{applicationSet:'fiori'}"
+                            height="400px"
+                            width="100%"
+                            vizType="column"
+                        >
+                            <viz:dataset>
+                                <viz.data:FlattenedDataset
+                                    id="_IDGenFlattenedDataset1"
+                                >
+                                    <viz.data:dimensions>
+                                        <viz.data:DimensionDefinition
+                                            id="_IDGenDimensionDefinition1"
+                                            name="Project"
+                                            value="{Projet}"
+                                        />
+                                    </viz.data:dimensions>
+                                    <viz.data:measures>
+                                        <viz.data:MeasureDefinition
+                                            id="_IDGenMeasureDefinition1"
+                                            name="Tickets Done"
+                                            value="{TicketsDone}"
+                                        />
+                                        <viz.data:MeasureDefinition
+                                            id="_IDGenMeasureDefinition2"
+                                            name="Tickets In Progress"
+                                            value="{TicketsInProgress}"
+                                        />
+                                    </viz.data:measures>
+                                </viz.data:FlattenedDataset>
+                            </viz:dataset>
+                            <viz:feeds>
+                                <viz.feeds:FeedItem
+                                    id="_IDGenFeedItem1"
+                                    uid="valueAxis"
+                                    type="Measure"
+                                    values="Tickets Done"
+                                />
+                                <viz.feeds:FeedItem
+                                    id="_IDGenFeedItem2"
+                                    uid="valueAxis"
+                                    type="Measure"
+                                    values="Tickets In Progress"
+                                />
+                                <viz.feeds:FeedItem
+                                    id="_IDGenFeedItem3"
+                                    uid="categoryAxis"
+                                    type="Dimension"
+                                    values="Project"
+                                />
+                            </viz:feeds>
+                        </viz:VizFrame>
                     </VBox>
                 </f:GridListItem>
             </f:GridList>

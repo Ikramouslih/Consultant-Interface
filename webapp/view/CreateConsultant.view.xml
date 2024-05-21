@@ -18,16 +18,6 @@
             <CustomListItem id="_IDGenCustomListItem1">
                 <VBox id="_IDGenVBox1">
                     <InputListItem
-                        id="_IDGenInputListIte1"
-                        label="Consultant ID :"
-                    >
-                        <Input
-                            id="ConsultantId"
-                            placeholder="Enter consultant Id "
-                        />
-                    </InputListItem>
-
-                    <InputListItem
                         id="_IDGenInputListIte2"
                         label="First name :"
                     >

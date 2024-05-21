@@ -149,7 +149,7 @@ sap.ui.define([
                             // Count tickets per project
                             projectData.results.forEach(function(project) {
                                 var ticketCount = ticketData.results.filter(function(ticket) {
-                                    return ticket.Projet === project.NomProjet;
+                                    return ticket.Projet === project.IdProject;
                                 }).length;
                                 projectTicketCounts.push({
                                     project: project.NomProjet,

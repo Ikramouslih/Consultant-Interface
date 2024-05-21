@@ -8,20 +8,21 @@ sap.ui.define(
 
     return Controller.extend("management.controller.TicketCreate", {
 
-      onInit: function () { 
+      onInit: function () {
 
       },
-      
+
       onCreateTicket: function () {
-        console.log("HELLOOOOOOO");
+
         var sIdTicketJira = this.getView().byId("IdTicketJira").getValue();
         var sTitre = this.getView().byId("Titre").getValue();
         var sProjet = this.getView().byId("Projet").getSelectedItem().getKey();
         var sDescription = this.getView().byId("Description").getValue();
         var sTechnology = this.getView().byId("Technology").getValue();
-        var sConsultantId = this.getView().byId("Consultant").getValue();
+        var sConsultantId = this.getView().byId("Consultant").getSelectedItem().getKey();
         var sEstimated = this.getView().byId("Estimated").getValue();
         var intEstimated = parseInt(sEstimated, 10);
+
         if (sConsultantId === null) {
           var oData = {
             IdTicket: sIdTicketJira,
@@ -31,7 +32,8 @@ sap.ui.define(
             Description: sDescription,
             Technology: sTechnology,
             Status: 'NON-AFFECTER',
-            Estimated: intEstimated
+            Estimated: intEstimated,
+            CreationDate: this._formatDate(new Date())
           };
         }
         else {
@@ -44,12 +46,13 @@ sap.ui.define(
             Technology: sTechnology,
             Status: 'EN-COURS',
             Consultant: sConsultantId,
-            Estimated: intEstimated
+            Estimated: intEstimated,
+            CreationDate: this._formatDate(new Date())
           };
         }
-        console.log(oData);
+
         var oModel = this.getView().getModel();
-        console.log(oModel);
+
         oModel.create("/TICKETIDSet", oData, {
           success: function () {
             sap.m.MessageToast.show("Données ajoutées avec succès");
@@ -64,7 +67,15 @@ sap.ui.define(
             sap.m.MessageToast.show("Erreur lors de l'ajout des données : " + oError.message);
           }
         })
-      }
+      },
+
+      _formatDate: function (date) {
+        // Ensure the date is formatted as YYYYMMDD
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth() + 1).toString().padStart(2, '0'); // getMonth() is zero-based
+        var dd = date.getDate().toString().padStart(2, '0');
+        return yyyy + mm + dd;
+      },
 
     });
   }
