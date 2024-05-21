@@ -39,7 +39,7 @@
             />
 
             <mvc:XMLView
-                id="_IDGenXMLView4"
+                id="_IDGenXMLView1"
                 viewName="management.view.Dashboard.Tiles"
                 class="sapUiSmallMarginBottom"
             />
@@ -52,7 +52,7 @@
                 </f:customLayout>
 
                 <!-- Chart : tickets done vs tickets in progress for each project in last 30 days -->
-                <f:GridListItem id="_IDGenGridListItem3">
+                <f:GridListItem id="_IDGenGridListItem2">
                     <f:layoutData>
                         <grid:ResponsiveColumnItemLayoutData
                             id="_IDGenResponsiveColumnItemLayoutData3"
@@ -65,59 +65,11 @@
                         id="_IDGenVBox3"
                         class="sapUiSmallMargin"
                     >
-                        <viz:VizFrame
-                            id="ticketChart"
-                            uiConfig="{applicationSet:'fiori'}"
-                            height="400px"
-                            width="100%"
-                            vizType="column"
-                        >
-                            <viz:dataset>
-                                <viz.data:FlattenedDataset
-                                    id="_IDGenFlattenedDataset1"
-                                >
-                                    <viz.data:dimensions>
-                                        <viz.data:DimensionDefinition
-                                            id="_IDGenDimensionDefinition1"
-                                            name="Project"
-                                            value="{Projet}"
-                                        />
-                                    </viz.data:dimensions>
-                                    <viz.data:measures>
-                                        <viz.data:MeasureDefinition
-                                            id="_IDGenMeasureDefinition1"
-                                            name="Tickets Done"
-                                            value="{TicketsDone}"
-                                        />
-                                        <viz.data:MeasureDefinition
-                                            id="_IDGenMeasureDefinition2"
-                                            name="Tickets In Progress"
-                                            value="{TicketsInProgress}"
-                                        />
-                                    </viz.data:measures>
-                                </viz.data:FlattenedDataset>
-                            </viz:dataset>
-                            <viz:feeds>
-                                <viz.feeds:FeedItem
-                                    id="_IDGenFeedItem1"
-                                    uid="valueAxis"
-                                    type="Measure"
-                                    values="Tickets Done"
-                                />
-                                <viz.feeds:FeedItem
-                                    id="_IDGenFeedItem2"
-                                    uid="valueAxis"
-                                    type="Measure"
-                                    values="Tickets In Progress"
-                                />
-                                <viz.feeds:FeedItem
-                                    id="_IDGenFeedItem3"
-                                    uid="categoryAxis"
-                                    type="Dimension"
-                                    values="Project"
-                                />
-                            </viz:feeds>
-                        </viz:VizFrame>
+                        <mvc:XMLView
+                            id="_IDGenXMLView33"
+                            viewName="management.view.Dashboard.Last30DaysTickets"
+                            class="sapUiSmallMarginBottom"
+                        />
                     </VBox>
                 </f:GridListItem>
             </f:GridList>
