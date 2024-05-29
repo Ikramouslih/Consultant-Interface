@@ -106,6 +106,7 @@
                     >
                         <mc:ComparisonMicroChart
                             id="_IDGenComparisonMicroChart1"
+                            isResponsive="true"
                         >
                             <mc:ComparisonMicroChartData
                                 id="_IDGenComparisonMicroChartData1"

@@ -10,6 +10,7 @@ sap.ui.define([
   "use strict";
 
   return Controller.extend("management.controller.ConsultantDetails", {
+    
     onInit: function () {
       var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
       oRouter.getRoute("ConsultantDetails").attachPatternMatched(this._onObjectMatched, this);
@@ -19,12 +20,18 @@ sap.ui.define([
       this.getView().setModel(oJSONModel, "TICKETIDDATA");
       this.loadDonutData(); // Charger les données au démarrage
     },
+
     _onObjectMatched: function (oEvent) {
       var sConsultantId = oEvent.getParameter("arguments").consultantId;
 
       // Bind the view to the consultant data
       this.getView().bindElement({
-        path: "/CONSULTANTIDSet('" + sConsultantId + "')"
+        path: "/CONSULTANTIDSet('" + sConsultantId + "')",
+        events: {
+          dataReceived: function(oData) {
+            console.log("Consultant data:", oData.getParameter("data"));
+          }
+        }
       });
 
       var oModel = this.getOwnerComponent().getModel();

@@ -17,7 +17,7 @@ sap.ui.define([
 
       var oModel = this.getOwnerComponent().getModel();
       this._setCounts(oModel);
-      this.loadTicketsWithConsultantNames();
+      this.loadTicketsWithConsultantAndProjectNames();
     },
 
     _setCounts: function (oModel) {
@@ -69,15 +69,16 @@ sap.ui.define([
       });
     },
 
-    loadTicketsWithConsultantNames: function () {
+    loadTicketsWithConsultantAndProjectNames: function () {
       var oModel = this.getOwnerComponent().getModel();
       var aTickets = [];
       var aConsultants = [];
+      var aProjects = [];
 
       oModel.read("/TICKETIDSet", {
         success: function (oData) {
           aTickets = oData.results;
-          checkIfBothLoaded();
+          checkIfAllLoaded();
         },
         error: function (oError) {
           console.error("Error reading tickets:", oError);
@@ -87,22 +88,39 @@ sap.ui.define([
       oModel.read("/CONSULTANTIDSet", {
         success: function (oData) {
           aConsultants = oData.results;
-          checkIfBothLoaded();
+          checkIfAllLoaded();
         },
         error: function (oError) {
           console.error("Error reading consultants:", oError);
         }
       });
 
-      var checkIfBothLoaded = function () {
-        if (aTickets.length > 0 && aConsultants.length > 0) {
+      oModel.read("/PROJECTIDSet", {
+        success: function (oData) {
+          aProjects = oData.results;
+          checkIfAllLoaded();
+        },
+        error: function (oError) {
+          console.error("Error reading projects:", oError);
+        }
+      });
+
+      var checkIfAllLoaded = function () {
+        if (aTickets.length > 0 && aConsultants.length > 0 && aProjects.length > 0) {
           var oConsultantMap = aConsultants.reduce(function (map, consultant) {
             map[consultant.ConsultantId] = consultant.Name + " " + consultant.FirstName;
             return map;
           }, {});
 
+          var oProjectMap = aProjects.reduce(function (map, project) {
+            map[project.IdProject] = project.NomProjet;
+            return map;
+          }, {});
+
           var aMergedData = aTickets.map(function (ticket) {
             ticket.ConsultantName = oConsultantMap[ticket.Consultant] || "-";
+            ticket.ProjectName = oProjectMap[ticket.Projet] || "Unknown Project";
+
             return ticket;
           });
 
@@ -114,12 +132,12 @@ sap.ui.define([
 
     onQuickFilter: function (oEvent) {
       var sSelectedKey = oEvent.getParameter("selectedKey");
-      this._sSelectedFilterKey = sSelectedKey; // Enregistrer la clé du filtre sélectionné
+      this._sSelectedFilterKey = sSelectedKey; // Save the selected filter key
 
       if (sSelectedKey === "create") {
         this.getOwnerComponent().getRouter().navTo("CreateTicket");
       } else if (sSelectedKey === "extract") {
-        this.onExtractTickets(); // Appel de la nouvelle fonction d'extraction
+        this.onExtractTickets(); // Call the new extraction function
       } else {
         var oBinding = this.byId("idProductsTable").getBinding("rows");
         var aFilters = this._mFilters[sSelectedKey];
@@ -137,15 +155,15 @@ sap.ui.define([
 
       var aCSV = [];
 
-      // Ajoutez les en-têtes CSV
+      // Add CSV headers
       aCSV.push("Jira ID,Title,Project,Consultant,Status,Priority,Creation Date,Estimated Days");
 
-      // Ajoutez les données de la table
+      // Add table data
       aFilteredData.forEach(function (oTicket) {
         aCSV.push([
           oTicket.IdJira,
           oTicket.Titre,
-          oTicket.Projet,
+          oTicket.ProjectName,
           oTicket.ConsultantName,
           oTicket.Status,
           oTicket.Priority,
@@ -154,10 +172,10 @@ sap.ui.define([
         ].join(","));
       }.bind(this));
 
-      // Convertir les données en chaîne CSV
+      // Convert data to CSV string
       var sCSV = aCSV.join("\n");
 
-      // Définir le nom de fichier basé sur le filtre sélectionné
+      // Set file name based on selected filter
       var sFileName = "tickets_" + this._sSelectedFilterKey + ".csv";
       var oBlob = new Blob([sCSV], { type: 'text/csv;charset=utf-8;' });
       var oLink = document.createElement("a");
@@ -177,7 +195,7 @@ sap.ui.define([
       var oBindingContext = oSource.getBindingContext("TicketsModel");
       var sTicketId = oBindingContext.getProperty("IdTicket");
 
-      // Logique de redirection ou autre action
+      // Redirect or perform other actions
       this.getOwnerComponent().getRouter().navTo("AssignTicket", { IdTicket: sTicketId });
     },
 
@@ -190,7 +208,7 @@ sap.ui.define([
         case "LOW":
           return 8;
         default:
-          return;
+          return 8;
       }
     },
 
@@ -203,7 +221,7 @@ sap.ui.define([
         case "LOW":
           return "sap-icon://arrow-bottom";
         default:
-          return "";
+          return "sap-icon://arrow-bottom";
       }
     },
 
@@ -223,8 +241,9 @@ sap.ui.define([
       var month = sDate.substring(4, 6);
       var day = sDate.substring(6, 8);
 
-      // Return the formatted date
-      return day + "/" + month + "/" + year;
+      // Convert to "YYYY-MM-DD" format
+      var formattedDate = year + "-" + month + "-" + day;
+      return formattedDate;
     }
   });
 });

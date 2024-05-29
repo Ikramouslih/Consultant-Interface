@@ -6,10 +6,12 @@
     xmlns:core="sap.ui.core"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:html="http://www.w3.org/1999/xhtml"
 >
     <f:Card
         id="_IDGenCard1"
-        class="sapUiMediumMargin"
+        class="sapUiMediumMargin login-box"
         width="500px"
     >
         <f:content>
@@ -18,6 +20,7 @@
                     <InputListItem
                         id="_IDGenInputListIte1"
                         label="Jira Ticket Id :"
+                        class="user-box InputListItem"
                     >
                         <Input
                             id="IdTicketJira"
@@ -106,6 +109,51 @@
                         text="Create"
                     />
                 </VBox>
+
+                <!-- ******************************************* -->
+
+                <VBox id="_IDGenVBox2" class="sapUiSmallMargin">
+                <form:Form id="FormToolbar"
+                    editable="true"
+                    ariaLabelledBy="Title1">
+                    <form:toolbar>
+                        <Toolbar id="TB1">
+                            <Title id="Title1" text="Address"/>
+                            <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                            <Button id="_IDGenButton1" icon="sap-icon://settings"/>
+                            <Button id="_IDGenButton2" icon="sap-icon://drop-down-list" />
+                        </Toolbar>
+                    </form:toolbar>
+                    <form:layout>
+                        <form:ResponsiveGridLayout id="_IDGenResponsiveGridLayout1"
+                            labelSpanXL="4"
+                            labelSpanL="3"
+                            labelSpanM="4"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="4"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="2"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false" />
+                    </form:layout>
+                    <form:formContainers>
+                        <form:FormContainer id="_IDGenFormContainer1" ariaLabelledBy="Title2">
+                            <form:formElements>
+                                <form:FormElement id="_IDGenFormElement1" label="Name">
+                                    <form:fields>
+                                        <Input value="{SupplierName}" id="name"/>
+                                    </form:fields>
+                                </form:FormElement>
+                            </form:formElements>
+                        </form:FormContainer>
+                    </form:formContainers>
+                </form:Form>
+            </VBox>
+
             </CustomListItem>
         </f:content>
     </f:Card>

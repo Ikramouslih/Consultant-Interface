@@ -135,6 +135,8 @@
                     <Column
                         id="_IDGenColumn12"
                         width="5em"
+                        hAlign="Center"
+
                     >
                         <m:Label
                             id="_IDGenLabel12"
@@ -152,6 +154,7 @@
                     <Column
                         id="_IDGenColumn1a2"
                         width="16rem"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a2"
@@ -169,6 +172,7 @@
                     <Column
                         id="_IDGenColumn122"
                         width="11em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel122"
@@ -176,9 +180,8 @@
                         />
                         <template>
                             <m:Text
-                                id="_IDGenText1122"
-                                text="{TicketsModel>Projet}"
-                                wrapping="false"
+                                id="_IDGenText1"
+                                text="{TicketsModel>ProjectName}"
                             />
                         </template>
                     </Column>
@@ -186,6 +189,7 @@
                     <Column
                         id="_IDGenColumn123"
                         width="14em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel123"
@@ -203,6 +207,7 @@
                     <Column
                         id="_IDGenColumn1212"
                         width="11em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1212"
@@ -230,6 +235,7 @@
                     <Column
                         id="_IDGenColumna11211"
                         width="8em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a2111a"
@@ -238,7 +244,7 @@
                         <template>
                             <tnt:InfoLabel
                                 id="il81"
-                                text="{TicketsModel>Priority}"
+                                text="{= ${TicketsModel>Priority} === '' ? 'LOW' : ${TicketsModel>Priority}}"
                                 colorScheme="{
                                     path: 'TicketsModel>Priority',
                                     formatter: '.formatPriorityColor'
@@ -254,6 +260,7 @@
                     <Column
                         id="_IDGenColumna12"
                         width="7em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a2a"
@@ -274,6 +281,7 @@
                     <Column
                         id="_IDGenColumna1211"
                         minWidth="7em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a211a"

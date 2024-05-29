@@ -32,7 +32,7 @@ sap.ui.define(
         console.log('test');
         if (!this.oFixedSizeDialog) {
           this.oFixedSizeDialog = new Dialog({
-            title: "Available Products",
+            title: "Available Consultants",
             contentWidth: "550px",
             contentHeight: "300px",
             content: new List({

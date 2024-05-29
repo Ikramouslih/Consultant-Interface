@@ -242,6 +242,13 @@
           "target": [
             "TargetCreateProjects"
           ]
+        },
+        {
+          "name": "UpdateConsultant",
+          "pattern": "update/{consultantId}",
+          "target": [
+            "TargetUpdateConsultant"
+          ]
         }
       ],
       "targets": {
@@ -307,6 +314,13 @@
           "clearControlAggregation": false,
           "viewId": "CreateProjects",
           "viewName": "ProjectCreate"
+        },
+        "TargetUpdateConsultant": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UpdateConsultant",
+          "viewName": "UpdateConsultant"
         }
       }
     },

@@ -51,13 +51,22 @@ sap.ui.define(
         });
       },
 
-      onPress: function (oEvent) {
+      onShow: function (oEvent) {
         var oItem = oEvent.getSource();
         var oBindingContext = oItem.getBindingContext();
         var sConsultantId = oBindingContext.getProperty("ConsultantId");
 
         // Navigate to the details view with the selected person's ID
         this.getOwnerComponent().getRouter().navTo("ConsultantDetails", { consultantId: sConsultantId });
+      },
+
+      onEdit: function (oEvent) {
+        var oItem = oEvent.getSource();
+        var oBindingContext = oItem.getBindingContext();
+        var sConsultantId = oBindingContext.getProperty("ConsultantId");
+
+        // Navigate to the update page view with the selected person's ID
+        this.getOwnerComponent().getRouter().navTo("UpdateConsultant", { consultantId: sConsultantId });
       },
 
       onCreateConsultant: function () {
