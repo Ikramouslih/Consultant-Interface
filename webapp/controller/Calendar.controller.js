@@ -7,7 +7,21 @@ sap.ui.define(
             onInit: function () {
                 var oCalendar = this.getView().byId("calendar");
                 var oLegend = this.getView().byId("legend");
+                var ooModel = this.getOwnerComponent().getModel();
 
+                // Forcer l'actualisation du metadata pour s'assurer qu'il est à jour
+                ooModel.metadataLoaded().then(function() {
+                    ooModel.read("/CALENDARIDSet", { 
+                        success: function (response) {
+                            console.log(response.results);
+                        },
+                        error: function (error) {   
+                            console.error("Error", error);
+                        }
+                    });
+                }).catch(function(error) {
+                    console.error("Metadata loading failed", error);
+                });
                 // Données statiques pour les périodes disponibles et non disponibles
                 var aAvailableDates = [
                     new Date(2024, 4, 1),
