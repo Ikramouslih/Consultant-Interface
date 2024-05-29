@@ -8,28 +8,30 @@ sap.ui.define(
 
     return Controller.extend("management.controller.CreateConsultant", {
 
-      onInit: function () { 
+      onInit: function () {
 
       },
-      
+
       onCreateConsultant: function () {
-        var sConsultantId = this.getView().byId("ConsultantId").getValue();
-        var sName = this.getView().byId("Name").getValue();
+
+        var sName = this.getView().byId("Name").getValue().toUpperCase();
         var sFirstName = this.getView().byId("FirstName").getValue();
+        sFirstName = sFirstName.charAt(0).toUpperCase() + sFirstName.slice(1).toLowerCase();
+        var sConsultantId = sFirstName.substring(0, 1).toUpperCase() + sName.substring(0, 2).toUpperCase() + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
         var sEmail = this.getView().byId("Email").getValue();
-        console.log(sConsultantId);
+
         var oData = {
           ConsultantId: sConsultantId,
           Name: sName,
           FirstName: sFirstName,
           Email: sEmail
         };
+
         var oModel = this.getView().getModel();
-        console.log(oModel);
+        
         oModel.create("/CONSULTANTIDSet", oData, {
           success: function () {
             sap.m.MessageToast.show("Données ajoutées avec succès");
-            this.getView().byId("ConsultantId").setValue("");
             this.getView().byId("Name").setValue("");
             this.getView().byId("FirstName").setValue("");
             this.getView().byId("Email").setValue("");

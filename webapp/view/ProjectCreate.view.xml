@@ -17,29 +17,20 @@
                 <VBox id="_IDGenVBox1">
                     <InputListItem
                         id="_IDGenInputListIte2"
-                        label="Project :"
+                        label="Project Name :"
                     >
                         <Input
-                            id="Project"
-                            placeholder="Enter Project "
-                        />
-                    </InputListItem>
-                    <InputListItem
-                        id="_IDGenInputListIte4"
-                        label="Description :"
-                    >
-                        <Input
-                            id="Description"
-                            placeholder="Enter Description "
+                            id="ProjectName"
+                            placeholder="Enter Project Name"
                         />
                     </InputListItem>
                     <InputListItem
                         id="_IDGenInputListIte5"
-                        label="Chef Projet :"
+                        label="Project Manager :"
                     >
                         <Input
                             id="ChefProjet"
-                            placeholder="Enter ChefProjet "
+                            placeholder="Enter Project Manager"
                         />
                     </InputListItem>
                     <ToggleButton
@@ -52,5 +43,4 @@
             </CustomListItem>
         </f:content>
     </f:Card>
-
 </mvc:View>

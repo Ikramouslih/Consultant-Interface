@@ -11,9 +11,17 @@
 }
 .header {
     background-color: rgb(32,41,72) !important;
+    /* border-radius: 10px;
+    margin: 3px; */
+}
+.sapUShellApplicationContainer {
+    border: none !important;
+    background-color: #f7f7f7 !important;
 }
 .sidebar {
     background-color: rgb(32,41,72) !important;
+    /* border-radius: 10px;
+    margin: 3px; */
 }
 .sideNavLinks{
     color: white !important;
@@ -31,12 +39,12 @@
 .sapTntNavLIItem:hover{
     background-color: rgb(70, 92, 173) !important;
     color: white !important;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 .sapMTB .sapMBtnUp:hover{
     background-color: rgb(70, 92, 173) !important;
     color: white !important;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 .sapTntNavLIItem .sapMText {
     color: white !important;
@@ -49,6 +57,7 @@
     padding: 0;
 }
  
+
 /* Blue donut */
 .Donut{
     margin-top: 100px;
@@ -61,6 +70,7 @@
     color: blue !important;
 }
  
+
 /* Homepage Dashboard : Management */
 .cardTitle{
     font-weight: bold;
@@ -71,7 +81,15 @@
     background-color: white !important;
     border: 1px solid #f1f1f1 !important;
 }
- 
+
+
+/* Key numbers card */
+.sapMOHR.sapMOHRBgSolid, .sapMOHR.sapMOHRBgTranslucent {
+    background: #fff;
+    border-radius: 10px;
+}
+
+
 /* Blue Donut Labels management chart */
 .sapSuiteIDCLegend {
     width: 60%;
@@ -83,12 +101,14 @@
     justify-content: center !important;
 }
  
+
 /* Blue Donut Circle management chart */
 .sapSuiteIDC {
     width: 80% !important;
     height: 80% !important;
 }
  
+
 /* 3 Lines management chart */
 .sapSuiteCpMCChartContent.sapSuiteCpMCResponsive {
     height: 80% !important;
@@ -97,6 +117,7 @@
     overflow: visible !important;
 }
  
+
 /* flags footer */
 .contentUnderContent{
     display: block !important;
@@ -127,6 +148,7 @@
     padding: 0rem 3rem 1rem 3rem !important;
 }
  
+
 /* Ticket details */
 .ticketDetailsDialog {
     width: 400px;
@@ -278,3 +300,14 @@
     float: right !important;
 }
  
+/* Top 4 Chart management */
+.sapSuiteClMCLabelColumn.sapSuiteClMCLabelColumnTop {
+    color: black !important;
+    font-weight: bold !important;
+}
+.sapSuiteClMCColumnLabelDivider {
+    flex: 0 0 1rem !important;
+}
+.sapSuiteClMCLabels.sapSuiteClMCPositionBtm, .sapSuiteClMCLabels.sapSuiteClMCBottomColumnLabels {
+    margin-top: 12px !important;
+}

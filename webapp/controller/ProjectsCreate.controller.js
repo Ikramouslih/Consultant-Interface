@@ -13,21 +13,22 @@ sap.ui.define(
       },
 
       onCreateProjects: function () {
-        console.log("project event");
-        var sProject = this.getView().byId("Project").getValue();
+
+        var sProjectName = this.getView().byId("ProjectName").getValue().toUpperCase();
+        var sProjectId = sProjectName.substring(0, 3) + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
         var sChefProjet = this.getView().byId("ChefProjet").getValue();
         var oData = {
-          IdProject: sProject,
-          NomProjet: sProject,
+          IdProject: sProjectId,
+          NomProjet: sProjectName,
           ChefProjet: sChefProjet,
         };
-        console.log(oData);
+
         var oModel = this.getView().getModel();
-        console.log(oModel);
+
         oModel.create("/PROJECTIDSet", oData, {
           success: function () {
             sap.m.MessageToast.show("Données ajoutées avec succès");
-            this.getView().byId("NomProjet").setValue("");
+            this.getView().byId("ProjectName").setValue("");
             this.getView().byId("ChefProjet").setValue("");
           }.bind(this),
           error: function (oError) {

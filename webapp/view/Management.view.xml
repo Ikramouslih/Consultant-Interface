@@ -5,6 +5,10 @@
     displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
+    xmlns:smartchart="sap.ui.comp.smartchart"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 >
     <ScrollContainer
         id="_IDGenScrollContainer1"
@@ -35,7 +39,7 @@
             />
 
             <mvc:XMLView
-                id="_IDGenXMLView4"
+                id="_IDGenXMLView1"
                 viewName="management.view.Dashboard.Tiles"
                 class="sapUiSmallMarginBottom"
             />
@@ -47,8 +51,8 @@
                     />
                 </f:customLayout>
 
-                <!--second line-->
-                <f:GridListItem id="_IDGenGridListItem3">
+                <!-- Chart : tickets done vs tickets in progress for each project in last 30 days -->
+                <f:GridListItem id="_IDGenGridListItem2">
                     <f:layoutData>
                         <grid:ResponsiveColumnItemLayoutData
                             id="_IDGenResponsiveColumnItemLayoutData3"
@@ -61,52 +65,10 @@
                         id="_IDGenVBox3"
                         class="sapUiSmallMargin"
                     >
-                        <Title
-                            id="_IDGenTitle4"
-                            text="Bars"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel7"
-                            text="Subtitle"
-                            wrapping="true"
-                        />
-                    </VBox>
-                </f:GridListItem>
-
-                <!--third line-->
-                <f:GridListItem id="_IDGenGridListItem4">
-                    <f:layoutData>
-                        <grid:ResponsiveColumnItemLayoutData
-                            id="_IDGenResponsiveColumnItemLayoutData4"
-                            columns="12"
-                            rows="1"
-                        />
-                    </f:layoutData>
-
-                    <VBox
-                        id="_IDGenVBox4"
-                        class="sapUiSmallMargin"
-                    >
-                        <Title
-                            id="_IDGenTitle5"
-                            text="Multiple"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel8"
-                            text="Subtitle"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel9"
-                            text="Subtitle"
-                            wrapping="true"
-                        />
-                        <Label
-                            id="_IDGenLabel10"
-                            text="Subtitle"
-                            wrapping="true"
+                        <mvc:XMLView
+                            id="_IDGenXMLView33"
+                            viewName="management.view.Dashboard.Last30DaysTickets"
+                            class="sapUiSmallMarginBottom"
                         />
                     </VBox>
                 </f:GridListItem>
