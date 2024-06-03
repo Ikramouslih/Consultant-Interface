@@ -69,8 +69,8 @@ sap.ui.define(
         this.getOwnerComponent().getRouter().navTo("UpdateConsultant", { consultantId: sConsultantId });
       },
 
-      onCreateConsultant: function () {
-        this.getOwnerComponent().getRouter().navTo("CreateConsultant");
+      onCreateUser: function () {
+        this.getOwnerComponent().getRouter().navTo("CreateUser");
       },
 
       onQuickFilter: function (oEvent) {
@@ -78,7 +78,7 @@ sap.ui.define(
         this._sSelectedFilterKey = sSelectedKey; // Save the selected filter key
 
         if (sSelectedKey === "create") {
-          this.getOwnerComponent().getRouter().navTo("CreateConsultant");
+          this.getOwnerComponent().getRouter().navTo("CreateUser");
         } else if (sSelectedKey === "extract") {
           this.onExtract(); // Call the extract function
         } else {

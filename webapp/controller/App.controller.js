@@ -88,6 +88,9 @@ sap.ui.define(
       onProjectsSelect: function () {
         this.getOwnerComponent().getRouter().navTo("Project");
       },
+      onManagersSelect: function () {
+        this.getOwnerComponent().getRouter().navTo("Managers");
+      },
 
     });
   },

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="management.controller.CreateConsultant"
+    controllerName="management.controller.UpdateManager"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
@@ -19,7 +19,7 @@
                     <f:Form id="FormToolbar" editable="true" ariaLabelledBy="Title1">
                         <f:toolbar>
                             <Toolbar id="TB1">
-                                <Title id="Title1" text="New Consultant"/>
+                                <Title id="Title1" text="Update Manager #{ManagerId}"/>
                                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                             </Toolbar>
                         </f:toolbar>
@@ -61,35 +61,20 @@
                                     <f:FormElement id="emailElement" label="Email">
                                         <f:fields>
                                             <Input id="email" value="{Email}" required="true"/>
-                                            <Input id="domain" value="@inetum.com" enabled="false">
-                                                <layoutData>
-                                                    <l:GridData id="domaingrid" span="XL4 L4 M4 S8"/>
-                                                </layoutData>
-                                            </Input>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="multiElement" label="Expertise">
-                                        <f:fields>
-                                            <MultiInput id="expertise" suggestionItems="{path: '/ProductCollection', sorter: {path: 'Name'}}" valueHelpRequest="handleValueHelp">
-                                                <core:Item id="_IDGenItem4" key="{ProductId}" text="{Name}" />
+                                         <f:fields>
+                                            <MultiInput id="expertise" 
+                                                showValueHelp="true" 
+                                                valueHelpRequest="handleValueHelp"
+                                                >
                                             </MultiInput>
-                                        </f:fields>
-                                    </f:FormElement>
-                                    <f:FormElement id="gradeElement" label="Grade">
-                                        <f:fields>
-                                            <Select width="100%" id="grade" selectedKey="initial">
-                                                <items>
-                                                    <core:Item id="_IDGenItem15" text="Choose a grade..." enabled="false" key="initial"/>
-                                                    <core:Item id="_IDGenItem11" text="Junior" key="Junior"/>
-                                                    <core:Item id="_IDGenItem22" text="Confirmed" key="Confirmed"/>
-                                                    <core:Item id="_IDGenItem33" text="Senior" key="Senior"/>
-                                                </items>
-                                            </Select>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="countryElement" label="Country">
                                         <f:fields>
-                                            <Select width="100%" id="country" required="true" selectedKey="initial">
+                                            <Select width="100%" id="country" required="true" selectedKey="{Country}">
                                                 <items>
                                                     <core:Item id="_IDGenItem151" text="Choose a country..." enabled="false" key="initial"/>
                                                     <core:Item id="_IDGenItem1" text="Morocco" key="Morocco"/>
@@ -112,22 +97,22 @@
                                 <f:formElements>
                                     <f:FormElement id="_IDGenFormElement5" label="Login">
                                         <f:fields>
-                                            <Input value="{sLogin}" id="login" required="true"/>
+                                            <Input value="{Login}" id="login" required="true"/>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="_IDGenFormElement6" label="Password">
                                         <f:fields>
-                                            <Input value="{sPassword}" id="password" required="true" type="Password"/>
+                                            <Input value="{Password}" id="password" required="true" type="Password"/>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="_IDGenFormElement6A" label="Confirm Pwd">
                                         <f:fields>
-                                            <Input value="{sConfirmPassword}" id="confirmPassword" required="true" type="Password"/>
+                                            <Input value="{Password}" id="confirmPassword" required="true" type="Password"/>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="_IDGenFormElement4A" label="Account">
                                         <f:fields>
-                                            <Select width="100%" id="hold" selectedKey="Active" required="true">
+                                            <Select width="100%" id="hold" selectedKey="{Hold}" required="true">
                                                 <items>
                                                     <core:Item id="_IDGenItem1A" text="Active" key="Active"/>
                                                     <core:Item id="_IDGenItem2A" text="Inactive" key="Inactive"/>
@@ -137,10 +122,8 @@
                                     </f:FormElement>
                                     <f:FormElement id="_IDGenFormElement4AA" label="Role">
                                         <f:fields>
-                                            <Select width="100%" id="role" required="true" selectedKey="initial">
+                                            <Select width="100%" id="role" required="true" selectedKey="{Manager}" enabled="false">
                                                 <items>
-                                                    <core:Item id="_IDGenItem1AAA" text="Choose a role..." key="initial"/>
-                                                    <core:Item id="_IDGenItem1AA" text="Consultant" key="Consultant"/>
                                                     <core:Item id="_IDGenItem2AA" text="Manager" key="Manager"/>
                                                 </items>
                                             </Select>
@@ -153,15 +136,15 @@
                     <HBox id="_IDGenHBox1" justifyContent="Center">
                         <Button id="_IDGenButton2" type="Accept"
                                 class="sapUiMediumMargin"
-                                text="Create"
-                                press="onCreateConsultant"
+                                text="Update"
+                                press="onUpdateManager"
                                 width="8rem"
                                 ariaDescribedBy="acceptButtonDescription genericButtonDescription">
                         </Button>
                         <Button id="_IDGenButton3" type="Reject"
                                 class="sapUiMediumMargin"
-                                text="Reset"
-                                press="onReset"
+                                text="Cancel"
+                                press="onCancel"
                                 width="8rem"
                                 ariaDescribedBy="rejectButtonDescription genericButtonDescription">
                         </Button>

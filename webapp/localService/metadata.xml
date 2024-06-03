@@ -29,7 +29,7 @@
 
                 <Property Name="Grade" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Grade" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
 
-                <Property Name="Expertise" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Expertise" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
+                <Property Name="Expertise" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Expertise" sap:unicode="false" MaxLength="100" Nullable="false" Type="Edm.String" />
             </EntityType>
 
             
@@ -53,7 +53,7 @@
 
                 <Property Name="Hold" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Boolean_01" sap:unicode="false" MaxLength="1" Nullable="false" Type="Edm.String" />
 
-                <Property Name="Expertise" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Expertise" sap:unicode="false" MaxLength="20" Nullable="false" Type="Edm.String" />
+                <Property Name="Expertise" sap:filterable="false" sap:sortable="false" sap:updatable="false" sap:creatable="false" sap:label="Expertise" sap:unicode="false" MaxLength="100" Nullable="false" Type="Edm.String" />
             </EntityType>
 
             

@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <SelectDialog
+    id="valueHelpDialog"
+    title="Technologies"
+    items="{/TECHNOIDSet}"
+    search="_handleValueHelpSearch"
+    confirm="_handleValueHelpClose"
+    cancel="_handleValueHelpClose"
+    multiSelect="true">
+    <StandardListItem id="_IDGenStandardListItem1"
+      iconDensityAware="false"
+      iconInset="false"
+      title="{NomTechnology}" />
+  </SelectDialog>
+</core:FragmentDefinition>

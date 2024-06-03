@@ -216,10 +216,10 @@
           ]
         },
         {
-          "name": "CreateConsultant",
-          "pattern": "CreateConsultant/",
+          "name": "CreateUser",
+          "pattern": "CreateUser/",
           "target": [
-            "CreateConsultant"
+            "CreateUser"
           ]
         },
         {
@@ -245,9 +245,23 @@
         },
         {
           "name": "UpdateConsultant",
-          "pattern": "update/{consultantId}",
+          "pattern": "consultant/update/{consultantId}",
           "target": [
             "TargetUpdateConsultant"
+          ]
+        },
+        {
+          "name": "Managers",
+          "pattern": "Managers/",
+          "target": [
+            "TargetManagers"
+          ]
+        },
+        {
+          "name": "UpdateManager",
+          "pattern": "manager/update/{managerId}",
+          "target": [
+            "UpdateManager"
           ]
         }
       ],
@@ -294,12 +308,12 @@
           "viewId": "AssignTicket",
           "viewName": "AssignTicket"
         },
-        "CreateConsultant": {
+        "CreateUser": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "CreateConsultant",
-          "viewName": "CreateConsultant"
+          "viewId": "CreateUser",
+          "viewName": "CreateUser"
         },
         "Project": {
           "viewType": "XML",
@@ -321,6 +335,21 @@
           "clearControlAggregation": false,
           "viewId": "UpdateConsultant",
           "viewName": "UpdateConsultant"
+        },
+        "TargetManagers": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Managers",
+          "viewName": "Managers"
+        }
+        ,
+        "UpdateManager": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UpdateManager",
+          "viewName": "UpdateManager"
         }
       }
     },
