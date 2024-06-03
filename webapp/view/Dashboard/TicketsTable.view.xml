@@ -21,7 +21,6 @@
                 />
             </Toolbar>
         </headerToolbar>
-
         <columns>
             <Column id="_IDGenColumn1">
                 <Text
@@ -72,7 +71,6 @@
                 />
             </Column>
         </columns>
-
         <items>
             <ColumnListItem id="_IDGenColumnListItem1">
                 <cells>

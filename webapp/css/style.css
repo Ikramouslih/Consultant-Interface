@@ -195,7 +195,7 @@
  
  
 /* Tables Style */
-.sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
+ .sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
     padding: 1rem 3rem 0 3rem !important;
 }
 .sapMITH .sapMITBHead {
@@ -231,6 +231,7 @@
     padding-top: 0.9rem !important;
     padding-bottom: 0.9rem !important;
 }
+
 .sapUiSizeCompact .sapUiTableCell .sapMLabel, .sapUiSizeCondensed .sapUiTableCell .sapMLabel {
     font-weight: bold;
     font-size: 0.8rem;
@@ -317,3 +318,17 @@
 }
 
 /* forms */
+
+/* ticket form */
+/* #application-management-display-component---CreateTicket--_IDGenCard1{
+    width: 60% !important;
+    margin: auto !important;
+} */
+/* .sapMScrollContScroll{
+    width: 60% !important;
+    margin: auto !important;
+} */
+/* .sapUiRespGrid .sapUiRespGridHSpace0 .sapUiRespGridVSpace0 .sapUiFormResGridMain .sapUiRespGridOverflowHidden .sapUiRespGridMedia-Std-Phone{
+    width: 70% !important;
+    margin: auto !important;
+} */
