@@ -195,7 +195,7 @@
  
  
 /* Tables Style */
-.sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
+ .sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
     padding: 1rem 3rem 0 3rem !important;
 }
 .sapMITH .sapMITBHead {
@@ -231,6 +231,7 @@
     padding-top: 0.9rem !important;
     padding-bottom: 0.9rem !important;
 }
+
 .sapUiSizeCompact .sapUiTableCell .sapMLabel, .sapUiSizeCondensed .sapUiTableCell .sapMLabel {
     font-weight: bold;
     font-size: 0.8rem;
@@ -245,9 +246,6 @@
 }
 .sapUiTableCnt {
     border-radius: 10px;
-}
-.sapUiTableVSb{
-    max-height: 100% !important;
 }
 .sapTntInfoLabel {
     padding: 0.2rem 0.625rem 1.1rem 0.625rem !important;
@@ -299,6 +297,13 @@
 .IconTabBarLayoutProjects .sapMITBItem:nth-child(3n){
     float: right !important;
 }
+.IconTabBarLayoutManagers .sapMITBItem:nth-child(2n){
+    float: right !important;
+}
+.IconTabBarLayoutManagers .sapMITBItem:nth-child(3n){
+    float: right !important;
+}
+ 
  
 /* Top 4 Chart management */
 .sapSuiteClMCLabelColumn.sapSuiteClMCLabelColumnTop {

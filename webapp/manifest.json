@@ -231,10 +231,10 @@
           ]
         },
         {
-          "name": "CreateConsultant",
-          "pattern": "CreateConsultant/",
+          "name": "CreateUser",
+          "pattern": "CreateUser/",
           "target": [
-            "CreateConsultant"
+            "CreateUser"
           ]
         },
         {
@@ -260,7 +260,7 @@
         },
         {
           "name": "UpdateConsultant",
-          "pattern": "update/{consultantId}",
+          "pattern": "consultant/update/{consultantId}",
           "target": [
             "TargetUpdateConsultant"
           ]
@@ -316,12 +316,12 @@
           "viewId": "AssignTicket",
           "viewName": "AssignTicket"
         },
-        "CreateConsultant": {
+        "CreateUser": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "CreateConsultant",
-          "viewName": "CreateConsultant"
+          "viewId": "CreateUser",
+          "viewName": "CreateUser"
         },
         "Project": {
           "viewType": "XML",
