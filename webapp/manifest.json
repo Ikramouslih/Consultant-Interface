@@ -24,6 +24,15 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "Service1": {
+        "uri": "/sap/opu/odata/sap/ZODA_GEST_CALENDRIER_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -153,7 +162,13 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
+      },
+      "Service2": {
+        "dataSource": "Service2",
+        "preload": true,
+        "settings": {}
       }
+
     },
     "resources": {
       "css": [
@@ -249,6 +264,13 @@
           "target": [
             "TargetUpdateConsultant"
           ]
+        },
+        {
+          "name": "ConsultantCalendar",
+          "pattern": "ConsultantCalendar/",
+          "target": [
+            "TargetConsultantCalendar"
+          ]
         }
       ],
       "targets": {
@@ -321,6 +343,13 @@
           "clearControlAggregation": false,
           "viewId": "UpdateConsultant",
           "viewName": "UpdateConsultant"
+        },
+        "TargetConsultantCalendar": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ConsultantCalendar",
+          "viewName": "Consultant.ConsultantCalendar"
         }
       }
     },

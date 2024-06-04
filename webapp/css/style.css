@@ -313,3 +313,49 @@
 }
 
 /* forms */
+/* calendar */
+.calendarContainer{
+    background: white;
+    box-shadow:2px 3px 2px 3px  #dfdddd;
+    margin: 10px;
+    padding: 5px 10px 10px 10px;
+    border-radius: 10px;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+.CalendarAvailability{
+    display: flex;
+    align-items: center;
+
+}
+.calendarText{
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+.calendarContentWrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 400px;
+}
+.TicketInput{
+    margin-right: 3px !important;
+    border-radius: 3px;
+}
+.CalendarButtonList{
+    max-height: 300px;
+    overflow: scroll;
+    /* background: purple; */
+    width: 40%;
+}
+.calendar{
+    width: 30rem !important;
+    height: 90% !important;
+}
