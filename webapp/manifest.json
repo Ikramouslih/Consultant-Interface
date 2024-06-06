@@ -163,8 +163,8 @@
         "preload": true,
         "settings": {}
       },
-      "Service2": {
-        "dataSource": "Service2",
+      "Service1": {
+        "dataSource": "Service1",
         "preload": true,
         "settings": {}
       }

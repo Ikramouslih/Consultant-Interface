@@ -69,7 +69,7 @@ sap.ui.define([
         onValueHelpRequest: function () {
             var oFilter = new Filter("Status", FilterOperator.EQ, "In Progress"); 
             var oODataModel = this.getView().getModel("odataModel");
-            console.log(oODataModel);
+            
             if (!this._pValueHelpDialog) {
                 this._pValueHelpDialog = new SelectDialog({
                     title: "Select Ticket",
@@ -122,18 +122,17 @@ sap.ui.define([
 
         onCreateAvailability: function () {
             var sTicketInput = this.getView().byId("TicketInput").getValue();
-            var oData1;
             var oSelectedDates = this.oModel.getProperty("/selectedDates"); // Get selected dates
             var bSwitchState = this.oModel.getProperty("/Enabled"); // Get the switch state
             var sAvailability = bSwitchState ? "1" : "0"; // Determine availability based on switch state
 
             console.log("onCreateAvailability", sTicketInput);
             console.log("selected date ", oSelectedDates);
-            console.log("switch state ???? ", sAvailability);
+            console.log("switch state  ", sAvailability);
 
             if (bSwitchState) {
                 // Fetch and update ticket data
-                this.fetchAndUpdateTicketData(sTicketInput, bSwitchState).then(function(oTicketDetails) {
+                this.fetchAndUpdateTicketData(sTicketInput, oSelectedDates, bSwitchState).then(function(oTicketDetails) {
                     this.createCalendarEntries(sTicketInput, oSelectedDates, sAvailability);
                 }.bind(this)).catch(function(oError) {
                     MessageToast.show("Error while fetching ticket data: " + oError.message);
@@ -153,30 +152,35 @@ sap.ui.define([
                         Id: ('000' + Math.floor(Math.random() * 1000)).slice(-3),
                         IdTicket: sTicketInput,
                         DateAvailability: formattedDate, // Use the correctly formatted date
-                        IdConsultant: "CONS1",
+                        IdConsultant: "C-SEL495", // ***********TO DO***************
                         Availability: sAvailability
                     };
                     console.log(oData1);
-
                     var oModel2 = this.getView().getModel("odataModel2");
-                    // oModel2.create("/CALENDARIDSet", oData1, {
-                    //     success: function () {
-                    //         MessageToast.show("Availability created successfully.");
-                    //     }.bind(this),
-                    //     error: function (oError) {
-                    //         MessageToast.show("Error while creating availability: " + oError.message);
-                    //     }
-                    // });
+                     oModel2.create("/CALENDARIDSet", oData1, {
+                         success: function () {
+                             MessageToast.show("Availability created successfully.");
+                         }.bind(this),
+                        error: function (oError) {
+                            MessageToast.show("Error while creating availability: " + oError.message);
+                        }
+                    });
                 }.bind(this), index * delay);
             }.bind(this));
             // Clear selected dates and ticket input after successful update
             this._clearModel();
-            this.byId("TicketInput").setValue("");
+            this.byId("TicketInput").setValue("");    
         },
 
-        fetchAndUpdateTicketData: function(sTicketInput, bSwitchState) {
+        fetchAndUpdateTicketData: function(sTicketInput, oSelectedDates, bSwitchState) {
             return new Promise(function(resolve, reject) {
                 var oModel = this.getView().getModel("odataModel");
+
+                // Trouver la date la plus récente dans oSelectedDates
+                var maxDate = oSelectedDates.reduce(function (latest, current) {
+                    return latest.Date > current.Date ? latest : current;
+                });
+
                 if (bSwitchState === true) {
                     oModel.read("/TICKETIDSet('" + sTicketInput + "')", {
                         success: function(oData) {
@@ -192,7 +196,7 @@ sap.ui.define([
                                 Estimated: oData.Estimated,
                                 CreationDate: oData.CreationDate,
                                 StartDate: oData.StartDate,
-                                EndDate: oData.EndDate,
+                                EndDate: maxDate.Date, // Mettre à jour EndDate avec la date la plus récente
                                 Consultant: oData.Consultant,
                                 Priority: oData.Priority,
                                 CreatedBy: oData.CreatedBy
@@ -232,25 +236,26 @@ sap.ui.define([
             }
             this.oModel.setProperty("/Enabled", bState); // Met à jour l'état du Switch dans le modèle
         },
+
         formatDate: function (sDate) {
             if (!sDate) {
-              return "-";
+                return "-";
             }
-      
+
             // Ensure the date string is in the expected format
             if (sDate.length !== 8) {
-              console.warn("Invalid date format: " + sDate);
-              return sDate;
+                console.warn("Invalid date format: " + sDate);
+                return sDate;
             }
-      
+
             // Extract year, month, and day from the date string
             var year = sDate.substring(0, 4);
             var month = sDate.substring(4, 6);
             var day = sDate.substring(6, 8);
-      
+
             // Convert to "YYYY-MM-DD" format
             var formattedDate = year + "-" + month + "-" + day;
             return formattedDate;
-          }
+        }
     });
 });

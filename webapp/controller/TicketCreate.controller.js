@@ -82,7 +82,7 @@ sap.ui.define(
         if (sConsultantId === null) {
           oData.Status = 'NON-AFFECTER';
         } else {
-          oData.Status = 'EN-COURS';
+          oData.Status = 'In progress';
           oData.Consultant = sConsultantId;
         }
 

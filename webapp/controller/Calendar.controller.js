@@ -1,86 +1,73 @@
 sap.ui.define(
-    ["sap/ui/core/mvc/Controller", "sap/ui/unified/CalendarDayType"],
-    function (Controller, CalendarDayType) {
+    ["sap/ui/core/mvc/Controller", "sap/ui/unified/CalendarDayType", "sap/ui/model/Filter", "sap/ui/model/FilterOperator"],
+    function (Controller, CalendarDayType, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("management.controller.Calendar", {
             onInit: function () {
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 var oCalendar = this.getView().byId("calendar");
                 var oLegend = this.getView().byId("legend");
-                var ooModel = this.getOwnerComponent().getModel();
+                var oDataModel2 = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZODA_GEST_CALENDRIER_SRV/");
+                this.getView().setModel(oDataModel2, "odataModel2");
+                
+                var aUnAvailableDates = [];
+                var aAvailableDates = [];
+                var oModel2 = this.getView().getModel("odataModel2");
 
-                // Forcer l'actualisation du metadata pour s'assurer qu'il est à jour
-                ooModel.metadataLoaded().then(function() {
-                    ooModel.read("/CALENDARIDSet", { 
+                function convertDateFormat(dateString) {
+                    var year = dateString.substring(0, 4);
+                    var month = dateString.substring(4, 6) - 1; // Les mois commencent à 0 en JavaScript
+                    var day = dateString.substring(6, 8);
+                    return new Date(year, month, day);
+                }
+
+                oRouter.getRoute("ConsultantDetails").attachPatternMatched(function (oEvent) {
+                    var sConsultantId = oEvent.getParameter("arguments").consultantId;
+
+                    var oFilter = new Filter("IdConsultant", FilterOperator.EQ, sConsultantId);
+
+                    oModel2.read("/CALENDARIDSet", {
+                        filters: [oFilter],
                         success: function (response) {
-                            console.log(response.results);
+                            response.results.forEach(function (item) {
+                                var oDate = convertDateFormat(item.DateAvailability);
+                                if (item.Availability === '1') {
+                                    aAvailableDates.push(oDate);
+                                } else {
+                                    aUnAvailableDates.push(oDate);
+                                }
+                            });
+
+                            aAvailableDates.forEach(function (oDate) {
+                                oCalendar.addSpecialDate(new sap.ui.unified.DateTypeRange({
+                                    startDate: oDate,
+                                    type: CalendarDayType.Type08 // Type08 pour la couleur verte (disponible)
+                                }));
+                            });
+
+                            aUnAvailableDates.forEach(function (oDate) {
+                                oCalendar.addSpecialDate(new sap.ui.unified.DateTypeRange({
+                                    startDate: oDate,
+                                    type: CalendarDayType.Type02 // Type02 pour la couleur rouge (non disponible)
+                                }));
+                            });
+
+                            oLegend.addItem(new sap.ui.unified.CalendarLegendItem({
+                                text: "Disponible",
+                                type: CalendarDayType.Type08 // Type08 pour la couleur verte
+                            }));
+
+                            oLegend.addItem(new sap.ui.unified.CalendarLegendItem({
+                                text: "Non disponible",
+                                type: CalendarDayType.Type02 // Type02 pour la couleur rouge
+                            }));
                         },
-                        error: function (error) {   
-                            console.error("Error", error);
+                        error: function (error) {
+                            console.error("Error !!!!!!!!!!!!!!!!!!!!!", error);
                         }
                     });
-                }).catch(function(error) {
-                    console.error("Metadata loading failed", error);
-                });
-                // Données statiques pour les périodes disponibles et non disponibles
-                var aAvailableDates = [
-                    new Date(2024, 4, 1),
-                    new Date(2024, 4, 2),
-                    new Date(2024, 4, 3),
-                    new Date(2024, 4, 13),
-                    new Date(2024, 4, 16),
-                    new Date(2024, 4, 21),
-                    new Date(2024, 4, 22),
-                    new Date(2024, 4, 24),
-                    new Date(2024, 4, 30),
-                    new Date(2024, 4, 31),
-                    // Ajoutez plus de dates disponibles si nécessaire
-                ];
-                var aunAvailableDates = [
-                    new Date(2024, 4, 6),
-                    new Date(2024, 4, 7),
-                    new Date(2024, 4, 8),
-                    new Date(2024, 4, 9),
-                    new Date(2024, 4, 10),
-                    new Date(2024, 4, 14),
-                    new Date(2024, 4, 15),
-                    new Date(2024, 4, 17),
-                    new Date(2024, 4, 20),
-                    new Date(2024, 4, 23),
-                    new Date(2024, 4, 27),
-                    new Date(2024, 4, 28),
-                    new Date(2024, 4, 29),
-                    // Ajoutez plus de dates disponibles si nécessaire
-                ];
-
-
-                // Créer des événements pour les périodes disponibles (vert)
-                aAvailableDates.forEach(function (oDate) {
-                    oCalendar.addSpecialDate(new sap.ui.unified.DateTypeRange({
-                        startDate: oDate,
-                        type: CalendarDayType.Type08 // Type01 pour la couleur verte (disponible)
-                    }));
-                });
-                aunAvailableDates.forEach(function (oDate) {
-                    oCalendar.addSpecialDate(new sap.ui.unified.DateTypeRange({
-                        startDate: oDate,
-                        type: CalendarDayType.Type02 // Type01 pour la couleur verte (disponible)
-                    }));
-                });
-
-
-                // Créer des événements pour les périodes non disponibles (rouge)
-
-                // Ajouter des légendes pour les couleurs
-                oLegend.addItem(new sap.ui.unified.CalendarLegendItem({
-                    text: "Disponible",
-                    type: CalendarDayType.Type08 // Type01 pour la couleur verte
-                }));
-
-                oLegend.addItem(new sap.ui.unified.CalendarLegendItem({
-                    text: "Non disponible",
-                    type: CalendarDayType.Type02 // Type02 pour la couleur rouge
-                }));
+                }, this);
             }
         });
     }
