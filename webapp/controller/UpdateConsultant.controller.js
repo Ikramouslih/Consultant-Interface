@@ -50,7 +50,6 @@ sap.ui.define([
     _setExpertiseTokens: function (sExpertise) {
       var oMultiInput = this.getView().byId("expertise");
       var aExpertise = sExpertise.split(", ");
-      console.log("setExpertiseTokens - expertise array:", aExpertise);
       oMultiInput.destroyTokens();
       aExpertise.forEach(function (sExpertiseItem) {
         if(sExpertiseItem !== ""){
@@ -146,7 +145,8 @@ sap.ui.define([
         Login: sLogin,
         Password: sPassword,
         Hold: sHold,
-        ManagerId: "",
+        Disponilbilty: oView.getBindingContext().getProperty("Disponilbilty"),
+        ManagerId: oView.getBindingContext().getProperty("ManagerId"),
       };
 
       console.log("Update data:", oData);

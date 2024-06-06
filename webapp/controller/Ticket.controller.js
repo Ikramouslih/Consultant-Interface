@@ -10,9 +10,9 @@ sap.ui.define([
     onInit: function () {
       this._mFilters = {
         all: [], // No filter, show all
-        completed: [new Filter("Status", FilterOperator.EQ, "TERMINE")], // Completed tickets
-        in_progress: [new Filter("Status", FilterOperator.EQ, "EN-COURS")], // In progress tickets
-        not_assigned: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")] // Not assigned tickets
+        completed: [new Filter("Status", FilterOperator.EQ, "Done")], // Completed tickets
+        in_progress: [new Filter("Status", FilterOperator.EQ, "In Progress")], // In progress tickets
+        not_assigned: [new Filter("Status", FilterOperator.EQ, "Unassigned")] // Not assigned tickets
       };
 
       var oModel = this.getOwnerComponent().getModel();
@@ -34,7 +34,7 @@ sap.ui.define([
 
       // Completed count
       oModel.read("/TICKETIDSet/$count", {
-        filters: [new Filter("Status", FilterOperator.EQ, "TERMINE")],
+        filters: [new Filter("Status", FilterOperator.EQ, "Done")],
         success: function (iCount) {
           var oCountModel = this.getView().getModel("CountModel");
           oCountModel.setProperty("/completed", iCount);
@@ -46,7 +46,7 @@ sap.ui.define([
 
       // In progress count
       oModel.read("/TICKETIDSet/$count", {
-        filters: [new Filter("Status", FilterOperator.EQ, "EN-COURS")],
+        filters: [new Filter("Status", FilterOperator.EQ, "In Progress")],
         success: function (iCount) {
           var oCountModel = this.getView().getModel("CountModel");
           oCountModel.setProperty("/in_progress", iCount);
@@ -58,7 +58,7 @@ sap.ui.define([
 
       // Not assigned count
       oModel.read("/TICKETIDSet/$count", {
-        filters: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")],
+        filters: [new Filter("Status", FilterOperator.EQ, "Unassigned")],
         success: function (iCount) {
           var oCountModel = this.getView().getModel("CountModel");
           oCountModel.setProperty("/not_assigned", iCount);
@@ -201,11 +201,11 @@ sap.ui.define([
 
     formatPriorityColor: function (sPriority) {
       switch (sPriority) {
-        case "HIGH":
+        case "High":
           return 2;
-        case "MEDIUM":
+        case "Medium":
           return 1;
-        case "LOW":
+        case "Low":
           return 8;
         default:
           return 8;
@@ -214,11 +214,11 @@ sap.ui.define([
 
     formatPriorityIcon: function (sPriority) {
       switch (sPriority) {
-        case "HIGH":
+        case "High":
           return "sap-icon://arrow-top";
-        case "MEDIUM":
+        case "Medium":
           return "sap-icon://line-charts";
-        case "LOW":
+        case "Low":
           return "sap-icon://arrow-bottom";
         default:
           return "sap-icon://arrow-bottom";
@@ -244,6 +244,27 @@ sap.ui.define([
       // Convert to "YYYY-MM-DD" format
       var formattedDate = year + "-" + month + "-" + day;
       return formattedDate;
+    },
+
+    onEdit: function (oEvent) {
+      console.log("Edit button clicked");
+      var oButton = oEvent.getSource();
+      var oBindingContext = oButton.getBindingContext("TicketsModel");
+      if (oBindingContext) {
+          var sTicketId = oBindingContext.getProperty("IdTicket");
+          if (sTicketId) {
+              var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+              oRouter.navTo("UpdateTicket", {
+                ticketId: sTicketId
+              });
+          } else {
+              MessageToast.show("Ticket ID is not available.");
+          }
+      } else {
+          MessageToast.show("No binding context available.");
+      }
     }
+
+
   });
 });

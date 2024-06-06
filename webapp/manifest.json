@@ -258,6 +258,13 @@
           ]
         },
         {
+          "name": "UpdateTicket",
+          "pattern": "ticket/update/{ticketId}",
+          "target": [
+            "UpdateTicket"
+          ]
+        },
+        {
           "name": "UpdateManager",
           "pattern": "manager/update/{managerId}",
           "target": [
@@ -350,6 +357,13 @@
           "clearControlAggregation": false,
           "viewId": "UpdateManager",
           "viewName": "UpdateManager"
+        },
+        "UpdateTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UpdateTicket",
+          "viewName": "UpdateTicket"
         }
       }
     },

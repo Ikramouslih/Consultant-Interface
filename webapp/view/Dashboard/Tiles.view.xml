@@ -106,7 +106,7 @@
             <m:GenericTile
                 id="tileUnassigned"
                 header="Total Tickets"
-                subheader="InProgress"
+                subheader="Done in Last 30 Days"
                 press="onTicketTilePress"
             >
                 <m:TileContent
@@ -115,10 +115,10 @@
                 >
                     <m:NumericContent
                         id="tileUnassignedCount"
-                        icon="sap-icon://message-warning"
-                        value="{TilesData>/donutData/0/value}"
+                        icon="sap-icon://message-success"
+                        value="{TilesData>/donutData/1/value}"
                         withMargin="false"
-                        class="warning"
+                        class="success"
                     />
                 </m:TileContent>
             </m:GenericTile>
@@ -136,7 +136,7 @@
             <m:GenericTile
                 id="tileAssigned"
                 header="Total Tickets"
-                subheader="Assigned"
+                subheader="Unassigned"
                 press="onTicketTilePress"
             >
                 <m:TileContent
@@ -145,10 +145,10 @@
                 >
                     <m:NumericContent
                         id="tileAssignedCount"
-                        icon="sap-icon://message-success"
-                        value="{TilesData>/donutData/1/value}"
+                        icon="sap-icon://message-error"
+                        value="{TilesData>/donutData/2/value}"
                         withMargin="false"
-                        class="success"
+                        class="error"
                     />
                 </m:TileContent>
             </m:GenericTile>
@@ -248,7 +248,7 @@
                     <m:NumericContent
                         id="_IDGenNumericCont4aent2"
                         icon="sap-icon://manager"
-                        value="{TilesData3>/tilesData3/1/value}"
+                        value="{TilesData3>/tilesData3/0/value}"
                         withMargin="false"
                         class="consultantMaroc"
                     />
@@ -286,7 +286,7 @@
                     <m:NumericContent
                         id="_IDGenNumericCsont4aent2"
                         icon="sap-icon://manager"
-                        value="{TilesData3>/tilesData3/0/value}"
+                        value="{TilesData3>/tilesData3/1/value}"
                         withMargin="false"
                     />
                 </m:TileContent>

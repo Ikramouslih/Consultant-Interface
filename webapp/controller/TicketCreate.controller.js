@@ -1,12 +1,17 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/ui/core/ValueState"],
-  function (Controller, MessageToast, ValueState) {
+  ["sap/ui/core/mvc/Controller",
+   "sap/m/MessageToast", 
+   "sap/ui/core/ValueState",
+   "sap/ui/core/Fragment",
+   "sap/ui/model/Filter",
+   "sap/m/Token",
+   "sap/ui/model/FilterOperator",],
+  function (Controller, MessageToast, ValueState, Fragment, Filter, Token, FilterOperator) {
     "use strict";
 
     return Controller.extend("management.controller.TicketCreate", {
 
       onInit: function () {
-        // Any initialization logic goes here
       },
 
       validateInput: function (oInput) {
@@ -26,14 +31,12 @@ sap.ui.define(
         var aInputs = [
           oView.byId("IdTicketJira"),
           oView.byId("Titre"),
-          oView.byId("Description"),
           oView.byId("Estimated")
         ];
 
         var aSelects = [
           oView.byId("Projet"),
-          oView.byId("Consultant"),
-          oView.byId("Technology")
+          oView.byId("Priority"),
         ];
 
         var bValid = true;
@@ -45,7 +48,7 @@ sap.ui.define(
 
         // Validate selects
         aSelects.forEach(function (oSelect) {
-          if (!oSelect.getSelectedItem()) {
+          if (oSelect.getSelectedKey() === "" || !oSelect.getSelectedItem()) {
             oSelect.setValueState(ValueState.Error);
             oSelect.setValueStateText("This field is required");
             bValid = false;
@@ -63,34 +66,43 @@ sap.ui.define(
         var sTitre = oView.byId("Titre").getValue();
         var sProjet = oView.byId("Projet").getSelectedItem().getKey();
         var sDescription = oView.byId("Description").getValue();
-        var sTechnology = oView.byId("Technology").getSelectedItem().getKey();
+        var sTechnology = oView.byId("technology").getTokens().map(function(token) {
+          return token.getText();
+        }).join(", ");
         var sConsultantId = oView.byId("Consultant").getSelectedItem() ? oView.byId("Consultant").getSelectedItem().getKey() : null;
         var sEstimated = oView.byId("Estimated").getValue();
+        var sPriority = oView.byId("Priority").getSelectedKey();
         var intEstimated = parseInt(sEstimated, 10);
+        var sIdTicket = "T-" +  sProjet.substring(0, 2).toUpperCase() + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
 
         var oData = {
-          IdTicket: sIdTicketJira,
+          IdTicket: sIdTicket,
           IdJira: sIdTicketJira,
           Titre: sTitre,
           Projet: sProjet,
           Description: sDescription,
           Technology: sTechnology,
+          Priority : sPriority,
           Estimated: intEstimated,
-          CreationDate: this._formatDate(new Date())
+          CreationDate: this._formatDate(new Date()),
+          StartDate: "",
+          EndDate: "",
+          CreatedBy: "",
         };
 
         if (sConsultantId === null) {
-          oData.Status = 'NON-AFFECTER';
+          oData.Status = 'Unassigned';
         } else {
-          oData.Status = 'EN-COURS';
+          oData.Status = 'In Progress';
           oData.Consultant = sConsultantId;
         }
 
+        console.log("ooooooooooooo",oData);
         var oModel = this.getView().getModel();
 
         oModel.create("/TICKETIDSet", oData, {
           success: function () {
-            MessageToast.show("Data successfully added");
+            MessageToast.show("Data successfully added.");
             this.onReset();
           }.bind(this),
           error: function (oError) {
@@ -105,9 +117,13 @@ sap.ui.define(
         oView.byId("Titre").setValue("");
         oView.byId("Projet").setSelectedItem(null);
         oView.byId("Description").setValue("");
-        oView.byId("Technology").setSelectedItem(null);
+        oView.byId("technology").setValue("");
         oView.byId("Consultant").setSelectedItem(null);
         oView.byId("Estimated").setValue("");
+
+        // Clear tokens from expertise MultiInput
+        var oExpertiseMultiInput = oView.byId("technology");
+        oExpertiseMultiInput.removeAllTokens();
 
         // Reset value states
         var aInputs = [
@@ -139,6 +155,71 @@ sap.ui.define(
         return yyyy + mm + dd;
       },
 
+      handleValueHelp: function (oEvent) {
+        var sInputValue = oEvent.getSource().getValue(),
+          oView = this.getView();
+  
+        if (!this._pValueHelpDialog) {
+          this._pValueHelpDialog = Fragment.load({
+            id: oView.getId(),
+            name: "management.view.Fragments.ExpertiseValueHelp",
+            controller: this
+          }).then(function (oValueHelpDialog) {
+            oView.addDependent(oValueHelpDialog);
+            return oValueHelpDialog;
+          });
+        }
+        this._pValueHelpDialog.then(function (oValueHelpDialog) {
+          oValueHelpDialog.open(sInputValue);
+        });
+      },
+  
+      _handleValueHelpSearch: function (oEvent) {
+        var sValue = oEvent.getParameter("value");
+        var oFilter = new Filter("NomTechnology", FilterOperator.Contains, sValue);
+        console.log(sValue);
+        oEvent.getSource().getBinding("items").filter([oFilter]);
+      },
+  
+      _handleValueHelpClose: function (oEvent) {
+        console.log("on close function");
+  
+        var oSelectedItems = oEvent.getParameter("selectedItems");
+        var oMultiInput = this.byId("technology");
+  
+        console.log("selected items", oSelectedItems);
+        console.log("oMultiInput", oMultiInput);
+  
+        if (oSelectedItems && oSelectedItems.length > 0) {
+          oSelectedItems.forEach(function (oItem) {
+            console.log("item", oItem);
+            console.log("oMultiInput", oMultiInput);
+            // Ensure the Token class is recognized and correctly referenced
+            try {
+              var oTokens = oMultiInput.getTokens();
+              var bTokenExists = oTokens.some(function (oToken) {
+                return oToken.getText() === oItem.getTitle();
+              });
+  
+              if (!bTokenExists) {
+                var oToken = new Token({
+                  text: oItem.getTitle()
+                });
+                console.log("token created", oToken);
+                oMultiInput.addToken(oToken);
+              } else {
+                console.log("Token already exists: " + oItem.getTitle());
+              }
+            } catch (e) {
+              console.error("Error creating Token:", e);
+            }
+          });
+        }
+      }
     });
-  }
+  },
+
+
+  
+
 );

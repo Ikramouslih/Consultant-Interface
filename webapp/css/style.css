@@ -332,3 +332,23 @@
     width: 70% !important;
     margin: auto !important;
 } */
+
+/* description form */
+
+.sapMFeedIn {
+    border: .0625rem solid #89919a !important;
+    background: #fff !important;
+    border-radius: .125rem !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+}
+.sapMFeedIn .sapMBtn {
+    visibility: hidden !important;
+}
+.sapMFeedIn>.sapMFeedInContainer>.sapMInputBase {
+    padding: 0 !important;
+}
+.sapMFeedIn .sapMInputBase.sapMTextArea .sapMTextAreaInner {
+    min-height: 4rem;
+    padding: 0;
+}

@@ -30,15 +30,15 @@ sap.ui.define([
 
     groupByStatus: function (aData) {
 
-      var statusCounts = {}; // Objet pour stocker les comptes par statut
+      var statusCounts = {"In Progress" : 0, "Unassigned" : 0}; 
 
       aData.forEach(function (item) {
-        var status = item.Status || "Inconnu"; // Si le statut est vide ou indéfini, le définir à "Inconnu"
+        var status = item.Status || "Inconnu"; 
 
-        if (!statusCounts[status]) { // Si le statut n'existe pas dans l'objet, l'ajouter
-          statusCounts[status] = 1;
-        } else { // Sinon, incrémenter le compte
-          statusCounts[status]++;
+        if (status === "In Progress") { 
+          statusCounts["In Progress"]++;
+        } else if (status === "Unassigned"){ 
+          statusCounts["Unassigned"]++;
         }
       });
 
@@ -53,9 +53,9 @@ sap.ui.define([
         });
       }
 
-      // Find the index of the item with the label "TERMINE"
+      // Find the index of the item with the label "Done"
       var index = aDonutData.findIndex(function (item) {
-        return item.label === "TERMINE";
+        return item.label === "Done";
       });
 
       // Remove the item from the array

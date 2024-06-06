@@ -64,7 +64,6 @@ sap.ui.define(
         var oItem = oEvent.getSource();
         var oBindingContext = oItem.getBindingContext();
         var sConsultantId = oBindingContext.getProperty("ConsultantId");
-
         // Navigate to the update page view with the selected person's ID
         this.getOwnerComponent().getRouter().navTo("UpdateConsultant", { consultantId: sConsultantId });
       },
