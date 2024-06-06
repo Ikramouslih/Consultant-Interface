@@ -24,6 +24,15 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "Service1": {
+        "uri": "/sap/opu/odata/sap/ZODA_GEST_CALENDRIER_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -153,7 +162,13 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
+      },
+      "Service1": {
+        "dataSource": "Service1",
+        "preload": true,
+        "settings": {}
       }
+
     },
     "resources": {
       "css": [
@@ -254,7 +269,7 @@
           "name": "Managers",
           "pattern": "Managers/",
           "target": [
-            "TargetManagers"
+            "Managers"
           ]
         },
         {
@@ -269,6 +284,13 @@
           "pattern": "manager/update/{managerId}",
           "target": [
             "UpdateManager"
+          ]
+        },
+        {
+          "name": "ConsultantCalendar",
+          "pattern": "ConsultantCalendar/",
+          "target": [
+            "TargetConsultantCalendar"
           ]
         }
       ],
@@ -343,7 +365,7 @@
           "viewId": "UpdateConsultant",
           "viewName": "UpdateConsultant"
         },
-        "TargetManagers": {
+        "Managers": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
@@ -364,6 +386,13 @@
           "clearControlAggregation": false,
           "viewId": "UpdateTicket",
           "viewName": "UpdateTicket"
+        },
+        "TargetConsultantCalendar": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ConsultantCalendar",
+          "viewName": "Consultant.ConsultantCalendar"
         }
       }
     },

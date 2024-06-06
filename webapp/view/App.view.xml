@@ -121,6 +121,14 @@
                         expanded="true"
                         select="onProjectsSelect"
                     />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem5"
+                        class="sideNavLinks"
+                        text="Consultant Calendar"
+                        icon="sap-icon://appointment-2"
+                        expanded="true"
+                        select="onConsultantCalendar"
+                    />
                 </tnt:NavigationList>
             </tnt:SideNavigation>
         </tnt:sideContent>
