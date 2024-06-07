@@ -156,6 +156,7 @@ sap.ui.define([
         success: function () {
           sap.m.MessageToast.show("Data successfully updated");
           this.onCancel();
+          location.reload();
         }.bind(this),
         error: function (oError) {
           sap.m.MessageToast.show("Error updating data: " + oError.message);

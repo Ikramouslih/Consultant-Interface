@@ -1,0 +1,71 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		id="mainDialogUpdate"
+		title="Update Project"
+        >
+		<content>
+			<VBox id="_IDGenVBox1Update" class="sapUiSmallMargin" >
+                    <f:Form id="FormToolbarUpdate" editable="true" ariaLabelledBy="Title1">
+                        <f:toolbar>
+                            <Toolbar id="TB1Update">
+                                <Title id="Title1Update" text="#{/IdProject}"/>
+                                <ToolbarSpacer id="_IDGenToolbarSpacer1Update" />
+                            </Toolbar>
+                        </f:toolbar>
+                        <f:layout>
+                            <f:ResponsiveGridLayout id="_IDGenResponsiveGridLayout1Update"
+                                labelSpanXL="3"
+                                labelSpanL="3"
+                                labelSpanM="3"
+                                labelSpanS="12"
+                                emptySpanXL="0"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                emptySpanS="0"
+                                columnsXL="2"
+                                columnsL="2"
+                                columnsM="2"
+                                singleContainerFullSize="false"
+                            />
+                        </f:layout>
+                        <f:formContainers>
+                            <f:FormContainer id="_IDGenFormContainer1Update" ariaLabelledBy="Title2">
+                                <f:formElements>
+                                    <f:FormElement id="ProjectNameElementUpdate" label="Project's Name">
+                                        <f:fields>
+                                            <Input value="{/NomProjet}" id="ProjectNameUpdate" required="true"/>
+                                        </f:fields>
+                                    </f:FormElement>
+                                    <f:FormElement id="projectManagerElementUpdate" label="Project's Manager">
+                                        <f:fields>
+                                            <Input id="ChefProjetUpdate" value="{/ChefProjet}" required="true" />
+                                        </f:fields>
+                                    </f:FormElement>
+                                </f:formElements>
+                            </f:FormContainer>
+                        </f:formContainers>
+                    </f:Form>
+                    <HBox id="_IDGenHBox1Update" justifyContent="Center">
+                        <Button id="_IDGenButton2Update" type="Accept"
+                                class="sapUiMediumMargin"
+                                text="Update"
+                                press="onUpdateProject"
+                                width="8rem"
+                                ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+                        </Button>                        
+                        <Button id="_IDGenButton4Update" type="Back"
+                                class="sapUiMediumMargin"
+                                text="Cancel"
+                                press="onCancelProjectUpdate"
+                                width="8rem"
+                                ariaDescribedBy="rejectButtonDescription genericButtonDescription">
+                        </Button>
+                    </HBox>
+                </VBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

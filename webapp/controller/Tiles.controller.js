@@ -221,6 +221,10 @@ sap.ui.define([
             this.getOwnerComponent().getRouter().navTo("RouteConsultant");
         },
 
+        onManagerTilePress: function () {
+            this.getOwnerComponent().getRouter().navTo("Managers");
+        },
+
         onTicketTilePress: function () {
             this.getOwnerComponent().getRouter().navTo("RouteTicket");
         }

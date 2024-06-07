@@ -160,6 +160,7 @@ sap.ui.define([
                      oModel2.create("/CALENDARIDSet", oData1, {
                          success: function () {
                              MessageToast.show("Availability created successfully.");
+                             location.reload();
                          }.bind(this),
                         error: function (oError) {
                             MessageToast.show("Error while creating availability: " + oError.message);
@@ -208,6 +209,7 @@ sap.ui.define([
                                 success: function() {
                                     console.log("Ticket status updated successfully.");
                                     resolve(oTicketDetails);
+                                    location.reload();
                                 },
                                 error: function(oError) {
                                     console.log("Error updating ticket status:", oError);

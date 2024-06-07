@@ -242,7 +242,7 @@
                 id="_IDGenGenea4ricTile2"
                 header="Managers"
                 subheader="Total Number"
-                press="onConsultantTilePress"
+                press="onManagerTilePress"
             >
                 <m:TileContent id="_IDGe4nTaileContent2">
                     <m:NumericContent
@@ -280,7 +280,7 @@
                 id="_IDGenGeneas4ricTile2"
                 header="Managers"
                 subheader="Total Number"
-                press="onConsultantTilePress"
+                press="onManagerTilePress"
             >
                 <m:TileContent id="_IDGe4nTaileCsontent2">
                     <m:NumericContent

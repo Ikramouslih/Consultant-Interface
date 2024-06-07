@@ -1,9 +1,6 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/ui/Device", "sap/ui/model/Filter", "sap/ui/model/FilterOperator"],
-  /**
-   * @param {typeof sap.ui.core.mvc.Controller} Controller
-   */
-  function (Controller, MessageToast, Device, Filter, FilterOperator) {
+  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/ui/Device", "sap/ui/model/Filter", "sap/ui/model/FilterOperator", "sap/ui/core/Fragment"],
+  function (Controller, MessageToast, Device, Filter, FilterOperator, Fragment) {
     "use strict";
 
     return Controller.extend("management.controller.Projects", {
@@ -30,7 +27,19 @@ sap.ui.define(
         this._sSelectedFilterKey = sSelectedKey; // Save the selected filter key
 
         if (sSelectedKey === "create") {
-          this.getOwnerComponent().getRouter().navTo("CreateProjects");
+          if (!this._pCreateProjectDialog) {
+            this._pCreateProjectDialog = Fragment.load({
+              id: this.getView().getId(),
+              name: "management.view.CreateProject",
+              controller: this
+            }).then(function (oDialog) {
+              this.getView().addDependent(oDialog);
+              return oDialog;
+            }.bind(this));
+          }
+          this._pCreateProjectDialog.then(function (oDialog) {
+            oDialog.open();
+          });
         } else if (sSelectedKey === "extract") {
           this.onExtract(); // Call the extract function
         } else {
@@ -80,10 +89,97 @@ sap.ui.define(
         }
       },
 
-      onCreateProjects: function () {
-        this.getOwnerComponent().getRouter().navTo("CreateProjects");
+      onCreateProject: function () {
+        var sProjectName = this.byId("ProjectName").getValue().toUpperCase();
+        var sProjectId = "P-" + sProjectName.substring(0, 3) + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
+        var sChefProjet = this.byId("ChefProjet").getValue();
+
+        var oData = {
+          IdProject: sProjectId,
+          NomProjet: sProjectName,
+          ChefProjet: sChefProjet,
+        };
+
+        var oModel = this.getView().getModel();
+
+        oModel.create("/PROJECTIDSet", oData, {
+          success: function () {
+            MessageToast.show("Project created successfully");
+            this.byId("ProjectName").setValue("");
+            this.byId("ChefProjet").setValue("");
+            this.byId("mainDialogCreate").close();
+            location.reload();
+          }.bind(this),
+          error: function (oError) {
+            MessageToast.show("Error creating project: " + oError.message);
+          }
+        });
+      },
+
+      onResetProject: function () {
+        this.byId("ProjectName").setValue("");
+        this.byId("ChefProjet").setValue("");
+      },
+
+      onCancelProjectCreate: function () {
+        this.byId("mainDialogCreate").close();
+      },
+
+      onEdit: function (oEvent) {
+        var oButton = oEvent.getSource();
+        var oBindingContext = oButton.getBindingContext();
+        var sProjectId = oBindingContext.getProperty("IdProject");
+
+        // Fetch project details from the backend
+        var oModel = this.getView().getModel();
+        oModel.read("/PROJECTIDSet('" + sProjectId + "')", {
+          success: function (oData) {
+            if (!this._pUpdateProjectDialog) {
+              this._pUpdateProjectDialog = Fragment.load({
+                id: this.getView().getId(),
+                name: "management.view.UpdateProject",
+                controller: this
+              }).then(function (oDialog) {
+                this.getView().addDependent(oDialog);
+                return oDialog;
+              }.bind(this));
+            }
+
+            this._pUpdateProjectDialog.then(function (oDialog) {
+              oDialog.setModel(new sap.ui.model.json.JSONModel(oData));
+              oDialog.open();
+            });
+            
+          }.bind(this),
+          error: function (oError) {
+            MessageToast.show("Error fetching project data: " + oError.message);
+          }
+        });
+      },
+
+      onUpdateProject: function () {
+        var oDialog = this.byId("mainDialogUpdate");
+        var oModel = oDialog.getModel();
+        var oData = oModel.getData();
+
+        var sProjectName = this.byId("ProjectNameUpdate").getValue().toUpperCase();
+        var sProjectId = "P-" + sProjectName.substring(0, 3) + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
+        oData.IdProject = sProjectId;
+        var oODataModel = this.getView().getModel();
+        oODataModel.create("/PROJECTIDSet", oData, {
+          success: function () {
+            MessageToast.show("Project updated successfully.");
+            oDialog.close();
+          },
+          error: function (oError) {
+            MessageToast.show("Error updating project: " + oError.message);
+          }
+        });
+      },
+
+      onCancelProjectUpdate: function () {
+        this.byId("mainDialogUpdate").close();
       }
-      
     });
   }
 );

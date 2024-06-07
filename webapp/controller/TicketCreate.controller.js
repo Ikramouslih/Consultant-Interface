@@ -104,6 +104,7 @@ sap.ui.define(
           success: function () {
             MessageToast.show("Data successfully added.");
             this.onReset();
+            location.reload();
           }.bind(this),
           error: function (oError) {
             MessageToast.show("Error adding data: " + oError.message);

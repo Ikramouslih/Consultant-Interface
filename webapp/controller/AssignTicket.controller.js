@@ -141,6 +141,7 @@ sap.ui.define(
           success: function () {
             MessageToast.show("Data successfully updated.");
             this.onCancel();
+            location.reload();
           }.bind(this),
           error: function (oError) {
             MessageToast.show("Error adding data: " + oError.message);
@@ -168,6 +169,7 @@ sap.ui.define(
             oModel.create("/CONSULTANTIDSet", inputData, {
               success: function () {
                 console.log("Availability updated.");
+                location.reload();
               }.bind(this),
               error: function (oError) {
                 sap.m.MessageToast.show("Error changing availability: " + oError.message);

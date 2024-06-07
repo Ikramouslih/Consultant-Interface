@@ -118,6 +118,7 @@ sap.ui.define([
           success: function () {
             sap.m.MessageToast.show("Data successfully added");
             this.onReset();
+            location.reload();
           }.bind(this),
           error: function (oError) {
             sap.m.MessageToast.show("Error adding data: " + oError.message);
@@ -141,6 +142,7 @@ sap.ui.define([
           success: function () {
             sap.m.MessageToast.show("Data successfully added");
             this.onReset();
+            location.reload();
           }.bind(this),
           error: function (oError) {
             sap.m.MessageToast.show("Error adding data: " + oError.message);
