@@ -90,6 +90,14 @@
                         select="onDashboardSelect"
                     />
                     <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem22"
+                        class="sideNavLinks"
+                        text="Managers"
+                        icon="sap-icon://employee"
+                        expanded="true"
+                        select="onManagersSelect"
+                    />
+                    <tnt:NavigationListItem
                         id="_IDGenNavigationListItem2"
                         class="sideNavLinks"
                         text="Consultants"
@@ -112,6 +120,14 @@
                         icon="sap-icon://business-objects-experience"
                         expanded="true"
                         select="onProjectsSelect"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem5"
+                        class="sideNavLinks"
+                        text="Consultant Calendar"
+                        icon="sap-icon://appointment-2"
+                        expanded="true"
+                        select="onConsultantCalendar"
                     />
                 </tnt:NavigationList>
             </tnt:SideNavigation>

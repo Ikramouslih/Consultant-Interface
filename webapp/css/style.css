@@ -195,7 +195,7 @@
  
  
 /* Tables Style */
-.sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
+ .sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
     padding: 1rem 3rem 0 3rem !important;
 }
 .sapMITH .sapMITBHead {
@@ -231,6 +231,7 @@
     padding-top: 0.9rem !important;
     padding-bottom: 0.9rem !important;
 }
+
 .sapUiSizeCompact .sapUiTableCell .sapMLabel, .sapUiSizeCondensed .sapUiTableCell .sapMLabel {
     font-weight: bold;
     font-size: 0.8rem;
@@ -245,9 +246,6 @@
 }
 .sapUiTableCnt {
     border-radius: 10px;
-}
-.sapUiTableVSb{
-    max-height: 100% !important;
 }
 .sapTntInfoLabel {
     padding: 0.2rem 0.625rem 1.1rem 0.625rem !important;
@@ -299,6 +297,13 @@
 .IconTabBarLayoutProjects .sapMITBItem:nth-child(3n){
     float: right !important;
 }
+.IconTabBarLayoutManagers .sapMITBItem:nth-child(2n){
+    float: right !important;
+}
+.IconTabBarLayoutManagers .sapMITBItem:nth-child(3n){
+    float: right !important;
+}
+ 
  
 /* Top 4 Chart management */
 .sapSuiteClMCLabelColumn.sapSuiteClMCLabelColumnTop {
@@ -310,4 +315,85 @@
 }
 .sapSuiteClMCLabels.sapSuiteClMCPositionBtm, .sapSuiteClMCLabels.sapSuiteClMCBottomColumnLabels {
     margin-top: 12px !important;
+}
+
+/* forms */
+/* calendar */
+.calendarContainer{
+    background: white;
+    box-shadow:2px 3px 2px 3px  #dfdddd;
+    margin: 10px;
+    padding: 5px 10px 10px 10px;
+    border-radius: 10px;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+.CalendarAvailability{
+    display: flex;
+    align-items: center;
+}
+
+/* ticket form */
+/* #application-management-display-component---CreateTicket--_IDGenCard1{
+    width: 60% !important;
+    margin: auto !important;
+} */
+/* .sapMScrollContScroll{
+    width: 60% !important;
+    margin: auto !important;
+} */
+/* .sapUiRespGrid .sapUiRespGridHSpace0 .sapUiRespGridVSpace0 .sapUiFormResGridMain .sapUiRespGridOverflowHidden .sapUiRespGridMedia-Std-Phone{
+    width: 70% !important;
+    margin: auto !important;
+} */
+
+/* description form */
+
+.sapMFeedIn {
+    border: .0625rem solid #89919a !important;
+    background: #fff !important;
+    border-radius: .125rem !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+}
+.sapMFeedIn .sapMBtn {
+    visibility: hidden !important;
+}
+.sapMFeedIn>.sapMFeedInContainer>.sapMInputBase {
+    padding: 0 !important;
+}
+.sapMFeedIn .sapMInputBase.sapMTextArea .sapMTextAreaInner {
+    min-height: 4rem;
+    padding: 0;
+}
+.calendarText{
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+.calendarContentWrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 400px;
+}
+.TicketInput{
+    margin-right: 3px !important;
+    border-radius: 3px;
+}
+.CalendarButtonList{
+    max-height: 300px;
+    overflow: scroll;
+    /* background: purple; */
+    width: 40%;
+}
+.calendar{
+    width: 30rem !important;
+    height: 90% !important;
 }

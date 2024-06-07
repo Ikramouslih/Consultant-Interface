@@ -99,13 +99,13 @@ sap.ui.define([
 
                     oData.results.forEach(function (ticket) {
                         switch (ticket.Priority) {
-                            case "LOW":
+                            case "Low":
                                 lowTotal++;
                                 break;
-                            case "MEDIUM":
+                            case "Medium":
                                 mediumTotal++;
                                 break;
-                            case "HIGH":
+                            case "High":
                                 highTotal++;
                                 break;
                         }

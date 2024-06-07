@@ -24,6 +24,15 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "Service1": {
+        "uri": "/sap/opu/odata/sap/ZODA_GEST_CALENDRIER_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -153,7 +162,13 @@
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
+      },
+      "Service1": {
+        "dataSource": "Service1",
+        "preload": true,
+        "settings": {}
       }
+
     },
     "resources": {
       "css": [
@@ -216,10 +231,10 @@
           ]
         },
         {
-          "name": "CreateConsultant",
-          "pattern": "CreateConsultant/",
+          "name": "CreateUser",
+          "pattern": "CreateUser/",
           "target": [
-            "CreateConsultant"
+            "CreateUser"
           ]
         },
         {
@@ -247,7 +262,41 @@
           "name": "CTicket",
           "pattern": "CTicket/{consultantId}",
           "target": [
-            "TargetCTicket"
+            "TargetCTicket"]
+        },
+        {
+          "name": "UpdateConsultant",
+          "pattern": "consultant/update/{consultantId}",
+          "target": [
+            "TargetUpdateConsultant"
+          ]
+        },
+        {
+          "name": "Managers",
+          "pattern": "Managers/",
+          "target": [
+            "Managers"
+          ]
+        },
+        {
+          "name": "UpdateTicket",
+          "pattern": "ticket/update/{ticketId}",
+          "target": [
+            "UpdateTicket"
+          ]
+        },
+        {
+          "name": "UpdateManager",
+          "pattern": "manager/update/{managerId}",
+          "target": [
+            "UpdateManager"
+          ]
+        },
+        {
+          "name": "ConsultantCalendar",
+          "pattern": "ConsultantCalendar/",
+          "target": [
+            "TargetConsultantCalendar"
           ]
         }
       ],
@@ -294,12 +343,12 @@
           "viewId": "AssignTicket",
           "viewName": "AssignTicket"
         },
-        "CreateConsultant": {
+        "CreateUser": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "CreateConsultant",
-          "viewName": "CreateConsultant"
+          "viewId": "CreateUser",
+          "viewName": "CreateUser"
         },
         "Project": {
           "viewType": "XML",
@@ -321,6 +370,42 @@
           "clearControlAggregation": false,
           "viewId": "CTicket",
           "viewName": "Consultant.CTicket"
+        },
+        "TargetUpdateConsultant": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UpdateConsultant",
+          "viewName": "UpdateConsultant"
+        },
+        "Managers": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Managers",
+          "viewName": "Managers"
+        }
+        ,
+        "UpdateManager": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UpdateManager",
+          "viewName": "UpdateManager"
+        },
+        "UpdateTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UpdateTicket",
+          "viewName": "UpdateTicket"
+        },
+        "TargetConsultantCalendar": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ConsultantCalendar",
+          "viewName": "Consultant.ConsultantCalendar"
         }
       }
     },

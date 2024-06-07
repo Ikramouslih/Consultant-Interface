@@ -18,33 +18,57 @@ sap.ui.define([
         loadTilesData: function () {
             var oModel = this.getOwnerComponent().getModel();
             var oJSONModel = new JSONModel();
-
-            oModel.read("/TICKETIDSet", { // Chemin de l'entité dans OData
+        
+            oModel.read("/TICKETIDSet", { 
                 success: function (oData) {
-                    var aGroupedData = this.groupByStatus(oData.results); // Groupement des données
-                    console.log("Grouped data:", aGroupedData); // Vérification des données groupées
-                    oJSONModel.setData({ donutData: aGroupedData }); // Définit le modèle pour la vue
-                    this.getView().setModel(oJSONModel, "TilesData"); // Associe le modèle JSON à la vue
+                    var aGroupedData = this.groupByStatus(oData.results); 
+                    // console.log("Grouped data:", aGroupedData); 
+                    oJSONModel.setData({ donutData: aGroupedData }); 
+                    this.getView().setModel(oJSONModel, "TilesData"); 
                 }.bind(this),
                 error: function (oError) {
                     console.error("Erreur lors de la récupération des données:", oError);
                 }
             });
         },
+        
+        formatDateToYYYYMMDD: function (date) {
+            var year = date.getFullYear();
+            var month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+            var day = date.getDate().toString().padStart(2, '0');
+            return year + month + day;
+        },        
 
         groupByStatus: function (aData) {
-            var statusCounts = { unassigned: 0, assigned: 0 }; // Initialiser les comptes
+            var statusCounts = { inprogress: 0, done: 0, unassigned: 0 }; 
+
 
             aData.forEach(function (item) {
-                var status = item.Status || "Inconnu"; // Si le statut est vide ou indéfini, le définir à "Inconnu"
-
-                if (status === "EN-COURS") {
+                var status = item.Status || "Inconnu"; 
+                if (status === "In Progress") {
+                    statusCounts.inprogress++;
+                }
+                else if (status === "Unassigned") {
                     statusCounts.unassigned++;
-                } else if (status === "TERMINE") {
-                    statusCounts.assigned++;
                 }
             });
 
+            // Calculate how many tickets done in the last 30 days
+            var date = new Date();
+            var last30Days = new Date(date.setDate(date.getDate() - 30));
+            var formattedLast30Days = this.formatDateToYYYYMMDD(last30Days);
+            var i = 0;
+
+            var doneTickets = aData.filter(function (item) {
+                var endDate = item.EndDate;
+                console.log("LAST30 DAYS:", formattedLast30Days);
+                console.log("End Date:", endDate);
+                if (endDate >= formattedLast30Days ) {
+                    return i++;
+                }
+            }).length;
+            statusCounts.done = doneTickets-1;
+            
             var aDonutData = [];
 
             // Convertir l'objet de comptes en tableau pour le Donut Chart
@@ -57,6 +81,8 @@ sap.ui.define([
             }
             return aDonutData;
         },
+        
+
         loadTilesData1: function () {
             var oModel = this.getOwnerComponent().getModel();
             var oJSONModel = new JSONModel();
@@ -68,9 +94,9 @@ sap.ui.define([
                 filters: [oFilter],
                 success: function (oData) {
                     var groupedData = this.groupByCountry(oData.results); // Groupement des données
-                    console.log("Grouped data:", groupedData); // Vérification des données groupées
-                    oJSONModel.setData({ tilesData1: groupedData }); // Définit le modèle pour la vue
-                    this.getView().setModel(oJSONModel, "TilesData1"); // Associe le modèle JSON à la vue
+                    console.log("Grouped data:", groupedData); 
+                    oJSONModel.setData({ tilesData1: groupedData }); 
+                    this.getView().setModel(oJSONModel, "TilesData1"); 
                 }.bind(this),
                 error: function (oError) {
                     console.error("Erreur lors de la récupération des données:", oError);
@@ -82,11 +108,11 @@ sap.ui.define([
             var countryCounts = {}; // Initialiser les comptes par pays
 
             aData.forEach(function (item) {
-                var country = item.Country || "Inconnu"; // Si le pays est vide ou indéfini, le définir à "Inconnu"
+                var country = item.Country || "Inconnu"; 
 
-                if (!countryCounts[country]) { // Si le pays n'existe pas dans l'objet, l'ajouter
+                if (!countryCounts[country]) { 
                     countryCounts[country] = 1;
-                } else { // Sinon, incrémenter le compte
+                } else { 
                     countryCounts[country]++;
                 }
             });
@@ -96,8 +122,8 @@ sap.ui.define([
             // Convertir l'objet de comptes en tableau pour l'affichage
             for (var key in countryCounts) {
                 aGroupedData1.push({
-                    country: key, // Le pays
-                    value: countryCounts[key] // Le nombre de consultants disponibles
+                    country: key,
+                    value: countryCounts[key] 
                 });
             }
             return aGroupedData1;
@@ -109,12 +135,12 @@ sap.ui.define([
 
             // Define the filter for availability
 
-            oModel.read("/CONSULTANTIDSet", { // Chemin de l'entité dans OData
+            oModel.read("/CONSULTANTIDSet", {
                 success: function (oData) {
-                    var groupedData = this.groupByCountry(oData.results); // Groupement des données
-                    console.log("Grouped data:", groupedData); // Vérification des données groupées
-                    oJSONModel.setData({ tilesData2: groupedData }); // Définit le modèle pour la vue
-                    this.getView().setModel(oJSONModel, "TilesData2"); // Associe le modèle JSON à la vue
+                    var groupedData = this.groupByCountry(oData.results); 
+                    console.log("Grouped data:", groupedData); 
+                    oJSONModel.setData({ tilesData2: groupedData }); 
+                    this.getView().setModel(oJSONModel, "TilesData2"); 
                 }.bind(this),
                 error: function (oError) {
                     console.error("Erreur lors de la récupération des données:", oError);
@@ -123,14 +149,14 @@ sap.ui.define([
         },
 
         groupByCountry: function (aData) {
-            var countryCounts = {}; // Initialiser les comptes par pays
-
+            var countryCounts = {}; 
+            
             aData.forEach(function (item) {
-                var country = item.Country || "Inconnu"; // Si le pays est vide ou indéfini, le définir à "Inconnu"
+                var country = item.Country || "Inconnu"; 
 
-                if (!countryCounts[country]) { // Si le pays n'existe pas dans l'objet, l'ajouter
+                if (!countryCounts[country]) { 
                     countryCounts[country] = 1;
-                } else { // Sinon, incrémenter le compte
+                } else { 
                     countryCounts[country]++;
                 }
             });
@@ -194,6 +220,11 @@ sap.ui.define([
         onConsultantTilePress: function () {
             this.getOwnerComponent().getRouter().navTo("RouteConsultant");
         },
+
+        onManagerTilePress: function () {
+            this.getOwnerComponent().getRouter().navTo("Managers");
+        },
+
         onTicketTilePress: function () {
             this.getOwnerComponent().getRouter().navTo("RouteTicket");
         }

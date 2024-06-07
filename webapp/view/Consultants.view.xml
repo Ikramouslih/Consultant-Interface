@@ -157,7 +157,7 @@
 
                     <Column
                         id="_IDGenColumn4"
-                        width="8em"
+                        width="10em"
                         hAlign="Center"
                     >
                         <m:Label
@@ -165,10 +165,12 @@
                             text="Availability"
                         />
                         <template>
-                            <m:Text
-                                id="_IDGenText11aA2"
-                                text="{= ${Disponilbilty} === '1' ? '✅' : '❌' }"
-                                wrapping="false"
+                            <m:GenericTag
+                                id="_IDGenGenericTag1"
+                                text="{= ${Disponilbilty} === '1' ? 'Available' : 'Unavailable'}"
+                                design="Full"
+                                class="statusWidth"
+                                status="{= ${Disponilbilty} === '1' ? 'Success' : 'Error'}"
                             />
                         </template>
                     </Column>
@@ -190,7 +192,24 @@
                             />
                         </template>
                     </Column>
-
+                    <Column
+                        id="_IDGenColumn6A"
+                        hAlign="End"
+                    >
+                        <m:Label
+                            id="_IDGenText6A"
+                            text=""
+                        />
+                        <template>
+                            <m:Button
+                                id="ToggleButton1A"
+                                icon="sap-icon://show"
+                                type="Transparent"
+                                class="showicon"
+                                press="onShow"
+                            />
+                        </template>
+                    </Column>
                     <Column
                         id="_IDGenColumn6"
                         hAlign="End"
@@ -202,13 +221,13 @@
                         <template>
                             <m:Button
                                 id="ToggleButton1"
-                                icon="sap-icon://show"
+                                icon="sap-icon://edit"
                                 type="Transparent"
                                 class="showicon"
-                                press="onPress"
+                                press="onEdit"
                             />
                         </template>
-                    </Column>
+                    </Column>                
                 </columns>
             </Table>
         </semantic:content>

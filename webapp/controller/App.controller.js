@@ -78,7 +78,6 @@ sap.ui.define(
       onConsultantsSelect: function () {
         this.getOwnerComponent().getRouter().navTo("RouteConsultant");
       },
-
       onDashboardSelect: function () {
         this.getOwnerComponent().getRouter().navTo("RouteManagement");
       },
@@ -88,6 +87,12 @@ sap.ui.define(
       onProjectsSelect: function () {
         this.getOwnerComponent().getRouter().navTo("Project");
       },
+      onConsultantCalendar: function () {
+        this.getOwnerComponent().getRouter().navTo("ConsultantCalendar");
+      },
+      onManagersSelect: function () {
+        this.getOwnerComponent().getRouter().navTo("Managers");
+      }
 
     });
   },

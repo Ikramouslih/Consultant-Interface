@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="management.controller.AssignTicket"
+    controllerName="management.controller.UpdateTicket"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:f="sap.ui.layout.form"
     xmlns:l="sap.ui.layout"
@@ -20,7 +20,7 @@
                     <f:Form id="FormToolbar" editable="true" ariaLabelledBy="Title1">
                         <f:toolbar>
                             <Toolbar id="TB1">
-                                <Title id="Title1" text="Assign Ticket #{IdTicket}"/>
+                                <Title id="Title1" text="Update Ticket #{IdTicket}"/>
                                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                             </Toolbar>
                         </f:toolbar>
@@ -51,24 +51,24 @@
                                 <f:formElements>
                                     <f:FormElement id="idJiraElement" label="Jira Ticket ID">
                                         <f:fields>
-                                            <Input id="IdTicketJira" placeholder="Enter Jira ticket's ID" required="true" value="{IdJira}" enabled="false"/>
+                                            <Input id="IdTicketJira" placeholder="Enter Jira ticket's ID" required="true" value="{IdJira}"/>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="titreElement" label="Titre">
                                         <f:fields>
-                                            <Input id="Titre" placeholder="Enter the ticket's title" required="true" value="{Titre}" enabled="false"/>
+                                            <Input id="Titre" placeholder="Enter the ticket's title" required="true" value="{Titre}"/>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="projetElement" label="Project">
                                         <f:fields>
-                                            <Select id="Projet" forceSelection="false" items="{ path: '/PROJECTIDSet', sorter: { path: 'IdProject' } }" required="true" selectedKey="{Projet}" enabled="false">
+                                            <Select id="Projet" forceSelection="false" items="{ path: '/PROJECTIDSet', sorter: { path: 'IdProject' } }" required="true" selectedKey="{Projet}" >
                                                 <core:Item id="_IDGenItem1" key="{IdProject}" text="{NomProjet}" />
                                             </Select>
                                         </f:fields>
                                     </f:FormElement>
                                     <f:FormElement id="priorityElement" label="Priority">
                                         <f:fields>
-                                            <Select id="Priority" forceSelection="false" required="true" selectedKey="{Priority}" enabled="false">
+                                            <Select id="Priority" forceSelection="false" required="true" selectedKey="{Priority}">
                                                 <core:Item id="_IDGenItem12" key="Low" text="Low" />
                                                 <core:Item id="_IDGenItem123" key="Medium" text="Medium" />
                                                 <core:Item id="_IDGenItem124" key="High" text="High" />
@@ -77,7 +77,7 @@
                                     </f:FormElement>
                                     <f:FormElement id="consultantElement" label="Consultant">
                                         <f:fields>
-                                            <Select id="Consultant" forceSelection="false" items="{ path: '/CONSULTANTIDSet', sorter: { path: 'ConsultantId' } }" selectedKey="{Consultant}" >
+                                            <Select id="Consultant" forceSelection="false" items="{ path: '/CONSULTANTIDSet', sorter: { path: 'ConsultantId' } }" selectedKey="{Consultant}" enabled="false">
                                                 <core:Item id="_IDGenItem2" key="{ConsultantId}" text="{Name} {FirstName}" />
                                             </Select>
                                         </f:fields>
@@ -86,7 +86,7 @@
                                         <f:fields>
                                             <MultiInput id="technology" 
                                                 showValueHelp="true" 
-                                                valueHelpRequest="handleValueHelp" enabled="false">
+                                                valueHelpRequest="handleValueHelp">
                                             </MultiInput>
                                         </f:fields>
                                     </f:FormElement>
@@ -95,7 +95,7 @@
                                             <StepInput id="Estimated"
                                                 required="true"
                                                 min="1"
-                                                change="onChange" value="{Estimated}" enabled="false"/>
+                                                change="onChange" value="{Estimated}"/>
                                         </f:fields>
                                     </f:FormElement>
                                 </f:formElements>
@@ -111,7 +111,7 @@
                                     <f:FormElement id="descriptionElement" label="Description">
                                         <f:fields>
                                         <FeedInput id="Description" 
-                                            showIcon="false" placeholder="Enter the ticket's Details..." value="{Description}" enabled="false"/>
+                                            showIcon="false" placeholder="Enter the ticket's Details..." value="{Description}"/>
                                         </f:fields>
                                     </f:FormElement>
                                 </f:formElements>

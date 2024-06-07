@@ -10,14 +10,14 @@ sap.ui.define([
     onInit: function () {
       this._mFilters = {
         all: [], // No filter, show all
-        completed: [new Filter("Status", FilterOperator.EQ, "TERMINE")], // Completed tickets
-        in_progress: [new Filter("Status", FilterOperator.EQ, "EN-COURS")], // In progress tickets
-        not_assigned: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")] // Not assigned tickets
+        completed: [new Filter("Status", FilterOperator.EQ, "Done")], // Completed tickets
+        in_progress: [new Filter("Status", FilterOperator.EQ, "In Progress")], // In progress tickets
+        not_assigned: [new Filter("Status", FilterOperator.EQ, "Unassigned")] // Not assigned tickets
       };
 
       var oModel = this.getOwnerComponent().getModel();
       this._setCounts(oModel);
-      this.loadTicketsWithConsultantNames();
+      this.loadTicketsWithConsultantAndProjectNames();
     },
 
     _setCounts: function (oModel) {
@@ -34,7 +34,7 @@ sap.ui.define([
 
       // Completed count
       oModel.read("/TICKETIDSet/$count", {
-        filters: [new Filter("Status", FilterOperator.EQ, "TERMINE")],
+        filters: [new Filter("Status", FilterOperator.EQ, "Done")],
         success: function (iCount) {
           var oCountModel = this.getView().getModel("CountModel");
           oCountModel.setProperty("/completed", iCount);
@@ -46,7 +46,7 @@ sap.ui.define([
 
       // In progress count
       oModel.read("/TICKETIDSet/$count", {
-        filters: [new Filter("Status", FilterOperator.EQ, "EN-COURS")],
+        filters: [new Filter("Status", FilterOperator.EQ, "In Progress")],
         success: function (iCount) {
           var oCountModel = this.getView().getModel("CountModel");
           oCountModel.setProperty("/in_progress", iCount);
@@ -58,7 +58,7 @@ sap.ui.define([
 
       // Not assigned count
       oModel.read("/TICKETIDSet/$count", {
-        filters: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")],
+        filters: [new Filter("Status", FilterOperator.EQ, "Unassigned")],
         success: function (iCount) {
           var oCountModel = this.getView().getModel("CountModel");
           oCountModel.setProperty("/not_assigned", iCount);
@@ -69,15 +69,16 @@ sap.ui.define([
       });
     },
 
-    loadTicketsWithConsultantNames: function () {
+    loadTicketsWithConsultantAndProjectNames: function () {
       var oModel = this.getOwnerComponent().getModel();
       var aTickets = [];
       var aConsultants = [];
+      var aProjects = [];
 
       oModel.read("/TICKETIDSet", {
         success: function (oData) {
           aTickets = oData.results;
-          checkIfBothLoaded();
+          checkIfAllLoaded();
         },
         error: function (oError) {
           console.error("Error reading tickets:", oError);
@@ -87,22 +88,39 @@ sap.ui.define([
       oModel.read("/CONSULTANTIDSet", {
         success: function (oData) {
           aConsultants = oData.results;
-          checkIfBothLoaded();
+          checkIfAllLoaded();
         },
         error: function (oError) {
           console.error("Error reading consultants:", oError);
         }
       });
 
-      var checkIfBothLoaded = function () {
-        if (aTickets.length > 0 && aConsultants.length > 0) {
+      oModel.read("/PROJECTIDSet", {
+        success: function (oData) {
+          aProjects = oData.results;
+          checkIfAllLoaded();
+        },
+        error: function (oError) {
+          console.error("Error reading projects:", oError);
+        }
+      });
+
+      var checkIfAllLoaded = function () {
+        if (aTickets.length > 0 && aConsultants.length > 0 && aProjects.length > 0) {
           var oConsultantMap = aConsultants.reduce(function (map, consultant) {
             map[consultant.ConsultantId] = consultant.Name + " " + consultant.FirstName;
             return map;
           }, {});
 
+          var oProjectMap = aProjects.reduce(function (map, project) {
+            map[project.IdProject] = project.NomProjet;
+            return map;
+          }, {});
+
           var aMergedData = aTickets.map(function (ticket) {
             ticket.ConsultantName = oConsultantMap[ticket.Consultant] || "-";
+            ticket.ProjectName = oProjectMap[ticket.Projet] || "Unknown Project";
+
             return ticket;
           });
 
@@ -112,20 +130,51 @@ sap.ui.define([
       }.bind(this);
     },
 
-    onQuickFilter: function (oEvent) {
-      var sSelectedKey = oEvent.getParameter("selectedKey");
-      this._sSelectedFilterKey = sSelectedKey; // Enregistrer la clé du filtre sélectionné
-
-      if (sSelectedKey === "create") {
-        this.getOwnerComponent().getRouter().navTo("CreateTicket");
-      } else if (sSelectedKey === "extract") {
-        this.onExtractTickets(); // Appel de la nouvelle fonction d'extraction
-      } else {
-        var oBinding = this.byId("idProductsTable").getBinding("rows");
-        var aFilters = this._mFilters[sSelectedKey];
-        oBinding.filter(aFilters);
+    onSearch: function (oEvent) {
+      // Get the value from the search field
+      var sQuery = oEvent.getParameter("query");
+      // Build a filter array
+      var aFilters = [];
+      if (sQuery && sQuery.length > 0) {
+          aFilters = new Filter([
+              new Filter("IdTicket", FilterOperator.Contains, sQuery),
+              new Filter("IdJira", FilterOperator.Contains, sQuery),
+              new Filter("Titre", FilterOperator.Contains, sQuery),
+              new Filter("Description", FilterOperator.Contains, sQuery),
+              new Filter("ProjectName", FilterOperator.Contains, sQuery),
+              new Filter("ConsultantName", FilterOperator.Contains, sQuery),
+              new Filter("Status", FilterOperator.Contains, sQuery),
+              new Filter("Priority", FilterOperator.Contains, sQuery),
+              new Filter("CreationDate", FilterOperator.Contains, sQuery),
+              new Filter("StartDate", FilterOperator.Contains, sQuery),
+              new Filter("EndDate", FilterOperator.Contains, sQuery),
+              new Filter("Technology", FilterOperator.Contains, sQuery)
+            ], false);
       }
-    },
+console.log("filters",aFilters);
+      // Apply the filter to the table binding
+      var oTable = this.byId("idProductsTable");
+      var oBinding = oTable.getBinding("rows");
+      oBinding.filter(aFilters, "Application");
+      console.log(oBinding.filter(aFilters))
+  },
+
+  onQuickFilter: function (oEvent) {
+      var sKey = oEvent.getParameter("selectedKey");
+      var oTable = this.byId("idProductsTable");
+      var oBinding = oTable.getBinding("rows");
+
+      var aFilters = [];
+      if (sKey === "completed") {
+          aFilters.push(new Filter("Status", FilterOperator.EQ, "Done"));
+      } else if (sKey === "in_progress") {
+          aFilters.push(new Filter("Status", FilterOperator.EQ, "In Progress"));
+      } else if (sKey === "not_assigned") {
+          aFilters.push(new Filter("Status", FilterOperator.EQ, "Unassigned"));
+      }
+
+      oBinding.filter(aFilters, "Application");
+  },
 
     onExtractTickets: function () {
       var oTable = this.byId("idProductsTable");
@@ -137,15 +186,15 @@ sap.ui.define([
 
       var aCSV = [];
 
-      // Ajoutez les en-têtes CSV
+      // Add CSV headers
       aCSV.push("Jira ID,Title,Project,Consultant,Status,Priority,Creation Date,Estimated Days");
 
-      // Ajoutez les données de la table
+      // Add table data
       aFilteredData.forEach(function (oTicket) {
         aCSV.push([
           oTicket.IdJira,
           oTicket.Titre,
-          oTicket.Projet,
+          oTicket.ProjectName,
           oTicket.ConsultantName,
           oTicket.Status,
           oTicket.Priority,
@@ -154,10 +203,10 @@ sap.ui.define([
         ].join(","));
       }.bind(this));
 
-      // Convertir les données en chaîne CSV
+      // Convert data to CSV string
       var sCSV = aCSV.join("\n");
 
-      // Définir le nom de fichier basé sur le filtre sélectionné
+      // Set file name based on selected filter
       var sFileName = "tickets_" + this._sSelectedFilterKey + ".csv";
       var oBlob = new Blob([sCSV], { type: 'text/csv;charset=utf-8;' });
       var oLink = document.createElement("a");
@@ -177,33 +226,33 @@ sap.ui.define([
       var oBindingContext = oSource.getBindingContext("TicketsModel");
       var sTicketId = oBindingContext.getProperty("IdTicket");
 
-      // Logique de redirection ou autre action
+      // Redirect or perform other actions
       this.getOwnerComponent().getRouter().navTo("AssignTicket", { IdTicket: sTicketId });
     },
 
     formatPriorityColor: function (sPriority) {
       switch (sPriority) {
-        case "HIGH":
+        case "High":
           return 2;
-        case "MEDIUM":
+        case "Medium":
           return 1;
-        case "LOW":
+        case "Low":
           return 8;
         default:
-          return;
+          return 8;
       }
     },
 
     formatPriorityIcon: function (sPriority) {
       switch (sPriority) {
-        case "HIGH":
+        case "High":
           return "sap-icon://arrow-top";
-        case "MEDIUM":
+        case "Medium":
           return "sap-icon://line-charts";
-        case "LOW":
+        case "Low":
           return "sap-icon://arrow-bottom";
         default:
-          return "";
+          return "sap-icon://arrow-bottom";
       }
     },
 
@@ -223,8 +272,30 @@ sap.ui.define([
       var month = sDate.substring(4, 6);
       var day = sDate.substring(6, 8);
 
-      // Return the formatted date
-      return day + "/" + month + "/" + year;
+      // Convert to "YYYY-MM-DD" format
+      var formattedDate = year + "-" + month + "-" + day;
+      return formattedDate;
+    },
+
+    onEdit: function (oEvent) {
+      console.log("Edit button clicked");
+      var oButton = oEvent.getSource();
+      var oBindingContext = oButton.getBindingContext("TicketsModel");
+      if (oBindingContext) {
+          var sTicketId = oBindingContext.getProperty("IdTicket");
+          if (sTicketId) {
+              var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+              oRouter.navTo("UpdateTicket", {
+                ticketId: sTicketId
+              });
+          } else {
+              MessageToast.show("Ticket ID is not available.");
+          }
+      } else {
+          MessageToast.show("No binding context available.");
+      }
     }
+
+
   });
 });

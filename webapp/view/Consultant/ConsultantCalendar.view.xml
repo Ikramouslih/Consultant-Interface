@@ -1,0 +1,55 @@
+<mvc:View
+    controllerName="management.controller.ConsultantCalendar"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    class="viewPadding">
+    <l:HorizontalLayout id="_IDGenHorizontalLayout1" class="calendarContainer">
+        <Text id="_IDGenText1" class="calendarText" text="Calendar" />
+        <HBox id="_IDGenHBox10" class="calendarContentWrapper">
+                    <u:Calendar
+                        id="calendar"
+                        select="handleCalendarSelect"
+                        intervalSelection="false"
+                        singleSelection="false" 
+                        class="calendar"/>
+                    <VBox id="_IDGenVBox1" class="CalendarButtonList">
+                    <l:VerticalLayout id="_IDGenVerticalLayout2">
+                        <HBox id="_IDGenHBox1" class="CalendarAvailability">
+                            <Label id="_IDGenLabel1" text="Availability:" class="sapUiTinyMarginEnd" />
+                            <Switch id="_IDGenSwitch1" type="AcceptReject" state="{/Enabled}" change=".onSwitchChange" />
+                        </HBox>
+                        <HBox id="_IDGenHBox2" >
+                        <Input
+                            id="TicketInput"
+                            type="Text"
+                            placeholder="Enter Ticket ..."
+                            showValueHelp="true"
+                            valueHelpRequest=".onValueHelpRequest"
+                            width="15rem"
+                            class="TicketInput"
+                            enabled="{/Enabled}" />
+                        <ToggleButton id="_IDGenToggleButton1" text="Valider" press="onCreateAvailability" />
+                        </HBox>
+                    </l:VerticalLayout>
+                        <Button id="_IDGenButton1"
+                            press="handleRemoveSelection"
+                            text="Remove All Selected Dates" />
+                        <List
+                            id="selectedDatesList"
+                            class="labelMarginLeft"
+                            noDataText="No Dates Selected"
+                            headerText="Selected Dates (yyyy-mm-dd)"
+                            items="{path: '/selectedDates'}">
+                            <StandardListItem id="_IDGenStandardListItem1"
+                            class="calendarList"
+                                title="{path : 'Date', formatter : '.formatDate'}" />
+                        </List>
+                         
+                    </VBox>
+                
+            
+        </HBox>
+    </l:HorizontalLayout>
+</mvc:View>

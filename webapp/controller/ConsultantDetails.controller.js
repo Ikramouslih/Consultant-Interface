@@ -5,11 +5,12 @@ sap.ui.define([
   "sap/ui/model/FilterOperator",
   "sap/m/MessageToast",
   "sap/m/Dialog",
-  "sap/m/Button"
+  "sap/m/Button",
 ], function (Controller, JSONModel, Filter, FilterOperator, MessageToast) {
   "use strict";
 
   return Controller.extend("management.controller.ConsultantDetails", {
+    
     onInit: function () {
       var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
       oRouter.getRoute("ConsultantDetails").attachPatternMatched(this._onObjectMatched, this);
@@ -19,12 +20,18 @@ sap.ui.define([
       this.getView().setModel(oJSONModel, "TICKETIDDATA");
       this.loadDonutData(); // Charger les données au démarrage
     },
+
     _onObjectMatched: function (oEvent) {
       var sConsultantId = oEvent.getParameter("arguments").consultantId;
 
       // Bind the view to the consultant data
       this.getView().bindElement({
-        path: "/CONSULTANTIDSet('" + sConsultantId + "')"
+        path: "/CONSULTANTIDSet('" + sConsultantId + "')",
+        events: {
+          dataReceived: function(oData) {
+            // console.log("Consultant data:", oData.getParameter("data"));
+          }
+        }
       });
 
       var oModel = this.getOwnerComponent().getModel();
@@ -52,7 +59,7 @@ sap.ui.define([
         filters: [oFilter],  // Apply the filter based on the consultant ID
         success: function (oData) {
           var aGroupedData = this.groupByStatus(oData.results); // Group data by status
-          console.log("Grouped data:", aGroupedData);
+          // console.log("Grouped data:", aGroupedData);
           oJSONModel.setData({ donutData: aGroupedData });
           this.getView().setModel(oJSONModel, "donutModel"); // Set the model for the donut chart
         }.bind(this),
@@ -91,13 +98,13 @@ sap.ui.define([
 
     onSelectionChanged: function (oEvent) {
       var oSelectedSegment = oEvent.getParameter("selectedSegment");
-      console.log("Segment sélectionné:", oSelectedSegment.getLabel());
+      // console.log("Segment sélectionné:", oSelectedSegment.getLabel());
     },
     showTicketInfo: function (oEvent) {
       var oSelectedItem = oEvent.getSource();
       var oTicketContext = oSelectedItem.getBindingContext("TICKETIDDATA");
       var oTicketDetails = oTicketContext.getObject();
-      console.log(oTicketDetails);
+      // console.log(oTicketDetails);
 
       if (!this._oDialog) {
         this._oDialog = sap.ui.xmlfragment("management.view.Dashboard.TicketDetails", this);

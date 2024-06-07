@@ -130,6 +130,25 @@
                             />
                         </template>
                     </Column>
+                    
+                    <Column
+                        id="_IDGenColumn6"
+                        hAlign="End"
+                    >
+                        <m:Label
+                            id="_IDGenText6"
+                            text=""
+                        />
+                        <template>
+                            <m:Button
+                                id="ToggleButton1"
+                                icon="sap-icon://edit"
+                                type="Transparent"
+                                class="showicon"
+                                press="onEdit"
+                            />
+                        </template>
+                    </Column>  
                 </columns>
             </Table>
         </semantic:content>

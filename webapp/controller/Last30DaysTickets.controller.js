@@ -48,7 +48,7 @@ sap.ui.define([
 
                             oChart.setVizProperties({
                                 title: {
-                                    text: "Tickets done vs Tickets in progress for each project in last 30 days."
+                                    text: "Tickets done vs Tickets in progress vs unassigned Tickets for each project in last 30 days."
                                 }
                             });
                         }.bind(this),
@@ -80,14 +80,17 @@ sap.ui.define([
                     oDataMap[sProjectName] = {
                         Projet: sProjectName,
                         TicketsDone: 0.01, // Set to a small non-zero number by default
+                        TicketsUnassigned: 0.01, // Set to a small non-zero number by default
                         TicketsInProgress: 0.01 // Set to a small non-zero number by default
                     };
                 }
 
-                if (sStatus === "TERMINE") {
+                if (sStatus === "Done") {
                     oDataMap[sProjectName].TicketsDone++;
-                } else if (sStatus === "EN-COURS") {
+                } else if (sStatus === "In Progress") {
                     oDataMap[sProjectName].TicketsInProgress++;
+                } else if (sStatus === "Unassigned") {
+                    oDataMap[sProjectName].TicketsUnassigned++;
                 }
             });
 

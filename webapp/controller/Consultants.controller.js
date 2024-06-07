@@ -51,7 +51,7 @@ sap.ui.define(
         });
       },
 
-      onPress: function (oEvent) {
+      onShow: function (oEvent) {
         var oItem = oEvent.getSource();
         var oBindingContext = oItem.getBindingContext();
         var sConsultantId = oBindingContext.getProperty("ConsultantId");
@@ -60,8 +60,16 @@ sap.ui.define(
         this.getOwnerComponent().getRouter().navTo("ConsultantDetails", { consultantId: sConsultantId });
       },
 
-      onCreateConsultant: function () {
-        this.getOwnerComponent().getRouter().navTo("CreateConsultant");
+      onEdit: function (oEvent) {
+        var oItem = oEvent.getSource();
+        var oBindingContext = oItem.getBindingContext();
+        var sConsultantId = oBindingContext.getProperty("ConsultantId");
+        // Navigate to the update page view with the selected person's ID
+        this.getOwnerComponent().getRouter().navTo("UpdateConsultant", { consultantId: sConsultantId });
+      },
+
+      onCreateUser: function () {
+        this.getOwnerComponent().getRouter().navTo("CreateUser");
       },
 
       onQuickFilter: function (oEvent) {
@@ -69,7 +77,7 @@ sap.ui.define(
         this._sSelectedFilterKey = sSelectedKey; // Save the selected filter key
 
         if (sSelectedKey === "create") {
-          this.getOwnerComponent().getRouter().navTo("CreateConsultant");
+          this.getOwnerComponent().getRouter().navTo("CreateUser");
         } else if (sSelectedKey === "extract") {
           this.onExtract(); // Call the extract function
         } else {

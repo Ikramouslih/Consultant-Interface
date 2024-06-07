@@ -126,8 +126,27 @@
                                 id="_IDGenToggleButton1"
                                 icon="sap-icon://add-document"
                                 type="Transparent"
-                                enabled="{= ${TicketsModel>Status} === 'NON-AFFECTER' }"
+                                enabled="{= ${TicketsModel>Status} === 'Unassigned' }"
                                 press="onAssignTicket"
+                            />
+                        </template>
+                    </Column>
+
+                    <Column
+                        id="_IDGenColumn12A"
+                        width="5em"
+                        hAlign="Center"
+
+                    >
+                        <m:Label
+                            id="_IDGenLabelA12"
+                            text="Ticket ID"
+                        />
+                        <template>
+                            <m:Text
+                                id="_IDGenText1A12"
+                                text="{TicketsModel>IdTicket}"
+                                wrapping="false"
                             />
                         </template>
                     </Column>
@@ -135,6 +154,8 @@
                     <Column
                         id="_IDGenColumn12"
                         width="5em"
+                        hAlign="Center"
+
                     >
                         <m:Label
                             id="_IDGenLabel12"
@@ -152,6 +173,7 @@
                     <Column
                         id="_IDGenColumn1a2"
                         width="16rem"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a2"
@@ -169,6 +191,7 @@
                     <Column
                         id="_IDGenColumn122"
                         width="11em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel122"
@@ -176,9 +199,8 @@
                         />
                         <template>
                             <m:Text
-                                id="_IDGenText1122"
-                                text="{TicketsModel>Projet}"
-                                wrapping="false"
+                                id="_IDGenText1"
+                                text="{TicketsModel>ProjectName}"
                             />
                         </template>
                     </Column>
@@ -186,6 +208,7 @@
                     <Column
                         id="_IDGenColumn123"
                         width="14em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel123"
@@ -203,6 +226,7 @@
                     <Column
                         id="_IDGenColumn1212"
                         width="11em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1212"
@@ -221,7 +245,7 @@
                                     text="{TicketsModel>Status}"
                                     design="Full"
                                     class="statusWidth"
-                                    status="{= ${TicketsModel>Status} === 'TERMINE' ? 'Success' : ${TicketsModel>Status} === 'NON-AFFECTER' ? 'Error' : ${TicketsModel>Status} === 'EN-COURS' ? 'Warning' : 'Warning'}"
+                                    status="{= ${TicketsModel>Status} === 'Done' ? 'Success' : ${TicketsModel>Status} === 'Unassigned' ? 'Error' : ${TicketsModel>Status} === 'In Progress' ? 'Information' : 'Warning'}"
                                 />
                             </m:FlexBox>
                         </template>
@@ -230,6 +254,7 @@
                     <Column
                         id="_IDGenColumna11211"
                         width="8em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a2111a"
@@ -238,7 +263,7 @@
                         <template>
                             <tnt:InfoLabel
                                 id="il81"
-                                text="{TicketsModel>Priority}"
+                                text="{= ${TicketsModel>Priority} === '' ? 'Low' : ${TicketsModel>Priority}}"
                                 colorScheme="{
                                     path: 'TicketsModel>Priority',
                                     formatter: '.formatPriorityColor'
@@ -254,6 +279,7 @@
                     <Column
                         id="_IDGenColumna12"
                         width="7em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a2a"
@@ -274,6 +300,7 @@
                     <Column
                         id="_IDGenColumna1211"
                         minWidth="7em"
+                        hAlign="Center"
                     >
                         <m:Label
                             id="_IDGenLabel1a211a"
@@ -287,6 +314,43 @@
                             />
                         </template>
                     </Column>
+
+                     <Column
+                        id="_IDGenColumn6A"
+                        hAlign="End"
+                    >
+                        <m:Label
+                            id="_IDGenText6A"
+                            text=""
+                        />
+                        <template>
+                            <m:Button
+                                id="ToggleButton1A"
+                                icon="sap-icon://show"
+                                type="Transparent"
+                                class="showicon"
+                                press="onShow"
+                            />
+                        </template>
+                    </Column>
+                    <Column
+                        id="_IDGenColumn6"
+                        hAlign="End"
+                    >
+                        <m:Label
+                            id="_IDGenText6"
+                            text=""
+                        />
+                        <template>
+                            <m:Button
+                                id="ToggleButton1"
+                                icon="sap-icon://edit"
+                                type="Transparent"
+                                class="showicon"
+                                press="onEdit"
+                            />
+                        </template>
+                    </Column>  
                 </columns>
             </Table>
         </semantic:content>

@@ -28,30 +28,41 @@
                 </viz.data:dimensions>
                 <viz.data:measures>
                     <viz.data:MeasureDefinition
-                        id="_IDGenMeasureDefinition1"
-                        name="Tickets Done"
-                        value="{TicketsDone}"
+                        id="_IDGenMeasureDefinition3"
+                        name="Unassigned"
+                        value="{TicketsUnassigned}"
                     />
                     <viz.data:MeasureDefinition
                         id="_IDGenMeasureDefinition2"
-                        name="Tickets In Progress"
+                        name="In Progress"
                         value="{TicketsInProgress}"
+                    />
+                    <viz.data:MeasureDefinition
+                        id="_IDGenMeasureDefinition1"
+                        name="Done"
+                        value="{TicketsDone}"
                     />
                 </viz.data:measures>
             </viz.data:FlattenedDataset>
         </viz:dataset>
         <viz:feeds>
             <viz.feeds:FeedItem
-                id="_IDGenFeedItem1"
+                id="_IDGenFeedItem33"
                 uid="valueAxis"
                 type="Measure"
-                values="Tickets Done"
+                values="Unassigned"
             />
             <viz.feeds:FeedItem
                 id="_IDGenFeedItem2"
                 uid="valueAxis"
                 type="Measure"
-                values="Tickets In Progress"
+                values="In Progress"
+            />
+            <viz.feeds:FeedItem
+                id="_IDGenFeedItem1"
+                uid="valueAxis"
+                type="Measure"
+                values="Done"
             />
             <viz.feeds:FeedItem
                 id="_IDGenFeedItem3"
