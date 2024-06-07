@@ -259,6 +259,12 @@
           ]
         },
         {
+          "name": "CTicket",
+          "pattern": "CTicket/{consultantId}",
+          "target": [
+            "TargetCTicket"]
+        },
+        {
           "name": "UpdateConsultant",
           "pattern": "consultant/update/{consultantId}",
           "target": [
@@ -357,6 +363,13 @@
           "clearControlAggregation": false,
           "viewId": "CreateProjects",
           "viewName": "ProjectCreate"
+        },
+        "TargetCTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "CTicket",
+          "viewName": "Consultant.CTicket"
         },
         "TargetUpdateConsultant": {
           "viewType": "XML",
