@@ -130,20 +130,51 @@ sap.ui.define([
       }.bind(this);
     },
 
-    onQuickFilter: function (oEvent) {
-      var sSelectedKey = oEvent.getParameter("selectedKey");
-      this._sSelectedFilterKey = sSelectedKey; // Save the selected filter key
-
-      if (sSelectedKey === "create") {
-        this.getOwnerComponent().getRouter().navTo("CreateTicket");
-      } else if (sSelectedKey === "extract") {
-        this.onExtractTickets(); // Call the new extraction function
-      } else {
-        var oBinding = this.byId("idProductsTable").getBinding("rows");
-        var aFilters = this._mFilters[sSelectedKey];
-        oBinding.filter(aFilters);
+    onSearch: function (oEvent) {
+      // Get the value from the search field
+      var sQuery = oEvent.getParameter("query");
+      // Build a filter array
+      var aFilters = [];
+      if (sQuery && sQuery.length > 0) {
+          aFilters = new Filter([
+              new Filter("IdTicket", FilterOperator.Contains, sQuery),
+              new Filter("IdJira", FilterOperator.Contains, sQuery),
+              new Filter("Titre", FilterOperator.Contains, sQuery),
+              new Filter("Description", FilterOperator.Contains, sQuery),
+              new Filter("ProjectName", FilterOperator.Contains, sQuery),
+              new Filter("ConsultantName", FilterOperator.Contains, sQuery),
+              new Filter("Status", FilterOperator.Contains, sQuery),
+              new Filter("Priority", FilterOperator.Contains, sQuery),
+              new Filter("CreationDate", FilterOperator.Contains, sQuery),
+              new Filter("StartDate", FilterOperator.Contains, sQuery),
+              new Filter("EndDate", FilterOperator.Contains, sQuery),
+              new Filter("Technology", FilterOperator.Contains, sQuery)
+            ], false);
       }
-    },
+console.log("filters",aFilters);
+      // Apply the filter to the table binding
+      var oTable = this.byId("idProductsTable");
+      var oBinding = oTable.getBinding("rows");
+      oBinding.filter(aFilters, "Application");
+      console.log(oBinding.filter(aFilters))
+  },
+
+  onQuickFilter: function (oEvent) {
+      var sKey = oEvent.getParameter("selectedKey");
+      var oTable = this.byId("idProductsTable");
+      var oBinding = oTable.getBinding("rows");
+
+      var aFilters = [];
+      if (sKey === "completed") {
+          aFilters.push(new Filter("Status", FilterOperator.EQ, "Done"));
+      } else if (sKey === "in_progress") {
+          aFilters.push(new Filter("Status", FilterOperator.EQ, "In Progress"));
+      } else if (sKey === "not_assigned") {
+          aFilters.push(new Filter("Status", FilterOperator.EQ, "Unassigned"));
+      }
+
+      oBinding.filter(aFilters, "Application");
+  },
 
     onExtractTickets: function () {
       var oTable = this.byId("idProductsTable");
