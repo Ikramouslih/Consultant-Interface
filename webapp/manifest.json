@@ -242,6 +242,13 @@
           "target": [
             "TargetCreateProjects"
           ]
+        },
+        {
+          "name": "CTicket",
+          "pattern": "CTicket/{consultantId}",
+          "target": [
+            "TargetCTicket"
+          ]
         }
       ],
       "targets": {
@@ -307,6 +314,13 @@
           "clearControlAggregation": false,
           "viewId": "CreateProjects",
           "viewName": "ProjectCreate"
+        },
+        "TargetCTicket": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "CTicket",
+          "viewName": "Consultant.CTicket"
         }
       }
     },
