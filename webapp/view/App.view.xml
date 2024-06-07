@@ -124,7 +124,7 @@
                     <tnt:NavigationListItem
                         id="_IDGenNavigationListItem5"
                         class="sideNavLinks"
-                        text="Consultant Calendar"
+                        text="My Calendar"
                         icon="sap-icon://appointment-2"
                         expanded="true"
                         select="onConsultantCalendar"

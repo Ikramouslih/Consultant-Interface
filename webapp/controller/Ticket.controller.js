@@ -171,6 +171,10 @@ console.log("filters",aFilters);
           aFilters.push(new Filter("Status", FilterOperator.EQ, "In Progress"));
       } else if (sKey === "not_assigned") {
           aFilters.push(new Filter("Status", FilterOperator.EQ, "Unassigned"));
+      } else if  (sKey === "create") {
+        this.getOwnerComponent().getRouter().navTo("CreateTicket");
+      } else if (sKey === "extract") {
+        this.onExtractTickets();
       }
 
       oBinding.filter(aFilters, "Application");

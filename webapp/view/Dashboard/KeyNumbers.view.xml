@@ -170,6 +170,7 @@
                             id="SmartChart"
                              allowColumnLabels="true"
                              size="L"
+                             width="100%"
                         >
                             <mc:columns>
                                 <mc:ColumnMicroChartData
