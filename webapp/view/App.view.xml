@@ -1,4 +1,5 @@
 <mvc:View
+    xmlns:control="sap.gantt.control"
     controllerName="management.controller.App"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc"
@@ -28,7 +29,7 @@
                     >
                         <layoutData>
                             <OverflowToolbarLayoutData
-                                id="_IDGenOverflowToolbarLayoutData1"
+                                id="_IDGenOverflowToolbarLayoutDatapl1"
                                 priority="NeverOverflow"
                             />
                         </layoutData>
@@ -42,29 +43,27 @@
                 <ToolbarSpacer id="_IDGenToolbarSpacer1" />
                 <ToolbarSpacer id="_IDGenToolbarSpacer2" />
                 <Button
-                    id="notificationButton"
-                    icon="sap-icon://bell"
-                    visible="{= ${alerts>/alerts/notifications}.length === 0 ? false : true }"
+                    id="userButton"
+                    text="{i18n>userId}"
                     type="Transparent"
-                    press=".onNotificationPress"
-                    tooltip="{i18n>notificationButtonTooltip}"
                 >
                     <layoutData>
                         <OverflowToolbarLayoutData
-                            id="_IDGenOverflowToolbarLayoutData3"
+                            id="_IDGenOverflowToolbarLayoutData4"
                             closeOverflowOnInteraction="false"
                         />
                     </layoutData>
                 </Button>
                 <Button
-                    id="userButton"
-                    text="{i18n>userName}"
+                    id="notificationButton"
+                    icon="sap-icon://bell"
+                    visible="{= ${alerts>/alerts/notifications}.length === 0 ? false : true }"
                     type="Transparent"
-                    press=".onUserNamePress"
+                    press=".onNotificationPress"
                 >
                     <layoutData>
                         <OverflowToolbarLayoutData
-                            id="_IDGenOverflowToolbarLayoutData4"
+                            id="_IDGenOverflowToolbarLayoutData3"
                             closeOverflowOnInteraction="false"
                         />
                     </layoutData>
@@ -84,10 +83,34 @@
                     <tnt:NavigationListItem
                         id="_IDGenNavigationListItem1"
                         class="sideNavLinks"
-                        text="Dashboard"
+                        text="My Profile"
                         icon="sap-icon://home"
                         expanded="true"
-                        select="onDashboardSelect"
+                        select="onProfileSelect"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem6"
+                        class="sideNavLinks"
+                        text="My Workflow"
+                        icon="sap-icon://workflow-tasks"
+                        expanded="true"
+                        select="onWorkflowSelect"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem5"
+                        class="sideNavLinks"
+                        text="My Calendar"
+                        icon="sap-icon://appointment-2"
+                        expanded="true"
+                        select="onConsultantCalendarSelect"
+                    />
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem3"
+                        class="sideNavLinks"
+                        text="Tickets"
+                        icon="sap-icon://task"
+                        expanded="true"
+                        select="onTicketsSelect"
                     />
                     <tnt:NavigationListItem
                         id="_IDGenNavigationListItem22"
@@ -106,28 +129,12 @@
                         select="onConsultantsSelect"
                     />
                     <tnt:NavigationListItem
-                        id="_IDGenNavigationListItem3"
-                        class="sideNavLinks"
-                        text="Tickets"
-                        icon="sap-icon://task"
-                        expanded="true"
-                        select="onTicketsSelect"
-                    />
-                    <tnt:NavigationListItem
                         id="_IDGenNavigationListItem4"
                         class="sideNavLinks"
                         text="Projects"
                         icon="sap-icon://business-objects-experience"
                         expanded="true"
                         select="onProjectsSelect"
-                    />
-                    <tnt:NavigationListItem
-                        id="_IDGenNavigationListItem5"
-                        class="sideNavLinks"
-                        text="My Calendar"
-                        icon="sap-icon://appointment-2"
-                        expanded="true"
-                        select="onConsultantCalendar"
                     />
                 </tnt:NavigationList>
             </tnt:SideNavigation>
