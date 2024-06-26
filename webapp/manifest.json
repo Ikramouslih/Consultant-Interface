@@ -182,10 +182,10 @@
           ]
         },
         {
-          "name": "Project",
-          "pattern": "Project/",
+          "name": "Projects",
+          "pattern": "Projects/",
           "target": [
-            "Project"
+            "Projects"
           ]
         },
         {
@@ -253,12 +253,12 @@
           "viewId": "AssignTicket",
           "viewName": "Tickets.AssignTicket"
         },
-        "Project": {
+        "Projects": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Project",
-          "viewName": "Projects.Project"
+          "viewId": "Projects",
+          "viewName": "Projects.Projects"
         },
         "TargetCTicket": {
           "viewType": "XML",

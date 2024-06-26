@@ -109,7 +109,7 @@ sap.ui.define([
                     this._pValueHelpDialog.open();
                 }.bind(this),
                 error: function (oError) {
-                    console.log("Error fetching ticket data:", oError);
+                    MessageToast.show("Error while fetching ticket data: " + oError.message);
                 }
             });
         },

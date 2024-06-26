@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (Controller, Filter, FilterOperator, JSONModel) {
   "use strict";
 
-  return Controller.extend("management.controller.Tickets.Ticket", {
+  return Controller.extend("management.controller.Tickets.Tickets", {
 
     onInit: function () {
       // Initialize filters for ticket status categories
@@ -157,7 +157,7 @@ sap.ui.define([
 
     // Function to handle search for tickets based on user input
     onSearch: function (oEvent) {
-      var sQuery = oEvent.getParameter("query"); // Get search query
+      var sQuery = oEvent.getParameter("query") || oEvent.getParameter("newValue");
       var aFilters = [];
 
       // Build array of filters based on search query

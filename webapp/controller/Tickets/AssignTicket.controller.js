@@ -194,7 +194,6 @@ sap.ui.define(
             };
             oModel.create("/CONSULTANTIDSet", inputData, {
               success: function () {
-                console.log("Availability updated.");
                 location.reload();
               }.bind(this),
               error: function (oError) {

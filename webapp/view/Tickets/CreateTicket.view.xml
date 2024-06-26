@@ -154,6 +154,7 @@
                                                 id="Consultant"
                                                 forceSelection="false"
                                                 items="{ path: '/CONSULTANTIDSet', sorter: { path: 'ConsultantId' } }"
+                                                enabled="false"
                                             >
                                                 <core:Item
                                                     id="_IDGenItem2"

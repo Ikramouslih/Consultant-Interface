@@ -25,11 +25,12 @@
                 <m:SearchField
                     id="_IDGenSearchField1"
                     search=".onSearch"
+                    liveChange=".onSearch"
                     width="auto"
                 />
             </m:Toolbar>
         </semantic:titleHeading>
-
+ 
         <!-- IconTabBar for filters -->
         <semantic:headerContent>
             <m:IconTabBar
@@ -59,13 +60,13 @@
                 </m:items>
             </m:IconTabBar>
         </semantic:headerContent>
-
-        <!-- Main content with the table of consultants -->
+ 
+        <!-- Main content with the table of projects -->
         <semantic:content>
             <Table
                 id="idProjectsTable"
                 selectionMode="None"
-                rows="{/PROJECTIDSet}"
+                rows="{ProjectsModel>/Projects}"
                 alternateRowColors="true"
             >
                 <!-- Binding to OData data -->
@@ -83,12 +84,12 @@
                         <template>
                             <m:Text
                                 id="_IDGenText8"
-                                text="{IdProject}"
+                                text="{ProjectsModel>IdProject}"
                                 wrapping="false"
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn4"
                         hAlign="Center"
@@ -101,12 +102,12 @@
                         <template>
                             <m:Text
                                 id="_IDGenText9"
-                                text="{NomProjet}"
+                                text="{ProjectsModel>NomProjet}"
                                 wrapping="false"
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn5"
                         hAlign="Center"
@@ -118,7 +119,7 @@
                         <template>
                             <m:Text
                                 id="_IDGenText10"
-                                text="{ChefProjet}"
+                                text="{ProjectsModel>ChefProjet}"
                                 wrapping="false"
                             />
                         </template>
@@ -128,3 +129,4 @@
         </semantic:content>
     </semantic:SemanticPage>
 </mvc:View>
+ 

@@ -66,28 +66,25 @@ sap.ui.define([
 
     // Event handler for the search field
     onSearch: function (oEvent) {
-      var sQuery = oEvent.getParameter("query");
+      var sQuery = oEvent.getParameter("query") || oEvent.getParameter("newValue");
       var aFilters = [];
       
       // Apply search filters based on the query
       if (sQuery && sQuery.length > 0) {
-        aFilters.push(new Filter({
-          filters: [
+        aFilters = new Filter([
             new Filter("ManagerId", FilterOperator.Contains, sQuery),
             new Filter("Name", FilterOperator.Contains, sQuery),
             new Filter("FirstName", FilterOperator.Contains, sQuery),
             new Filter("Login", FilterOperator.Contains, sQuery),
             new Filter("Email", FilterOperator.Contains, sQuery),
             new Filter("Expertise", FilterOperator.Contains, sQuery)
-          ],
-          and: false
-        }));
+          ], false);
       }
       
       // Apply the filters to the table binding
       var oTable = this.byId("idManagersTable");
       var oBinding = oTable.getBinding("rows");
-      oBinding.filter(aFilters);
+      oBinding.filter(aFilters, "Application");
     },
 
     // Extract the filtered data to a CSV file

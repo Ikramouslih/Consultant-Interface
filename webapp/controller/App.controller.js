@@ -49,16 +49,19 @@ sap.ui.define([
       _handleWindowResize: function (oDevice) {
         if ((oDevice.name === "Tablet" && this._bExpanded) || oDevice.name === "Desktop") {
           this.onSideNavButtonPress();
+          // set the _bExpanded to false on tablet devices
+          // extending and collapsing of side navigation should be done when resizing from
+          // desktop to tablet screen sizes)
           this._bExpanded = (oDevice.name === "Desktop");
         }
       },
   
       // Update the selected key in the side model
       onRouteChange: function (oEvent) {
-        this.getModel('side').setProperty('/selectedKey', oEvent.getParameter('name'));
-        if (Device.system.phone) {
-          this.onSideNavButtonPress();
-        }
+        // this.getModel('side').setProperty('/selectedKey', oEvent.getParameter('name'));
+        // if (Device.system.phone) {
+        //   this.onSideNavButtonPress();
+        // }
       },
   
       // Toggle side navigation panel
@@ -93,7 +96,7 @@ sap.ui.define([
         this.getOwnerComponent().getRouter().navTo("RouteTicket");
       },
       onProjectsSelect: function () {
-        this.getOwnerComponent().getRouter().navTo("Project");
+        this.getOwnerComponent().getRouter().navTo("Projects");
       },
       onConsultantCalendarSelect: function () {
         this.getOwnerComponent().getRouter().navTo("ConsultantCalendar");

@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="management.controller.Tickets.Ticket"
+    controllerName="management.controller.Tickets.Tickets"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m"
     xmlns:semantic="sap.f.semantic"
@@ -26,6 +26,7 @@
                 <m:SearchField
                     id="searchField"
                     search=".onSearch"
+                    liveChange=".onSearch"
                     width="auto"
                 />
             </m:Toolbar>

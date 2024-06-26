@@ -26,11 +26,12 @@
                 <m:SearchField
                     id="searchField"
                     search=".onSearch"
+                    liveChange=".onSearch"
                     width="auto"
                 />
             </m:Toolbar>
         </semantic:titleHeading>
-
+ 
         <!-- IconTabBar for filters -->
         <semantic:headerContent>
             <m:IconTabBar
@@ -80,17 +81,17 @@
                 </m:items>
             </m:IconTabBar>
         </semantic:headerContent>
-
+ 
         <!-- Main content with the table of consultants -->
         <semantic:content>
             <Table
                 id="idConsultantsTable"
                 selectionMode="None"
-                rows="{/CONSULTANTIDSet}"
+                rows="{ConsultantsModel>/Consultants}"
                 alternateRowColors="true"
             >
                 <!-- Binding to OData data -->
-
+ 
                 <columns>
                     <!-- Definition of columns -->
                     <Column
@@ -105,12 +106,12 @@
                         <template>
                             <m:Text
                                 id="_IDGenText112"
-                                text="{ConsultantId}"
+                                text="{ConsultantsModel>ConsultantId}"
                                 wrapping="false"
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn2"
                         width="9em"
@@ -124,12 +125,12 @@
                         <template>
                             <m:Text
                                 id="_IDGenText11aQ2"
-                                text="{Name}"
+                                text="{ConsultantsModel>Name}"
                                 wrapping="false"
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn3"
                         width="9em"
@@ -142,12 +143,12 @@
                         <template>
                             <m:Text
                                 id="_IDGenText11a2"
-                                text="{FirstName}"
+                                text="{ConsultantsModel>FirstName}"
                                 wrapping="false"
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn4"
                         width="10em"
@@ -160,17 +161,16 @@
                         <template>
                             <m:GenericTag
                                 id="_IDGenGenericTag1"
-                                text="{= ${Disponilbilty} === '1' ? 'Available' : 'Unavailable'}"
+                                text="{= ${ConsultantsModel>Disponilbilty} === '1' ? 'Available' : 'Unavailable'}"
                                 design="Full"
                                 class="statusWidth"
-                                status="{= ${Disponilbilty} === '1' ? 'Success' : 'Error'}"
+                                status="{= ${ConsultantsModel>Disponilbilty} === '1' ? 'Success' : 'Error'}"
                             />
                         </template>
                     </Column>
-
+ 
                     <Column
                         id="_IDGenColumn5"
-                        width="20em"
                         hAlign="Center"
                     >
                         <m:Label
@@ -180,7 +180,7 @@
                         <template>
                             <m:Text
                                 id="_IDGenTexts11a2"
-                                text="{Email}"
+                                text="{ConsultantsModel>Email}"
                                 wrapping="false"
                             />
                         </template>

@@ -7,20 +7,28 @@ sap.ui.define([
 ], function (Controller, Filter, FilterOperator, JSONModel, Component) {
   "use strict";
 
-  return Controller.extend("management.controller.TicketManagement.Ticket", {
-
+  return Controller.extend("management.controller.TicketManagement.CTInProgress", {
     onInit: function () {
+      /*this._mFilters = {
+        all: [], // No filter, show all
+        completed: [new Filter("Status", FilterOperator.EQ, "TERMINE")], // Completed tickets
+        in_progress: [new Filter("Status", FilterOperator.EQ, "EN-COURS")], // In progress tickets
+        not_assigned: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")] // Not assigned tickets
+      };*/
+
+      // var oModel = this.getOwnerComponent().getModel();
+      // this._setCounts(oModel);
       this.loadTicketsWithProjectNames();
     },
 
-    // Load tickets with associated project names
     loadTicketsWithProjectNames: function () {
       var oModel = this.getOwnerComponent().getModel();
-      var oInProgressFilter = new Filter("Status", FilterOperator.EQ, "In Progress");
+      var oInProgressFilter = [
+        new Filter("Status", FilterOperator.EQ, "In Progress"),
+      ];
       var aTickets = [];
       var aProjects = [];
 
-      // Read tickets with 'In Progress' status
       oModel.read("/TICKETIDSet", {
         filters: [oInProgressFilter],
         success: function (oData) {
@@ -32,7 +40,6 @@ sap.ui.define([
         }
       });
 
-      // Read all projects
       oModel.read("/PROJECTIDSet", {
         success: function (oData) {
           aProjects = oData.results;
@@ -43,57 +50,69 @@ sap.ui.define([
         }
       });
 
-      // Function to check if both tickets and projects are loaded
       var checkIfBothLoaded = function () {
+        if (aTickets.length == 0) {
+          var oTicketsModel = new JSONModel({ Tickets: [], TicketCount: 0 });
+          this.getView().setModel(oTicketsModel, "TicketsModel");
+          return;
+        }
+
         if (aTickets.length > 0 && aProjects.length > 0) {
-          // Create a map of Project IDs to Project Names
           var oProjectMap = aProjects.reduce(function (map, project) {
             map[project.IdProject] = project.NomProjet;
             return map;
           }, {});
 
-          // Merge ticket data with project names
           var aMergedData = aTickets.map(function (ticket) {
-            ticket.ProjectName = oProjectMap[ticket.Project] || "-";
+            ticket.ProjectName = oProjectMap[ticket.Projet] || "-";
             return ticket;
           });
 
-          // Create JSON model for tickets with merged data
           var oTicketsModel = new JSONModel({ Tickets: aMergedData, TicketCount: aMergedData.length });
           this.getView().setModel(oTicketsModel, "TicketsModel");
         }
-      }.bind(this); // Ensure 'this' refers to the controller inside checkIfBothLoaded function
+      }.bind(this);
     },
 
-    // Format priority color based on priority level
     formatPriorityColor: function (sPriority) {
       switch (sPriority) {
-        case "High":
-          return 2; // Red
-        case "Medium":
-          return 1; // Yellow
-        case "Low":
-          return 8; // Grey
+        case "HIGH":
+          return 2;
+        case "MEDIUM":
+          return 1;
+        case "LOW":
+          return 8;
         default:
-          return 8; 
+          return;
       }
     },
 
-    // Format priority icon based on priority level
     formatPriorityIcon: function (sPriority) {
       switch (sPriority) {
         case "High":
-          return "sap-icon://arrow-top"; // Arrow pointing up for high priority
+          return "sap-icon://arrow-top";
         case "Medium":
-          return "sap-icon://line-charts"; // Line chart for medium priority
+          return "sap-icon://line-charts";
         case "Low":
-          return "sap-icon://arrow-bottom"; // Arrow pointing down for low priority
+          return "sap-icon://arrow-bottom";
         default:
-          return "sap-icon://arrow-bottom"; // Default to arrow down if not recognized
+          return "sap-icon://arrow-bottom";
       }
     },
 
-    // Format date from YYYYMMDD to DD/MM/YYYY
+    formatPriorityColor: function (sPriority) {
+      switch (sPriority) {
+        case "High":
+          return 2;
+        case "Medium":
+          return 1;
+        case "Low":
+          return 8;
+        default:
+          return 8;
+      }
+    },
+
     formatDate: function (sDate) {
       if (!sDate) {
         return "-";
@@ -111,36 +130,43 @@ sap.ui.define([
       var day = sDate.substring(6, 8);
 
       // Return the formatted date
-      return day + "/" + month + "/" + year;
+      return day + "-" + month + "-" + year;
     },
 
-    // Get selected item context from the 'TicketsModel'
     getSelectedItemContext: function () {
       var oTable = this.byId("idProductsTable");
       var aSelectedItems = oTable.getSelectedItems();
       var oSelectedItem = aSelectedItems[0];
       var oSelectedItemContext = oSelectedItem.getBindingContext("TicketsModel");
       if (!oSelectedItem) {
-        MessageToast.show("Please select a row!"); // Show message if no row is selected
-        return;
-      }
+				MessageToast.show("Please select a row!");
+				return;
+			}
+      // var oModel = this.getView().getModel("TicketsModel");
+      // var aTickets = oModel.getProperty("/Tickets");
+      console.log("we got the selected item to change it  "+oSelectedItemContext);
       return oSelectedItemContext;
     },
 
-    // Move selected item to 'In Progress' status
     onDropInProgress: function(oEvent) {
-      var oDraggedItem = oEvent.getParameter("draggedControl");
-      var oDraggedItemContext = oDraggedItem.getBindingContext("TicketsModel");
-      if (!oDraggedItem) {
-        return;
-      }
+      console.log("Bonjour je suis dedans");
+			var oDraggedItem = oEvent.getParameter("draggedControl");
+			var oDraggedItemContext = oDraggedItem.getBindingContext("TicketsModel");
+      console.log("Bonjour j'ai récupéré le context de l'item");
+			if (!oDraggedItem) {
+				return;
+			}
+      console.log("Bonjour j'ai dépassé la condition");
       var sStartDate = oDraggedItemContext.getProperty("StartDate");
 
-      // Get controller of 'CTicket' and call moveItemToTable function
-      var oOwnerComponent = Component.getOwnerComponentFor(this.getView());
-      var oTicketController = oOwnerComponent.byId("CTicket").getController();
-      oTicketController.moveItemToTable(oDraggedItemContext, "In Progress", sStartDate, "");
+			var oOwnerComponent = Component.getOwnerComponentFor(this.getView());
+			var oTicketController = oOwnerComponent.byId("CTicket").getController();
+			oTicketController.moveItemToTable(oDraggedItemContext, "In Progress", sStartDate, "");
 
-    },
+			// reset the rank property and update the model to refresh the bindings
+			/* var oAvailableProductsTable = Utils.getAvailableProductsTable(this);
+			// var oProductsModel = oAvailableProductsTable.getModel();
+			 oProductsModel.setProperty("Rank", Utils.ranking.Initial, oDraggedItemContext);*/
+		},
   });
 });
