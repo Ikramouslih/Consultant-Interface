@@ -86,7 +86,10 @@ sap.ui.define(
         var sEstimated = oView.byId("Estimated").getValue();
         var sPriority = oView.byId("Priority").getSelectedKey();
         var intEstimated = parseInt(sEstimated, 10);
-        var sIdTicket = "T-" + sProjet.substring(0, 2).toUpperCase() + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
+
+        var sIdTicket = "T-" + sProjet.substring(2, 5).toUpperCase() + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
+
+        console.log("sid",sIdTicket)
 
         // Get userId from the i18n model and fetch user data
         var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
@@ -123,6 +126,7 @@ sap.ui.define(
             MessageToast.show("Data successfully added.");
             this.onReset(); // Reset form fields
             location.reload(); // Reload the page
+            console.log("after creation");
           }.bind(this),
           error: function (oError) {
             MessageToast.show("Error adding data: " + oError.message);
@@ -153,16 +157,15 @@ sap.ui.define(
 
         var aSelects = [
           oView.byId("Projet"),
-          oView.byId("Technology"),
           oView.byId("Consultant")
         ];
 
         aInputs.forEach(function (oInput) {
-          oInput.setValueState(ValueState.None);
+          oInput.setValue("");
         });
 
         aSelects.forEach(function (oSelect) {
-          oSelect.setValueState(ValueState.None);
+          oSelect.setSelectedKey();
         });
       },
 

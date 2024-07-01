@@ -15,10 +15,18 @@ sap.ui.define([
 
     loadTicketsWithProjectNames: function () {
       var oModel = this.getOwnerComponent().getModel();
-      var oOnHoldFilter = new Filter("Status", FilterOperator.EQ, "On Hold");
+
+      // Get userId from the i18n model and fetch user data
+      this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+      var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+      var sUserId = oBundle.getText("userId");
+
+      var oOnHoldFilter = [new Filter("Status", FilterOperator.EQ, "On Hold"),
+                         new Filter("Consultant", FilterOperator.EQ, sUserId)
+      ];
+
       var aTickets = [];
       var aProjects = [];
-      var that = this;
 
       oModel.read("/TICKETIDSet", {
         filters: [oOnHoldFilter],
@@ -41,22 +49,29 @@ sap.ui.define([
         }
       });
 
-      function checkIfBothLoaded() {
+      
+      var checkIfBothLoaded = function () {
+        if (aTickets.length == 0) {
+          var oTicketsModel = new JSONModel({ Tickets: [], TicketCount: 0 });
+          this.getView().setModel(oTicketsModel, "TicketsModel");
+          return;
+        }
+       
         if (aTickets.length > 0 && aProjects.length > 0) {
           var oProjectMap = aProjects.reduce(function (map, project) {
             map[project.IdProject] = project.NomProjet;
             return map;
           }, {});
-
+ 
           var aMergedData = aTickets.map(function (ticket) {
             ticket.ProjectName = oProjectMap[ticket.Projet] || "-";
             return ticket;
           });
-
-          var oTicketsModel = new JSONModel({ Tickets: aMergedData, TicketCount: aMergedData.length });
-          that.getView().setModel(oTicketsModel, "TicketsModel");
+ 
+          var oTicketsModel = new JSONModel({ Tickets: aMergedData });
+          this.getView().setModel(oTicketsModel, "TicketsModel");
         }
-      }
+      }.bind(this);
     },
 
     formatPriorityColor: function (sPriority) {
@@ -106,7 +121,7 @@ sap.ui.define([
       var oTable = this.byId("idProductsTable");
       var aSelectedItems = oTable.getSelectedItems();
       if (aSelectedItems.length === 0) {
-        MessageToast.show("Please select a row!");
+        MessageToast.show("Please select a ticket!");
         return null;
       }
       var oSelectedItem = aSelectedItems[0];

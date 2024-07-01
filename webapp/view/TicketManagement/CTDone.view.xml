@@ -101,7 +101,7 @@
 
                             <m:Text
                                 id="_IDGenText11a2a"
-                                text="{ path: 'TicketsModel>StartDate',
+                                text="{ path: 'TicketsModel>EndDate',
                                         formatter: '.formatDate'}"
                             />
 				        </m:cells>

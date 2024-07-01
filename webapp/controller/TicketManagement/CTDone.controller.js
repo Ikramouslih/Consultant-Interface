@@ -16,16 +16,14 @@ sap.ui.define([
 
     loadTicketsWithProjectNames: function () {
       var oModel = this.getOwnerComponent().getModel();
-      var oDateFormat = DateFormat.getDateInstance({ pattern: "yyyyMMdd" });
-      var oToday = new Date();
-      var o30DaysAgo = new Date(oToday);
-      o30DaysAgo.setDate(oToday.getDate() - 30);
 
-      var s30DaysAgo = oDateFormat.format(o30DaysAgo);
-      var sToday = oDateFormat.format(oToday);
+      // Get userId from the i18n model and fetch user data
+      this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+      var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+      var sUserId = oBundle.getText("userId");
 
       var oDoneFilter = [new Filter("Status", FilterOperator.EQ, "Done"),
-                        new Filter("Consultant", FilterOperator.EQ, "C-IMO777")
+                         new Filter("Consultant", FilterOperator.EQ, sUserId)
       ];
       var aTickets = [];
       var aProjects = [];
@@ -34,7 +32,6 @@ sap.ui.define([
         filters: [oDoneFilter],
         success: function (oData) {
           aTickets = oData.results;
-          console.log("Tickets:", aTickets);
           checkIfBothLoaded();
         },
         error: function (oError) {
@@ -53,22 +50,30 @@ sap.ui.define([
       });
 
       var checkIfBothLoaded = function () {
+        if (aTickets.length == 0) {
+          var oTicketsModel = new JSONModel({ Tickets: [], TicketCount: 0 });
+          this.getView().setModel(oTicketsModel, "TicketsModel");
+          return;
+        }
+       
         if (aTickets.length > 0 && aProjects.length > 0) {
           var oProjectMap = aProjects.reduce(function (map, project) {
             map[project.IdProject] = project.NomProjet;
             return map;
           }, {});
-
+ 
           var aMergedData = aTickets.map(function (ticket) {
             ticket.ProjectName = oProjectMap[ticket.Projet] || "-";
             return ticket;
           });
-
+ 
           var oTicketsModel = new JSONModel({ Tickets: aMergedData });
           this.getView().setModel(oTicketsModel, "TicketsModel");
         }
       }.bind(this);
     },
+
+    
 
     formatPriorityIcon: function (sPriority) {
       switch (sPriority) {
@@ -113,35 +118,47 @@ sap.ui.define([
       return day + "-" + month + "-" + year;
     },
 
+    // Function to format date in YYYYMMDD format
+    _formatDate: function (date) {
+      var yyyy = date.getFullYear().toString();
+      var mm = (date.getMonth() + 1).toString().padStart(2, '0');
+      var dd = date.getDate().toString().padStart(2, '0');
+      return yyyy + mm + dd;
+    },
+
     getSelectedItemContext: function () {
       var oTable = this.byId("idProductsTable");
       var aSelectedItems = oTable.getSelectedItems();
       var oSelectedItem = aSelectedItems[0];
       if (!oSelectedItem) {
-        MessageToast.show("Please select a row!");
+        MessageToast.show("Please select a ticket!");
         return null;
       }
       var oSelectedItemContext = oSelectedItem.getBindingContext("TicketsModel");
       return oSelectedItemContext;
     },
 
+  
     onDropDone: function (oEvent) {
+      
       var oDraggedItem = oEvent.getParameter("draggedControl");
       var oDraggedItemContext = oDraggedItem.getBindingContext("TicketsModel");
       if (!oDraggedItemContext) {
         return;
       }
-
+    
       var sStartDate = oDraggedItemContext.getProperty("StartDate");
       var date = new Date();
       var yyyy = date.getFullYear().toString();
       var mm = (date.getMonth() + 1).toString().padStart(2, '0');
       var dd = date.getDate().toString().padStart(2, '0');
       var sEndDate = yyyy + mm + dd;
-
+    
       var oOwnerComponent = Component.getOwnerComponentFor(this.getView());
       var oTicketController = oOwnerComponent.byId("CTicket").getController();
       oTicketController.moveItemToTable(oDraggedItemContext, "Done", sStartDate, sEndDate);
+          
     }
+    
   });
 });

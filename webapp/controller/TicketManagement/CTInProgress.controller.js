@@ -3,29 +3,28 @@ sap.ui.define([
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
   "sap/ui/model/json/JSONModel",
-  "sap/ui/core/Component"
-], function (Controller, Filter, FilterOperator, JSONModel, Component) {
+  "sap/ui/core/Component",
+  "sap/m/MessageToast"
+], function (Controller, Filter, FilterOperator, JSONModel, Component, MessageToast) {
   "use strict";
 
   return Controller.extend("management.controller.TicketManagement.CTInProgress", {
     onInit: function () {
-      /*this._mFilters = {
-        all: [], // No filter, show all
-        completed: [new Filter("Status", FilterOperator.EQ, "TERMINE")], // Completed tickets
-        in_progress: [new Filter("Status", FilterOperator.EQ, "EN-COURS")], // In progress tickets
-        not_assigned: [new Filter("Status", FilterOperator.EQ, "NON-AFFECTER")] // Not assigned tickets
-      };*/
-
-      // var oModel = this.getOwnerComponent().getModel();
-      // this._setCounts(oModel);
       this.loadTicketsWithProjectNames();
     },
 
     loadTicketsWithProjectNames: function () {
       var oModel = this.getOwnerComponent().getModel();
-      var oInProgressFilter = [
-        new Filter("Status", FilterOperator.EQ, "In Progress"),
+
+      // Get userId from the i18n model and fetch user data
+      this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+      var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+      var sUserId = oBundle.getText("userId");
+
+      var oInProgressFilter = [new Filter("Status", FilterOperator.EQ, "In Progress"),
+                               new Filter("Consultant", FilterOperator.EQ, sUserId)
       ];
+
       var aTickets = [];
       var aProjects = [];
 
@@ -56,19 +55,19 @@ sap.ui.define([
           this.getView().setModel(oTicketsModel, "TicketsModel");
           return;
         }
-
+       
         if (aTickets.length > 0 && aProjects.length > 0) {
           var oProjectMap = aProjects.reduce(function (map, project) {
             map[project.IdProject] = project.NomProjet;
             return map;
           }, {});
-
+ 
           var aMergedData = aTickets.map(function (ticket) {
             ticket.ProjectName = oProjectMap[ticket.Projet] || "-";
             return ticket;
           });
-
-          var oTicketsModel = new JSONModel({ Tickets: aMergedData, TicketCount: aMergedData.length });
+ 
+          var oTicketsModel = new JSONModel({ Tickets: aMergedData });
           this.getView().setModel(oTicketsModel, "TicketsModel");
         }
       }.bind(this);
@@ -137,36 +136,37 @@ sap.ui.define([
       var oTable = this.byId("idProductsTable");
       var aSelectedItems = oTable.getSelectedItems();
       var oSelectedItem = aSelectedItems[0];
-      var oSelectedItemContext = oSelectedItem.getBindingContext("TicketsModel");
-      if (!oSelectedItem) {
-				MessageToast.show("Please select a row!");
+      if(oSelectedItem){
+        var oSelectedItemContext = oSelectedItem.getBindingContext("TicketsModel");
+        return oSelectedItemContext;
+      }
+      else {
+				MessageToast.show("Please select a ticket.");
 				return;
 			}
-      // var oModel = this.getView().getModel("TicketsModel");
-      // var aTickets = oModel.getProperty("/Tickets");
-      console.log("we got the selected item to change it  "+oSelectedItemContext);
-      return oSelectedItemContext;
     },
 
     onDropInProgress: function(oEvent) {
-      console.log("Bonjour je suis dedans");
+
 			var oDraggedItem = oEvent.getParameter("draggedControl");
 			var oDraggedItemContext = oDraggedItem.getBindingContext("TicketsModel");
-      console.log("Bonjour j'ai récupéré le context de l'item");
 			if (!oDraggedItem) {
 				return;
 			}
-      console.log("Bonjour j'ai dépassé la condition");
+
       var sStartDate = oDraggedItemContext.getProperty("StartDate");
+
+      if(!sStartDate){
+        var date = new Date();
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth() + 1).toString().padStart(2, '0');
+        var dd = date.getDate().toString().padStart(2, '0');
+        var sStartDate = yyyy + mm + dd;
+      }
 
 			var oOwnerComponent = Component.getOwnerComponentFor(this.getView());
 			var oTicketController = oOwnerComponent.byId("CTicket").getController();
 			oTicketController.moveItemToTable(oDraggedItemContext, "In Progress", sStartDate, "");
-
-			// reset the rank property and update the model to refresh the bindings
-			/* var oAvailableProductsTable = Utils.getAvailableProductsTable(this);
-			// var oProductsModel = oAvailableProductsTable.getModel();
-			 oProductsModel.setProperty("Rank", Utils.ranking.Initial, oDraggedItemContext);*/
 		},
   });
 });
