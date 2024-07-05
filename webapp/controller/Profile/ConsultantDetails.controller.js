@@ -3,8 +3,6 @@ sap.ui.define([
   "sap/ui/model/json/JSONModel",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-  "sap/m/Dialog",
-  "sap/m/Button",
 ], function (Controller, JSONModel, Filter, FilterOperator) {
   "use strict";
 

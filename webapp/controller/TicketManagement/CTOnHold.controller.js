@@ -4,8 +4,9 @@ sap.ui.define([
   "sap/ui/model/FilterOperator",
   "sap/m/MessageToast",
   "sap/ui/core/Component",
-  "sap/ui/model/json/JSONModel"
-], function (Controller, Filter, FilterOperator, MessageToast, Component, JSONModel) {
+  "sap/ui/model/json/JSONModel",
+  "sap/ui/core/Fragment"
+], function (Controller, Filter, FilterOperator, MessageToast, Component, JSONModel, Fragment) {
   "use strict";
 
   return Controller.extend("management.controller.TicketManagement.CTOnHold", {
@@ -140,6 +141,44 @@ sap.ui.define([
       var oOwnerComponent = Component.getOwnerComponentFor(this.getView());
       var oTicketController = oOwnerComponent.byId("CTicket").getController();
       oTicketController.moveItemToTable(oDraggedItemContext, "On Hold", sStartDate, "");
-    }
+    },
+
+    // Show the ticket information in a dialog
+    showTicketInfo: function (oEvent) {
+      var oLink = oEvent.getSource();
+      var oBindingContext = oLink.getBindingContext("TicketsModel");
+      var sTicketId = oBindingContext.getProperty("IdTicket");
+  
+      var oModel = this.getView().getModel();
+      oModel.read("/TICKETIDSet('" + sTicketId + "')", {
+          success: function (oData) {
+              console.log("Ticket details fetched:", oData); // Check if oData contains the expected data
+  
+              if (!this._pTicketDetailsDialog) {
+                  this._pTicketDetailsDialog = Fragment.load({
+                      id: this.getView().getId(),
+                      name: "management.view.Fragments.TicketDetails",
+                      controller: this
+                  }).then(function (oDialog) {
+                      this.getView().addDependent(oDialog);
+                      return oDialog;
+                  }.bind(this));
+              }
+              this._pTicketDetailsDialog.then(function (oDialog) {
+                  oDialog.setModel(new JSONModel(oData));
+                  oDialog.open();
+              });
+              
+          }.bind(this),
+          error: function (oError) {
+              MessageToast.show("Error fetching ticket data: " + oError.message);
+          }
+      });
+    },
+
+    onCloseDialog: function () {
+      this.byId("ticketDetailsDialog").close();
+    },
+
   });
 });

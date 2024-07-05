@@ -60,6 +60,8 @@
                     visible="{= ${alerts>/alerts/notifications}.length === 0 ? false : true }"
                     type="Transparent"
                     press=".onNotificationPress"
+                    tooltip="{i18n>notificationButtonTooltip}"
+                    
                 >
                     <layoutData>
                         <OverflowToolbarLayoutData

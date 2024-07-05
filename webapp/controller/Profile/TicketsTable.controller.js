@@ -4,7 +4,6 @@ sap.ui.define(
    "sap/ui/Device", 
    "sap/ui/model/Filter",
    "sap/ui/model/FilterOperator"],
-
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
@@ -39,38 +38,24 @@ sap.ui.define(
       // Show the ticket information in a dialog
       showTicketInfo: function (oEvent) {
 
-        // Check if the dialog has not been created yet
-        if (!this.oFixedSizeDialog) {
-          this.oFixedSizeDialog = new Dialog({
-            title: "Available Products",
-            contentWidth: "550px",
-            contentHeight: "300px",
-            content: new List({
-              items: {
-                path: "/ProductCollection", 
-                template: new StandardListItem({
-                  title: "{Name}", 
-                  counter: "{Quantity}"
-                })
-              }
-            }),
-            // Add a close button to the dialog
-            endButton: new Button({
-              text: "Close",
-              press: function () {
-                this.oFixedSizeDialog.close();
-              }.bind(this)
-            })
-          });
-
-          // Add the dialog as a dependent of the view
-          this.getView().addDependent(this.oFixedSizeDialog);
+        if (!this._pTicketDetailsDialog) {
+          this._pTicketDetailsDialog = Fragment.load({
+            id: this.getView().getId(),
+            name: "management.view.Fragments.TicketDetails",
+            controller: this
+          }).then(function (oDialog) {
+            this.getView().addDependent(oDialog);
+            return oDialog;
+          }.bind(this));
         }
+        this._pTicketDetailsDialog.then(function (oDialog) {
+          oDialog.open();
+        });
+      },
 
-        // Open the dialog
-        this.oFixedSizeDialog.open();
-      }
-
+      onCloseDialog: function () {
+        this.byId("ticketDetailsDialog").close();
+      },
     });
   }
 );

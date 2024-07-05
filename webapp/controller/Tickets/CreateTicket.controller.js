@@ -87,9 +87,7 @@ sap.ui.define(
         var sPriority = oView.byId("Priority").getSelectedKey();
         var intEstimated = parseInt(sEstimated, 10);
 
-        var sIdTicket = "T-" + sProjet.substring(2, 5).toUpperCase() + ('000' + Math.floor(Math.random() * 1000)).slice(-3);
-
-        console.log("sid",sIdTicket)
+        var sIdTicket = "T-" + sProjet.substring(2, 5).toUpperCase() + ('00000' + Math.floor(Math.random() * 100000)).slice(-5);
 
         // Get userId from the i18n model and fetch user data
         var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
@@ -124,14 +122,102 @@ sap.ui.define(
         oModel.create("/TICKETIDSet", oData, {
           success: function () {
             MessageToast.show("Data successfully added.");
-            this.onReset(); // Reset form fields
-            location.reload(); // Reload the page
-            console.log("after creation");
+            this._createNotification(sIdTicket).then(function () {
+              this.onReset(); // Reset form fields
+              location.reload(); // Reload the page
+            }.bind(this)).catch(function (oError) {
+              MessageToast.show("Error adding notification: " + oError.message);
+            });
           }.bind(this),
           error: function (oError) {
             MessageToast.show("Error adding data: " + oError.message);
           }
         });
+
+        if (sConsultantId != null) {
+          oModel.read("/CONSULTANTIDSet('" + sConsultantId + "')", {
+            success: function (oData) {
+              var inputData = {
+                ConsultantId: oData.ConsultantId,
+                FirstName: oData.FirstName,
+                Name: oData.Name,
+                Email: oData.Email,
+                Expertise: oData.Expertise,
+                Grade: oData.Grade,
+                Country: oData.Country,
+                Login: oData.Login,
+                Password: oData.Password,
+                Hold: oData.Hold,
+                Disponilbilty: "0",
+                ManagerId: oData.ManagerId
+              };
+              oModel.create("/CONSULTANTIDSet", inputData, {
+                success: function () {
+                  location.reload();
+                }.bind(this),
+                error: function (oError) {
+                  sap.m.MessageToast.show("Error changing availability: " + oError.message);
+                }
+              });
+  
+            }.bind(this),
+            error: function (oError) {
+              MessageToast.show("Error adding data: " + oError.message);
+            }
+          });
+        } 
+
+      },
+
+      _createNotification: function (sTicketId) {
+        return new Promise(function (resolve, reject) {
+          var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+          var sUserId = oBundle.getText("userId");
+          var oModel = this.getOwnerComponent().getModel();
+
+          oModel.read("/CONSULTANTIDSet('" + sUserId + "')", {
+            success: function (response) {
+              var sNotifID = "N-" + ('0000000000000' + Math.floor(Math.random() * 1000000000000)).slice(-12);
+              var notification = {
+                Id: sNotifID,
+                IdTicketJira: sTicketId,
+                Type: "AssignedByC",
+                Seen: "0",
+                DateNotif: this._formatDate(new Date()),
+                SentBy: sUserId,
+                ReceivedBy: response.ManagerId,
+                Deleted: "0",
+                Content: ""
+              };
+
+              oModel.create("/NOTIFICATIONIDSet", notification, {
+                success: function () {
+                  console.log("Notification created.");
+                  resolve();
+                },
+                error: function (oError) {
+                  console.error("Create operation failed", oError);
+                  var errorMessage;
+                  if (oError.responseText) {
+                    try {
+                      var errorResponse = JSON.parse(oError.responseText);
+                      errorMessage = errorResponse.error.message.value;
+                    } catch (e) {
+                      errorMessage = "An unknown error occurred";
+                    }
+                  } else {
+                    errorMessage = oError.message;
+                  }
+                  reject(new Error(errorMessage));
+                }
+              });
+            }.bind(this),
+            error: function (error) {
+              console.error("Error while fetching consultant data:", error);
+              reject(error);
+            }
+          });
+        }.bind(this));
       },
 
       // Function to reset form fields

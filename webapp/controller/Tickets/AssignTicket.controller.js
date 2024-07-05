@@ -151,14 +151,9 @@ sap.ui.define(
           EndDate: oView.getBindingContext().getProperty("EndDate"),
           CreatedBy: oView.getBindingContext().getProperty("CreatedBy"),
           CreationDate: oView.getBindingContext().getProperty("CreationDate"),
-          Status: oView.getBindingContext().getProperty("Status"),
+          Status: 'On Hold',
+          Consultant : sConsultantId,
         };
-        if (sConsultantId === null) {
-          oData.Status = 'Unassigned';
-        } else {
-          oData.Status = 'In Progress';
-          oData.Consultant = sConsultantId;
-        }
 
         var oModel = this.getView().getModel();
 
@@ -166,18 +161,21 @@ sap.ui.define(
         oModel.create("/TICKETIDSet", oData, {
           success: function () {
             MessageToast.show("Data successfully updated.");
-            this.onCancel();
-            location.reload();
+            var sIdTicket =  oView.getBindingContext().getProperty("IdTicket");
+            this._createNotification(sIdTicket).then(function () {
+              location.reload(); 
+            }.bind(this)).catch(function (oError) {
+              MessageToast.show("Error adding notification: " + oError.message);
+            });
           }.bind(this),
           error: function (oError) {
             MessageToast.show("Error adding data: " + oError.message);
           }
         });
 
-        // Get the consultant by Id 
+        // Get the consultant by Id to change its availability
         oModel.read("/CONSULTANTIDSet('" + sConsultantId + "')", {
           success: function (oData) {
-            // Change the consultant availability
             var inputData = {
               ConsultantId: oData.ConsultantId,
               FirstName: oData.FirstName,
@@ -205,7 +203,58 @@ sap.ui.define(
             MessageToast.show("Error adding data: " + oError.message);
           }
         });
+        this.getOwnerComponent().getRouter().navTo("RouteTicket");
+      },
 
+      _createNotification: function (sTicketId) {
+        return new Promise(function (resolve, reject) {
+          var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+          var sUserId = oBundle.getText("userId");
+          var oModel = this.getOwnerComponent().getModel();
+
+          oModel.read("/CONSULTANTIDSet('" + sUserId + "')", {
+            success: function (response) {
+              var sNotifID = "N-" + ('0000000000000' + Math.floor(Math.random() * 1000000000000)).slice(-12);
+              var notification = {
+                Id: sNotifID,
+                IdTicketJira: sTicketId,
+                Type: "AssignedByC",
+                Seen: "0",
+                DateNotif: this._formatDate(new Date()),
+                SentBy: sUserId,
+                ReceivedBy: response.ManagerId,
+                Deleted: "0",
+                Content: ""
+              };
+
+              oModel.create("/NOTIFICATIONIDSet", notification, {
+                success: function () {
+                  console.log("Notification created.");
+                  resolve();
+                },
+                error: function (oError) {
+                  console.error("Create operation failed", oError);
+                  var errorMessage;
+                  if (oError.responseText) {
+                    try {
+                      var errorResponse = JSON.parse(oError.responseText);
+                      errorMessage = errorResponse.error.message.value;
+                    } catch (e) {
+                      errorMessage = "An unknown error occurred";
+                    }
+                  } else {
+                    errorMessage = oError.message;
+                  }
+                  reject(new Error(errorMessage));
+                }
+              });
+            }.bind(this),
+            error: function (error) {
+              console.error("Error while fetching consultant data:", error);
+              reject(error);
+            }
+          });
+        }.bind(this));
       },
 
       // Cancel function to navigate back

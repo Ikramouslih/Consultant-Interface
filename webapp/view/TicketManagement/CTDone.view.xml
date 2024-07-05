@@ -15,19 +15,12 @@
                 alternateRowColors="true"
             >
                 <!-- Liaison aux données OData -->
-                <m:headerToolbar>
-			        <m:OverflowToolbar id="_IDGenOverflowToolbar1">
-				        <m:Title id="_IDGenTitle2" text="Done" />
-			        </m:OverflowToolbar>
-		        </m:headerToolbar>
-
                 <m:columns >
                     <!-- Définition des colonnes -->
 
                     <!-- Invisible column for the Id-->
                     <m:Column
                         id="_IDGenColumn11"
-                        width="9em"
                         visible="false"
                     >
                         <m:Label
@@ -38,7 +31,6 @@
 
                     <m:Column
                         id="_IDGenColumn1a2"
-                        width="9rem"
                     >
                         <m:Label
                             id="_IDGenLabel1a2"
@@ -48,7 +40,6 @@
 
                     <m:Column
                         id="_IDGenColumn122"
-                        width="6em"
                     >
                         <m:Label
                             id="_IDGenLabel122"
@@ -58,11 +49,10 @@
 
                     <m:Column
                         id="_IDGenColumna12"
-                        width="8em"
                     >
                         <m:Label
                             id="_IDGenLabel1a2a"
-                            text="Start Date"
+                            text="End Date"
                         />
                     </m:Column>
 
@@ -84,7 +74,7 @@
 				        <m:cells >
                             <m:Text
                                 id="_IDGenText111"
-                                text="{TicketsModel>Title}"
+                                text="{TicketsModel>IdTicket}"
                             />
 
                             <m:Link

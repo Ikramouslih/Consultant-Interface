@@ -14,19 +14,11 @@
         items="{TicketsModel>/Tickets}"
         alternateRowColors="true"
     >
-        <!-- Liaison aux données OData -->
-        <m:headerToolbar>
-            <m:OverflowToolbar id="_IDGenOverflowToolbar1">
-                <m:Title id="_IDGenTitle2" text="In Progress" />
-            </m:OverflowToolbar>
-        </m:headerToolbar>
-
         <m:columns>
             <!-- Définition des colonnes -->
 
             <m:Column
                 id="_IDGenColumn1a2"
-                width="9rem"
             >
                 <m:Label
                     id="_IDGenLabel1a2"
@@ -36,7 +28,6 @@
 
             <m:Column
                 id="_IDGenColumn122"
-                width="6em"
             >
                 <m:Label
                     id="_IDGenLabel122"
@@ -46,7 +37,6 @@
 
             <m:Column
                 id="_IDGenColumna12"
-                width="8em"
             >
                 <m:Label
                     id="_IDGenLabel1a2a"
