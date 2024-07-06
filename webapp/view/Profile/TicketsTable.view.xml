@@ -8,7 +8,7 @@
 >
     <Table
         id="idProductsTable"
-        items="{TICKETIDDATA>/}"
+        items="{TICKETIDDATA>/Tickets}"
     >
         <headerToolbar>
             <Toolbar id="_IDGenToolbar1">
@@ -16,7 +16,7 @@
                 <SearchField
                     id="searchField"
                     width="auto"
-                    search=".onFilterPosts"
+                    search=".onSearch"
                     liveChange="onSearch"
                 />
             </Toolbar>
@@ -43,7 +43,7 @@
             <Column id="_IDGenColumn4">
                 <Text
                     id="_IDGenText4"
-                    text="Created"
+                    text="Created By"
                 />
             </Column>
             <Column id="_IDGenColumn5">
@@ -56,18 +56,6 @@
                 <Text
                     id="_IDGenText6"
                     text="Technology"
-                />
-            </Column>
-            <Column id="_IDGenColumn7">
-                <Text
-                    id="_IDGenText7"
-                    text="Days"
-                />
-            </Column>
-            <Column id="_IDGenColumn8">
-                <Text
-                    id="_IDGenText8"
-                    text="Consultant"
                 />
             </Column>
         </columns>
@@ -85,11 +73,11 @@
                     />
                     <Text
                         id="_IDGenText10"
-                        text="{TICKETIDDATA>Projet}"
+                        text="{TICKETIDDATA>ProjectName}"
                     />
                     <Text
                         id="_IDGenText11"
-                        text="{TICKETIDDATA>CreatedBy}"
+                        text="{TICKETIDDATA>CreatedByName}"
                     />
                     <Text
                         id="_IDGenText12"
@@ -98,14 +86,6 @@
                     <Text
                         id="_IDGenText13"
                         text="{TICKETIDDATA>Technology}"
-                    />
-                    <Text
-                        id="_IDGenText14"
-                        text="{TICKETIDDATA>Days}"
-                    />
-                    <Text
-                        id="_IDGenText15"
-                        text="{TICKETIDDATA>Consultant}"
                     />
                 </cells>
             </ColumnListItem>

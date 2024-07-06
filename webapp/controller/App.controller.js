@@ -151,7 +151,7 @@ sap.ui.define([
                 parts: ['Type', 'IdTicketJira', 'SentBy'],
                 formatter: function (sType, sIdTicketJira, sSentBy) {
                   if (sType === 'AssignedByM') {
-                    return `Ticket ${sIdTicketJira} by the manager ${sSentBy}.`;
+                    return `The ticket ${sIdTicketJira} by the manager ${sSentBy}.`;
                   }
                 }
               },

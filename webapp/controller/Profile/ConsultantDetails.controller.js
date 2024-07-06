@@ -3,13 +3,13 @@ sap.ui.define([
   "sap/ui/model/json/JSONModel",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-], function (Controller, JSONModel, Filter, FilterOperator) {
+  "sap/m/MessageToast"
+], function (Controller, JSONModel, Filter, FilterOperator, MessageToast) {
   "use strict";
 
   return Controller.extend("management.controller.Profile.ConsultantDetails", {
-    
-    onInit: function () {
 
+    onInit: function () {
       // Add appropriate content density class to the view
       this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 
@@ -21,46 +21,140 @@ sap.ui.define([
       this.getView().bindElement({
         path: "/CONSULTANTIDSet('" + sConsultantId + "')",
         events: {
-          dataReceived: function(oData) {
-            // Handle data received event if needed
-          }
+          dataReceived: function (oData) { }
         }
       });
 
-      // Fetch ticket data based on the consultant ID
-      var oModel = this.getOwnerComponent().getModel();
-      var oFilter = new Filter("Consultant", FilterOperator.EQ, sConsultantId);
-      
-      oModel.read("/TICKETIDSet", {
-        filters: [oFilter],
-        success: function (response) {
-          // Set the fetched ticket data to the model
-          var oJSONModel = this.getView().getModel("TICKETIDDATA");
-          oJSONModel.setData(response.results);
-          this.loadDonutData(sConsultantId); // Load data for the donut chart
-        }.bind(this),
-        error: function (error) {
-          console.error("Error while fetching ticket data:", error);
-        }
-      });
-      
       // Create and set the JSON model for ticket data
       var oJSONModel = new JSONModel();
       this.getView().setModel(oJSONModel, "TICKETIDDATA");
-      this.loadDonutData(sConsultantId); // Load data at initialization
+
+      this.loadTicketsWithConsultantAndUserNames(sConsultantId);
+      this.loadDonutData(sConsultantId);
+      this.loadTileDoneTickets();
     },
 
-    // Load data for the donut chart
+    // Function to load tickets along with associated consultant and user (CreatedBy) names
+    loadTicketsWithConsultantAndUserNames: function (sConsultantId) {
+      var oModel = this.getOwnerComponent().getModel();
+      var aTickets = [];
+      var aConsultants = [];
+      var aProjects = [];
+      var aManagers = [];
+
+      // Read tickets data
+      oModel.read("/TICKETIDSet", {
+        filters: [new Filter("Consultant", FilterOperator.EQ, sConsultantId)],
+        success: function (oData) {
+          aTickets = oData.results;
+          checkIfAllLoaded();
+        },
+        error: function (oError) {
+          console.error("Error reading tickets:", oError);
+        }
+      });
+
+      // Read consultants data
+      oModel.read("/CONSULTANTIDSet", {
+        success: function (oData) {
+          aConsultants = oData.results;
+          checkIfAllLoaded();
+        },
+        error: function (oError) {
+          console.error("Error reading consultants:", oError);
+        }
+      });
+
+      // Read projects data
+      oModel.read("/PROJECTIDSet", {
+        success: function (oData) {
+          aProjects = oData.results;
+          checkIfAllLoaded();
+        },
+        error: function (oError) {
+          console.error("Error reading projects:", oError);
+        }
+      });
+
+      // Read managers data
+      oModel.read("/MANAGERIDSet", {
+        success: function (oData) {
+          aManagers = oData.results;
+          checkIfAllLoaded();
+        },
+        error: function (oError) {
+          console.error("Error reading managers:", oError);
+        }
+      });
+
+
+      var checkIfAllLoaded = function () {
+        if (aTickets.length > 0 && aConsultants.length > 0 && aProjects.length > 0 && aManagers.length > 0) {
+          // Create maps for quick lookup
+          var oConsultantMap = aConsultants.reduce(function (map, consultant) {
+            map[consultant.ConsultantId] = consultant.Name + " " + consultant.FirstName;
+            return map;
+          }, {});
+
+          var oProjectMap = aProjects.reduce(function (map, project) {
+            map[project.IdProject] = project.NomProjet;
+            return map;
+          }, {});
+
+          var oManagerMap = aManagers.reduce(function (map, manager) {
+            map[manager.ManagerId] = manager.Name + " " + manager.FirstName;
+            return map;
+          }, {});
+
+          // Merge ticket data with consultant, project, and user/manager names
+          var aMergedData = aTickets.map(function (ticket) {
+            ticket.ProjectName = oProjectMap[ticket.Projet] || "Unknown Project";
+            ticket.CreatedByName = oConsultantMap[ticket.CreatedBy] || oManagerMap[ticket.CreatedBy] || "Unknown User/Manager";
+            return ticket;
+          });
+
+          // Set merged data to the model
+          var oTicketsModel = new JSONModel({ Tickets: aMergedData, TicketCount: aMergedData.length });
+          this.getView().setModel(oTicketsModel, "TICKETIDDATA");
+        }
+      }.bind(this);
+    },
+
+    onSearch: function (oEvent) {
+      var sQuery = oEvent.getParameter("query") || oEvent.getParameter("newValue");
+      var aFilters = [];
+
+      if (sQuery && sQuery.length > 0) {
+        aFilters = new Filter([
+          new Filter("IdTicket", FilterOperator.Contains, sQuery),
+          new Filter("IdJira", FilterOperator.Contains, sQuery),
+          new Filter("Titre", FilterOperator.Contains, sQuery),
+          new Filter("Description", FilterOperator.Contains, sQuery),
+          new Filter("ProjectName", FilterOperator.Contains, sQuery),
+          new Filter("ConsultantName", FilterOperator.Contains, sQuery),
+          new Filter("CreatedByName", FilterOperator.Contains, sQuery),
+          new Filter("Status", FilterOperator.Contains, sQuery),
+          new Filter("Priority", FilterOperator.Contains, sQuery),
+          new Filter("CreationDate", FilterOperator.Contains, sQuery),
+          new Filter("StartDate", FilterOperator.Contains, sQuery),
+          new Filter("EndDate", FilterOperator.Contains, sQuery),
+          new Filter("Technology", FilterOperator.Contains, sQuery)
+        ], false);
+      }
+
+      var oTable = this.byId("idProductsTable");
+      var oBinding = oTable.getBinding("items");
+      oBinding.filter(aFilters, "Application");
+    },
+
     loadDonutData: function (sConsultantId) {
       var oModel = this.getOwnerComponent().getModel();
       var oJSONModel = new JSONModel();
       var oFilter = new Filter("Consultant", FilterOperator.EQ, sConsultantId);
 
-      // Fetch data for the donut chart based on consultant ID
       oModel.read("/TICKETIDSet", {
         filters: [oFilter],
         success: function (oData) {
-          // Group data by status and set to the model for the donut chart
           var aGroupedData = this.groupByStatus(oData.results);
           oJSONModel.setData({ donutData: aGroupedData });
           this.getView().setModel(oJSONModel, "donutModel");
@@ -71,14 +165,11 @@ sap.ui.define([
       });
     },
 
-    // Group ticket data by status for the donut chart
     groupByStatus: function (aData) {
-      var statusCounts = {}; // Object to store counts by status
+      var statusCounts = {};
 
-      // Count the number of tickets for each status
       aData.forEach(function (item) {
-        var status = item.Status || "Inconnu"; // Default to "Inconnu" if status is empty
-
+        var status = item.Status || "Inconnu";
         if (!statusCounts[status]) {
           statusCounts[status] = 1;
         } else {
@@ -86,59 +177,41 @@ sap.ui.define([
         }
       });
 
-      // Convert the counts object to an array for the donut chart
       var aDonutData = [];
       for (var key in statusCounts) {
         aDonutData.push({
-          label: key, // Segment label (status)
-          value: statusCounts[key], // Segment value (number of tickets)
-          displayedValue: statusCounts[key] + " tickets" // Displayed value
+          label: key,
+          value: statusCounts[key],
+          displayedValue: statusCounts[key] + " tickets"
         });
       }
-
+      aDonutData = aDonutData.filter(function (item) {
+        return item.label !== "Done";
+      });
       return aDonutData;
     },
 
-    // Event handler for donut chart selection change
-    onSelectionChanged: function (oEvent) {
-      var oSelectedSegment = oEvent.getParameter("selectedSegment");
-      // Handle the selection change if needed
+    loadTileDoneTickets: function () {
+      var oModel = this.getOwnerComponent().getModel();
+      var oFilter = new Filter("Status", FilterOperator.EQ, "Done");
+      var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+      var sConsultantId = oBundle.getText("userId");
+
+      oModel.read("/TICKETIDSet", {
+        filters: [new Filter("Status", FilterOperator.EQ, "Done"), new Filter("Consultant", FilterOperator.EQ, sConsultantId)],
+        success: function (response) {
+          var oJSONModel = new JSONModel();
+          oJSONModel.setData(response.results.length);
+          this.getView().setModel(oJSONModel, "doneTickets");
+        }.bind(this),
+        error: function (error) {
+          console.error("Error while fetching ticket data:", error);
+        }
+      });
     },
 
-    // Show ticket info in a dialog
-    showTicketInfo: function (oEvent) {
-      var oSelectedItem = oEvent.getSource();
-      var oTicketContext = oSelectedItem.getBindingContext("TICKETIDDATA");
-      var oTicketDetails = oTicketContext.getObject();
-
-      // Lazy load the dialog fragment if not already loaded
-      if (!this._oDialog) {
-        this._oDialog = sap.ui.xmlfragment("management.view.Fragments.TicketDetails", this);
-        this.getView().addDependent(this._oDialog);
-      }
-
-      // Set the ticket details model to the dialog
-      this._oDialog.setModel(new sap.ui.model.json.JSONModel(oTicketDetails));
-      this._oDialog.bindElement("/");
-
-      // Open the dialog
-      this._oDialog.open();
-    },
-
-    // Close the ticket info dialog
-    onCloseDialog: function () {
-      if (this._oDialog) {
-        this._oDialog.close();
-      }
-    },
-
-    // Search functionality for filtering tickets
-    onSearch: function (oEvent) {
-      var sQuery = oEvent.getParameter("newValue");
-      var oTable = this.getView().byId("idProductsTable");
-      var oBinding = oTable.getBinding("items");
-      var oFilter = new Filter("Titre", FilterOperator.Contains, sQuery);
-      oBinding.filter(oFilter);
+    onTicketTilePress: function (oEvent) {
+      MessageToast.show("Good Job!");
     }
 
   });

@@ -8,7 +8,7 @@
 	xmlns:a="sap.f"
 	height="100%">
 
-<ScrollContainer
+    <ScrollContainer
         id="_IDGenScrollContainer1"
         vertical="true"
         horizontal="false"
