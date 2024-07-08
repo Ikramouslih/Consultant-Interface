@@ -278,7 +278,7 @@ sap.ui.define([
               MessageToast.show("Error fetching ticket data: " + oError.message);
           }
       });
-  } ,
+    } ,
 
     onCloseDialog: function () {
       this.byId("ticketDetailsDialog").close();
