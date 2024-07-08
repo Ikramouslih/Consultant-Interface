@@ -26,7 +26,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText2"
+                        id="azmojezcezac"
                         text="{/Titre}"
                         class="ticketDetailText"
                     />
@@ -41,7 +41,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText3"
+                        id="_IDGenTextcaqca3"
                         text="{/Projet}"
                         class="ticketDetailText"
                     />
@@ -56,7 +56,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText4"
+                        id="_IDGenTacext4"
                         text="{/Technology}"
                         class="ticketDetailText"
                     />
@@ -71,7 +71,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText5"
+                        id="_IDGenTczcext5"
                         text="{/Status}"
                         class="ticketDetailText"
                     />
@@ -86,7 +86,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText6"
+                        id="_IDGeczsznText6"
                         text="{/Priority}"
                         class="ticketDetailText"
                     />
@@ -101,7 +101,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText7"
+                        id="_IDGeczcnText7"
                         text="{= ${/StartDate} ? ${/StartDate} : '-' }"
                         class="ticketDetailText"
                     />
@@ -116,7 +116,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText8"
+                        id="_IDGenTexczzt8"
                         text="{= ${/EndDate} ? ${/EndDate} : '-' }"
                         class="ticketDetailText"
                     />
@@ -131,7 +131,7 @@
                         class="ticketDetailLabel"
                     />
                     <Text
-                        id="_IDGenText9"
+                        id="_IdcczdDGenText9"
                         text="{/Description}"
                         class="ticketDetailText"
                     />

@@ -3,8 +3,10 @@ sap.ui.define([
   "sap/ui/model/json/JSONModel",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-  "sap/m/MessageToast"
-], function (Controller, JSONModel, Filter, FilterOperator, MessageToast) {
+  "sap/m/MessageToast",
+  "sap/ui/core/Fragment",
+
+], function (Controller, JSONModel, Filter, FilterOperator, MessageToast,Fragment) {
   "use strict";
 
   return Controller.extend("management.controller.Profile.ConsultantDetails", {
@@ -41,6 +43,7 @@ sap.ui.define([
       var aConsultants = [];
       var aProjects = [];
       var aManagers = [];
+      
 
       // Read tickets data
       oModel.read("/TICKETIDSet", {
@@ -165,6 +168,36 @@ sap.ui.define([
       });
     },
 
+    // Function to handle search for tickets based on user input
+    onSearch: function (oEvent) {
+      var sQuery = oEvent.getParameter("query") || oEvent.getParameter("newValue");
+      var aFilters = [];
+
+      // Build array of filters based on search query
+      if (sQuery && sQuery.length > 0) {
+        aFilters = new Filter([
+          new Filter("IdTicket", FilterOperator.Contains, sQuery),
+          new Filter("IdJira", FilterOperator.Contains, sQuery),
+          new Filter("Titre", FilterOperator.Contains, sQuery),
+          new Filter("Description", FilterOperator.Contains, sQuery),
+          new Filter("ProjectName", FilterOperator.Contains, sQuery),
+          new Filter("ConsultantName", FilterOperator.Contains, sQuery),
+          new Filter("Status", FilterOperator.Contains, sQuery),
+          new Filter("Priority", FilterOperator.Contains, sQuery),
+          new Filter("CreationDate", FilterOperator.Contains, sQuery),
+          new Filter("StartDate", FilterOperator.Contains, sQuery),
+          new Filter("EndDate", FilterOperator.Contains, sQuery),
+          new Filter("Technology", FilterOperator.Contains, sQuery)
+        ], false);
+      }
+
+      // Apply filters to the table binding
+      var oTable = this.byId("idProductsTable");
+      var oBinding = oTable.getBinding("items");
+      oBinding.filter(aFilters, "Application");
+    },
+
+
     groupByStatus: function (aData) {
       var statusCounts = {};
 
@@ -212,7 +245,44 @@ sap.ui.define([
 
     onTicketTilePress: function (oEvent) {
       MessageToast.show("Good Job!");
-    }
+    },
+
+    // Show the ticket information in a dialog
+    showTicketInfo: function (oEvent) {
+      var oLink = oEvent.getSource();
+      var oBindingContext = oLink.getBindingContext("TICKETIDDATA");
+      var sTicketId = oBindingContext.getProperty("IdTicket");
+  
+      var oModel = this.getView().getModel();
+      oModel.read("/TICKETIDSet('" + sTicketId + "')", {
+          success: function (oData) {
+              console.log("Ticket details fetched:", oData); // Check if oData contains the expected data
+  
+              if (!this._pTicketDetailsDialog) {
+                  this._pTicketDetailsDialog = Fragment.load({
+                      id: this.getView().getId(),
+                      name: "management.view.Fragments.TicketDetails",
+                      controller: this
+                  }).then(function (oDialog) {
+                      this.getView().addDependent(oDialog);
+                      return oDialog;
+                  }.bind(this));
+              }
+              this._pTicketDetailsDialog.then(function (oDialog) {
+                  oDialog.setModel(new JSONModel(oData));
+                  oDialog.open();
+              });
+              
+          }.bind(this),
+          error: function (oError) {
+              MessageToast.show("Error fetching ticket data: " + oError.message);
+          }
+      });
+  } ,
+
+    onCloseDialog: function () {
+      this.byId("ticketDetailsDialog").close();
+    },
 
   });
 });

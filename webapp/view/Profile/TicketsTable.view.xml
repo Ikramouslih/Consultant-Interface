@@ -26,36 +26,42 @@
                 <Text
                     id="_IDGenText1"
                     text="ID (Jira)"
+                    class="theadProfile"
                 />
             </Column>
             <Column id="_IDGenColumn2">
                 <Text
-                    id="_IDGenText2"
+                    id="_IDGenTextczadcez2"
                     text="Titre"
+                    class="theadProfile"
                 />
             </Column>
             <Column id="_IDGenColumn3">
                 <Text
                     id="_IDGenText3"
                     text="Projet"
+                    class="theadProfile"
                 />
             </Column>
             <Column id="_IDGenColumn4">
                 <Text
                     id="_IDGenText4"
                     text="Created By"
+                    class="theadProfile"
                 />
             </Column>
             <Column id="_IDGenColumn5">
                 <Text
                     id="_IDGenText5"
                     text="Status"
+                    class="theadProfile"
                 />
             </Column>
             <Column id="_IDGenColumn6">
                 <Text
                     id="_IDGenText6"
                     text="Technology"
+                    class="theadProfile"
                 />
             </Column>
         </columns>

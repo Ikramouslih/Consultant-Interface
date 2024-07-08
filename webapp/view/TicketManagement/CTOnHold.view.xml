@@ -23,6 +23,7 @@
                 <m:Label
                     id="_IDGenLabel1a2"
                     text="Title"
+                    class="theadProfile"
                 />
             </m:Column>
 
@@ -32,6 +33,7 @@
                 <m:Label
                     id="_IDGenLabel122"
                     text="Project"
+                    class="theadProfile"
                 />
             </m:Column>
 
@@ -42,6 +44,7 @@
                 <m:Label
                     id="_IDGenLabel1a2a"
                     text="Start Date"
+                    class="theadProfile"
                 />
             </m:Column>
 

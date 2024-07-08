@@ -201,7 +201,7 @@ svg.sapSuiteIDCChartSVG{
  
  
 /* Tables Style */
- .sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
+.sapFDynamicPageContent, .sapFDynamicPageContentFitContainer {
     padding: 1rem 3rem 0 3rem !important;
 }
 .sapMITH .sapMITBHead {
@@ -422,3 +422,27 @@ svg.sapSuiteIDCChartSVG{
     margin: 5px;
     width: 12rem !important;
 }
+
+/* Profile table */
+.sapMTableTH{    
+    text-align: center !important;
+    background-color: rgb(35, 45, 79) !important;
+}
+.sapUiSizeCompact .sapMColumnHeader:last-child{
+    border-top-right-radius: 10px !important;
+}
+.sapUiSizeCompact .sapMColumnHeader:first-child{
+    border-top-left-radius: 10px !important;
+}
+.theadProfile {
+    font-weight: bold !important;
+    font-size: 0.8rem !important;
+    color : white !important;
+}
+.sapUiSizeCompact .sapMListTblCell>.sapMLnk, .sapUiSizeCompact .sapMListTblCell>.sapMText, .sapUiSizeCompact .sapMListTblCell>.sapMLabel, .sapUiSizeCompact .sapMListTblCell>.sapMObjectNumber, .sapUiSizeCompact .sapMListTblCell>.sapMObjectIdentifier, .sapUiSizeCompact .sapMListTblCell>.sapMObjStatus {
+    vertical-align: middle;
+    line-height: 1.4;
+    color: rgb(39, 38, 38) !important;
+    font-weight: normal !important;
+}
+
