@@ -319,6 +319,10 @@ sap.ui.define([
   
       onCloseDialog: function () {
         this.byId("ticketDetailsDialog").close();
+      },
+
+      OnHelloPress: function () {
+        this.getOwnerComponent().getRouter().navTo("");
       }
       
     });
