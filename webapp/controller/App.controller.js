@@ -138,9 +138,7 @@ sap.ui.define([
             }, {});
       
             aNotifications.sort(function (a, b) {
-              var dateA = new Date(a.DateNotif);
-              var dateB = new Date(b.DateNotif);
-              return dateA - dateB;
+              return b.DateNotif - a.DateNotif;
             });
       
             var oJSONModel = new sap.ui.model.json.JSONModel({ results: aNotifications });
