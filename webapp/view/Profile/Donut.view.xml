@@ -11,10 +11,18 @@
         width="30rem"
         height="15rem"
     >
+        <m:Image
+            id="_IDGenImzeczeage1"
+            src="../../../assets/donutchart.png"
+            visible="{donutModel>/visibilityImg}"
+            width="14rem"
+            height="7rem"
+            class="chartimg"
+        />
         <InteractiveDonutChart
             id="_IDGenInteractiveDonutChart150"
             segments="{donutModel>/donutData}"
-            selectionChanged="onSelectionChanged"
+            visible="{donutModel>/visibilityDonut}"
         >
             <segments>
                 <InteractiveDonutChartSegment

@@ -159,7 +159,15 @@ sap.ui.define([
         filters: [oFilter],
         success: function (oData) {
           var aGroupedData = this.groupByStatus(oData.results);
-          oJSONModel.setData({ donutData: aGroupedData });
+          var allZero = aGroupedData.every(function(segment) {
+            return segment.value === 0;
+          });
+
+          oJSONModel.setData({ 
+            donutData: aGroupedData,
+            visibilityImg: allZero,
+            visibilityDonut: !allZero
+          });
           this.getView().setModel(oJSONModel, "donutModel");
         }.bind(this),
         error: function (oError) {
@@ -199,34 +207,30 @@ sap.ui.define([
 
 
     groupByStatus: function (aData) {
-      var statusCounts = {};
+      var statusCounts = [
+        { label: "On Hold", value: 0, displayedValue: 0 },
+        { label: "In Progress", value: 0, displayedValue: 0 }
+      ];
 
       aData.forEach(function (item) {
-        var status = item.Status || "Inconnu";
-        if (!statusCounts[status]) {
-          statusCounts[status] = 1;
-        } else {
-          statusCounts[status]++;
-        }
+          var status = item.Status || "Unknown";
+          var statusObj = statusCounts.find(s => s.label === status);
+          if (statusObj) {
+              statusObj.value++;
+              statusObj.displayedValue++;
+          }
       });
 
-      var aDonutData = [];
-      for (var key in statusCounts) {
-        aDonutData.push({
-          label: key,
-          value: statusCounts[key],
-          displayedValue: statusCounts[key] + " tickets"
-        });
-      }
-      aDonutData = aDonutData.filter(function (item) {
-        return item.label !== "Done";
+      statusCounts = statusCounts.filter(function (item) {
+          return item.label !== "Done";
       });
-      return aDonutData;
+
+      return statusCounts;
+
     },
 
     loadTileDoneTickets: function () {
       var oModel = this.getOwnerComponent().getModel();
-      var oFilter = new Filter("Status", FilterOperator.EQ, "Done");
       var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
       var sConsultantId = oBundle.getText("userId");
 

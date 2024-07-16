@@ -9,6 +9,7 @@
     <Table
         id="idProductsTable"
         items="{TICKETIDDATA>/Tickets}"
+        
     >
         <headerToolbar>
             <Toolbar id="_IDGenToolbar1">

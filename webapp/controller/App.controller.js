@@ -44,14 +44,15 @@ sap.ui.define([
         // Get userId from the i18n model and fetch user data
         var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
         var sUserId = oBundle.getText("userId");
-        var oModel = this.getOwnerComponent().getModel();
-        oModel.read("/CONSULTANTIDSet('" + sUserId + "')", {
-          success: function (oData) {
-            this.byId("userButton").setText("Hello, " + oData.FirstName + "!");
-            this.getView().setModel(new sap.ui.model.json.JSONModel(oData), "user");
-          }.bind(this)
-        });
-  
+      
+        // Set the alerts model
+        var oAlertsModel = new sap.ui.model.json.JSONModel({ unseenCount: 0 });
+        this.getView().setModel(oAlertsModel, "alerts");
+      
+        // Set the user and notification icon
+        this.setUser(sUserId);
+        this.setNotificationIcon(sUserId);
+        
         // Collapse side navigation on smaller devices
         if (Device.resize.width <= 1024) {
           this.onSideNavButtonPress();
@@ -59,46 +60,39 @@ sap.ui.define([
         Device.media.attachHandler(this._handleWindowResize, this);
         this.getRouter().attachRouteMatched(this.onRouteChange.bind(this));
       },
-  
-      // Clean up media handler on exit
-      onExit: function () {
-        Device.media.detachHandler(this._handleWindowResize, this);
+      
+      setUser: function (sUserId) {
+        // Get userId from the i18n model and fetch user data
+        var oModel = this.getOwnerComponent().getModel();
+        oModel.read("/CONSULTANTIDSet('" + sUserId + "')", {
+          success: function (oData) {
+            this.byId("userButton").setText("Hello, " + oData.FirstName + "!");
+            this.getView().setModel(new sap.ui.model.json.JSONModel(oData), "user");
+          }.bind(this)
+        });
       },
-  
-      // Handle window resize events
-      _handleWindowResize: function (oDevice) {
-        if ((oDevice.name === "Tablet" && this._bExpanded) || oDevice.name === "Desktop") {
-          this.onSideNavButtonPress();
-          // set the _bExpanded to false on tablet devices
-          // extending and collapsing of side navigation should be done when resizing from
-          // desktop to tablet screen sizes)
-          this._bExpanded = (oDevice.name === "Desktop");
-        }
-      },
-  
-      // Update the selected key in the side model
-      onRouteChange: function (oEvent) {
-      },
-  
-      // Toggle side navigation panel
-      onSideNavButtonPress: function () {
-        var oToolPage = this.byId("app");
-        var bSideExpanded = oToolPage.getSideExpanded();
-        this._setToggleButtonTooltip(bSideExpanded);
-        oToolPage.setSideExpanded(!oToolPage.getSideExpanded());
-      },
-  
-      // Set tooltip text for the toggle button
-      _setToggleButtonTooltip: function (bSideExpanded) {
-        var oToggleButton = this.byId('sideNavigationToggleButton');
-        var sTooltipText = this.getBundleText(bSideExpanded ? "expandMenuButtonText" : "collpaseMenuButtonText");
-        oToggleButton.setTooltip(sTooltipText);
-      },
-  
-      // Get text from the i18n resource bundle
-      getBundleText: function (sI18nKey) {
-        var oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-        return oResourceBundle.getText(sI18nKey);
+      
+      setNotificationIcon: function (sUserId) {
+        // Initialize the alerts model
+        var oModel = this.getOwnerComponent().getModel();
+        oModel.read("/NOTIFICATIONIDSet", {
+          success: function (oData) {
+            // Filter the notifications by the user
+            oData.results = oData.results.filter(function (oNotification) {
+              return oNotification.ReceivedBy === sUserId;
+            });
+            // Count the number of unseen notifications
+            var iUnseenCount = oData.results.filter(function (oNotification) {
+              return oNotification.Seen === "0";
+            });
+            // Update the alerts model
+            var oAlertsModel = this.getView().getModel("alerts");
+            oAlertsModel.setProperty("/unseenCount", iUnseenCount.length);
+          }.bind(this), // Bind the context to the callback
+          error: function (oError) {
+            sap.m.MessageToast.show("Failed to load notifications.");
+          }
+        });
       },
   
       // Navigation functions
@@ -128,11 +122,10 @@ sap.ui.define([
         var oModel = this.getView().getModel();
         var aNotifications = [];
         var aTickets = [];
-        var oTicketMap = {};
       
         var checkIfAllLoaded = function () {
           if (aNotifications.length > 0 && aTickets.length > 0) {
-            oTicketMap = aTickets.reduce(function (map, ticket) {
+            var oTicketMap = aTickets.reduce(function (map, ticket) {
               map[ticket.IdTicketJira] = ticket.Description;
               return map;
             }, {});
@@ -144,12 +137,14 @@ sap.ui.define([
             var oJSONModel = new sap.ui.model.json.JSONModel({ results: aNotifications });
             this._oNotificationList.setModel(oJSONModel);
             this._oNotificationList.bindItems("/results", new sap.m.StandardListItem({
-              title: "You have been assigned a ticket.",
+              title: "{= ${Type} === 'StatusChange' ? 'Ticket Done.' : 'You have a ticket.' }",
               description: {
                 parts: ['Type', 'IdTicketJira', 'SentBy'],
                 formatter: function (sType, sIdTicketJira, sSentBy) {
-                  if (sType === 'AssignedByM') {
-                    return `The ticket ${sIdTicketJira} by the manager ${sSentBy}.`;
+                  if (sType === 'StatusChange') {
+                    return `The ticket ${sIdTicketJira} done by the consultant ${sSentBy}.`;
+                  } else {
+                    return `The ticket ${sIdTicketJira} was assigned to you by the manager ${sSentBy}.`;
                   }
                 }
               },
@@ -160,7 +155,7 @@ sap.ui.define([
               icon: {
                 path: 'Type',
                 formatter: function (sType) {
-                  return 'sap-icon://clinical-order';
+                  return sType === 'StatusChange' ? 'sap-icon://message-success' : 'sap-icon://clinical-order';
                 }
               },
               customData: [
@@ -169,14 +164,19 @@ sap.ui.define([
                   value: {
                     path: 'Type',
                     formatter: function (sType) {
-                      return 'info';
+                      return sType === 'StatusChange' ? 'success' : 'info';
                     }
                   }
+                }),
+                new sap.ui.core.CustomData({
+                  key: 'seen',
+                  value: "{Seen}"
                 })
               ],
               press: (oEvent) => {
                 var idTicket = oEvent.getSource().getBindingContext().getProperty("IdTicketJira");
-                this.showTicketInfo(oEvent, idTicket);
+                var sNotifId = oEvent.getSource().getBindingContext().getProperty("Id");
+                this.showTicketInfo(oEvent, idTicket, sNotifId);
               },
               iconDensityAware: false,
               iconInset: true,
@@ -185,6 +185,12 @@ sap.ui.define([
       
             this._oNotificationList.attachUpdateFinished(function () {
               this._oNotificationList.getItems().forEach(function (oItem) {
+                var sSeen = oItem.getCustomData()[1].getValue();
+                if (sSeen === "0") {
+                  oItem.addStyleClass("unseenNotification");
+                } else {
+                  oItem.removeStyleClass("unseenNotification");
+                }
                 var sIconClass = oItem.getCustomData()[0].getValue();
                 oItem.addStyleClass(sIconClass);
               });
@@ -199,9 +205,7 @@ sap.ui.define([
           filters: [new Filter("ReceivedBy", FilterOperator.EQ, sUserId)],
           success: function (oData) {
             oData.results.sort(function (a, b) {
-              var dateA = new Date(a.DateNotif);
-              var dateB = new Date(b.DateNotif);
-              return dateA - dateB;
+              return b.DateNotif - a.DateNotif;
             });
             aNotifications = oData.results.slice(-10);
             checkIfAllLoaded();
@@ -220,37 +224,47 @@ sap.ui.define([
             sap.m.MessageToast.show("Failed to load tickets.");
           }
         });
-      },
+      },         
       
       onNotificationPress: function(oEvent) {
-        if (!this._oPopover) {
-            this._oNotificationList = new List({
-                id: "notificationList"
-            });
-            
-            var oButton = new Button({
-              text: "Show All Notifications",
-              press: function (oEvent) {
-                MessageToast.show("Show All Notifications clicked");
-              }
-            }); 
-            this._oPopover = new ResponsivePopover({
-                title: "Notifications",
-                contentWidth: "550px",
-                placement: mobileLibrary.PlacementType.Bottom,
-                content: [this._oNotificationList],
-                endButton : oButton,
-            });
-  
-            // sync style class with the current view
-            syncStyleClass(this.getView().getController().getOwnerComponent().getContentDensityClass(), this.getView(), this._oPopover);
-            
-            // Load notifications
-            this._loadNotifications();
+        // Check if the popover is already open
+        if (this._oPopover && this._oPopover.isOpen()) {
+            // Close the popover
+            this._oPopover.close();
+        } else {
+            // Create the popover if it doesn't exist
+            if (!this._oPopover) {
+                this._oNotificationList = new List({
+                    id: "notificationList"
+                });
+
+                var oButton = new Button({
+                    text: "Show All Notifications",
+                    press: function(oEvent) {
+                      this.getOwnerComponent().getRouter().navTo("NotificationHistory");
+                      this._oPopover.close();
+                    }.bind(this)
+                });
+                this._oPopover = new ResponsivePopover({
+                    title: "Notifications",
+                    contentWidth: "600px",
+                    placement: mobileLibrary.PlacementType.Bottom,
+                    content: [this._oNotificationList],
+                    endButton: oButton,
+                });
+
+                // Sync style class with the current view
+                syncStyleClass(this.getView().getController().getOwnerComponent().getContentDensityClass(), this.getView(), this._oPopover);
+
+                // Load notifications
+                this._loadNotifications();
+            }
+
+            // Open the popover
+            this._oPopover.openBy(oEvent.getSource());
         }
-        
-        this._oPopover.openBy(oEvent.getSource());
       },
+
   
       _formatNotificationDate: function (sDate) {
         if (!sDate) {
@@ -286,10 +300,10 @@ sap.ui.define([
       },
   
       // Show the ticket information in a dialog
-      showTicketInfo: function (oEvent, sTicketId) {
+      showTicketInfo: function (oEvent, sTicketId, sNotifId, s) {
         var oLink = oEvent.getSource();
         var oBindingContext = oLink.getBindingContext("TicketsModel");
-    
+      
         var oModel = this.getView().getModel();
         oModel.read("/TICKETIDSet('" + sTicketId + "')", {
             success: function (oData) {  
@@ -306,20 +320,96 @@ sap.ui.define([
                 this._pTicketDetailsDialog.then(function (oDialog) {
                     oDialog.setModel(new JSONModel(oData));
                     oDialog.open();
-                });
-                
+      
+                    // Mark the notification as seen
+                    oModel.read("/NOTIFICATIONIDSet('" + sNotifId + "')", {
+                      success: function (oNotificationData) {
+                          var oUpdateData = {
+                              Id: oNotificationData.Id,
+                              IdTicketJira: oNotificationData.IdTicketJira,
+                              Type: oNotificationData.Type,
+                              Seen: "1",
+                              DateNotif: oNotificationData.DateNotif,
+                              SentBy: oNotificationData.SentBy,
+                              ReceivedBy: oNotificationData.ReceivedBy,
+                              Deleted: oNotificationData.Deleted,
+                              Content: oNotificationData.Content
+                          };
+                          oModel.create("/NOTIFICATIONIDSet", oUpdateData, {
+                              success: function () {      
+                                  // Reload notifications
+                                  this._loadNotifications();
+                                  // Update the notification icon
+                                  var oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+                                  var sUserId = oBundle.getText("userId");
+                                  this.setNotificationIcon(sUserId);
+                              }.bind(this),
+                              error: function (oError) {
+                                  MessageToast.show("Error updating notification: " + oError.message);
+                              }
+                          });
+                      }.bind(this),
+                      error: function (oError) {
+                          MessageToast.show("Error finding notification: " + oError.message);
+                      }
+                  });
+                }.bind(this));
             }.bind(this),
             error: function (oError) {
                 MessageToast.show("Error fetching ticket data: " + oError.message);
             }
         });
-      },
-  
+      },         
+
       onCloseDialog: function () {
         this.byId("ticketDetailsDialog").close();
       },
 
+      _updateNotificationAppearance: function (oNotificationItem) {
+        oNotificationItem.removeStyleClass("unseenNotification");
+      },
       
+      // Clean up media handler on exit
+      onExit: function () {
+        Device.media.detachHandler(this._handleWindowResize, this);
+      },
+  
+      // Handle window resize events
+      _handleWindowResize: function (oDevice) {
+        if ((oDevice.name === "Tablet" && this._bExpanded) || oDevice.name === "Desktop") {
+          this.onSideNavButtonPress();
+          // set the _bExpanded to false on tablet devices
+          // extending and collapsing of side navigation should be done when resizing from
+          // desktop to tablet screen sizes)
+          this._bExpanded = (oDevice.name === "Desktop");
+        }
+      },
+  
+      // Update the selected key in the side model
+      onRouteChange: function (oEvent) {
+      },
+      
+       // Toggle side navigation panel
+       onSideNavButtonPress: function () {
+        var oToolPage = this.byId("app");
+        var bSideExpanded = oToolPage.getSideExpanded();
+        this._setToggleButtonTooltip(bSideExpanded);
+        oToolPage.setSideExpanded(!oToolPage.getSideExpanded());
+      },
+  
+      // Set tooltip text for the toggle button
+      _setToggleButtonTooltip: function (bSideExpanded) {
+        var oToggleButton = this.byId('sideNavigationToggleButton');
+        var sTooltipText = this.getBundleText(bSideExpanded ? "expandMenuButtonText" : "collpaseMenuButtonText");
+        oToggleButton.setTooltip(sTooltipText);
+      },
+  
+      // Get text from the i18n resource bundle
+      getBundleText: function (sI18nKey) {
+        var oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+        return oResourceBundle.getText(sI18nKey);
+      },
+
     });
   });
   

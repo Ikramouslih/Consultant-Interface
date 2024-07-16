@@ -208,6 +208,13 @@
           "target": [
             "TargetConsultantCalendar"
           ]
+        },
+        {
+          "name": "NotificationHistory",
+          "pattern": "NotificationHistory/",
+          "target": [
+            "NotificationHistory"
+          ]
         }
       ],
       "targets": {
@@ -280,6 +287,13 @@
           "clearControlAggregation": false,
           "viewId": "ConsultantCalendar",
           "viewName": "InputCalendar.ConsultantCalendar"
+        },
+        "NotificationHistory": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "NotificationHistory",
+          "viewName": "Notifications.NotificationHistory"
         }
       }
     },

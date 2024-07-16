@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 /* Layout Navbar and Sidebar */
 .customLogoClass {
     width: 15%;
@@ -20,8 +25,6 @@
 }
 .sidebar {
     background-color: rgb(32,41,72) !important;
-    /* border-radius: 10px;
-    margin: 3px; */
 }
 .sideNavLinks{
     color: white !important;
@@ -50,13 +53,10 @@
     color: white !important;
 }
 .sapTntNavLIItem .sapUiIcon {
-    color: rgb(0,171,155) !important;
+    color: rgb(0,171,155)  !important;
 }
-*{
-    margin: 0;
-    padding: 0;
-}
- 
+
+
 
 /* Blue donut */
 .Donut{
@@ -393,6 +393,9 @@ svg.sapSuiteIDCChartSVG{
     margin-left: -15px !important;
     margin-top: 23px !important;
 }
+.marginLeft30{
+    margin-left: 1.5rem !important;
+}
 .marginLeft20{
     margin-left: -20px !important;
 }
@@ -415,9 +418,9 @@ svg.sapSuiteIDCChartSVG{
 .sapSuiteIDCLegendValue{
     visibility: hidden !important;
 }
-.sapMFlexItemAlignAuto {
+/* .sapMFlexItemAlignAuto {
     align-self: center !important;
-}
+} */
 #application-management-display-component---Home--tileAssigned{
     margin: 5px;
     width: 12rem !important;
@@ -445,4 +448,14 @@ svg.sapSuiteIDCChartSVG{
     color: rgb(39, 38, 38) !important;
     font-weight: normal !important;
 }
+.chartimg{
+    margin-left: 40px;
+    margin-top: 22px;
+}
 
+/* ------------------------------------------------- */
+
+/* Notification seen */
+.unseenNotification {
+    background-color: #e5e9f3; /* Light gray background for seen notifications */
+}

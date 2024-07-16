@@ -183,12 +183,12 @@
                                     </f:FormElement>
                                     <f:FormElement
                                         id="_IDGenFormElementszed3"
-                                        class="donutile"
+                                        class="marginLeft30"
                                     >
                                         <VBox
                                             id="_IDdedczcGenHBox3"
                                             width="100%"
-                                            class="donutile"
+                                            class="marginLeft30"
                                         >
                                             <layoutData>
                                                 <FlexItemData
@@ -199,7 +199,7 @@
                                                 />
                                             </layoutData>
                                             <GenericTile
-                                                class="donutile"
+                                                class="marginLeft30"
                                                 id="tileAssigned"
                                                 header="Total Tickets"
                                                 subheader="Done"
