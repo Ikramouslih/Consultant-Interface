@@ -55,7 +55,14 @@
 .sapTntNavLIItem .sapUiIcon {
     color: rgb(0,171,155)  !important;
 }
-
+#application-management-display-component---App--_IDGenSideNavigation1{
+    border-radius: 10px;
+    margin-top: 3px;
+}
+#application-management-display-component---App--_IDGenToolHeader1{
+    border-radius: 10px;
+    margin-top: 3px;
+}
 
 
 /* Blue donut */

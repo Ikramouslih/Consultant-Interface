@@ -181,6 +181,40 @@ sap.ui.define([
                     console.error("Error updating ticket status:", oError);
                 }
             });
+
+            // each time we move a ticket from one table to another, i need to have an entry in my history table (entity called HISTORYSET),  and these are my fields in my table :
+            // IdHistory : an id that i need to be a random exactly 20 digit number
+            // IdTicket : the id of the ticket
+            // IdConsultant : the current user
+            // FromStatus : the status that the ticket had before moving
+            // ToStatus :  the status that the ticket have after moving
+            // Zdate : today's date
+            
+            var sIdHistory = "H-" + ('00000000000000000000' + Math.floor(Math.random() * 100000000000000000000)).slice(-20);
+            var sIdConsultant = this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("userId");
+            var sFromStatus = oSelectedItem.getProperty("Status");
+            var sToStatus = sStatus;
+            var sZdate = this._getCurrentFormattedDate();
+            console.log("date", sZdate);
+
+            var oHistory = {
+                IdHistory: sIdHistory,
+                IdTicket: sIdTicket,
+                IdConsultant: sIdConsultant,
+                FromStatus: sFromStatus,
+                ToStatus: sToStatus,
+                Zdate: sZdate
+            };
+            var hModel = new sap.ui.model.odata.v2.ODataModel("/sap/opu/odata/sap/ZODA_GEST_HISTORY_SRV/", true);
+            // create a post request to the history table
+            hModel.create("/HISTORYSet", oHistory, {
+                success: function () {
+                    console.log("History entry created.");
+                },
+                error: function (oError) {
+                    console.error("Create operation failed", oError);
+                }
+            });
         },
 
         _getCurrentFormattedDate: function () {

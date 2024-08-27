@@ -33,6 +33,15 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "Service2": {
+        "uri": "/sap/opu/odata/sap/ZODA_GEST_HISTORY_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
